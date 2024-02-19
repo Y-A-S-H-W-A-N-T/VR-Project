@@ -1,5 +1,6 @@
 .pano{
-    width: 600px;
+    width: 300px;
+    transform: rotate(90deg);
 }
 .vr{
 }
