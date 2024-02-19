@@ -15,7 +15,6 @@ function App() {
             yaw={180}
             hfov={110}
             autoLoad
-            autoRotate
           >
           </Pannellum>
         </div>
@@ -26,7 +25,6 @@ function App() {
             yaw={180}
             hfov={110}
             autoLoad
-            autoRotate
           >
           </Pannellum>
         </div>
