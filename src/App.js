@@ -7,14 +7,14 @@ import './css/panoramic.css'
 function App() {
   return (
     <div className="App">
-      <div className='vr'>
         <div className='pano'>
           <Pannellum
             image={VR_IMAGE}
             pitch={10}
-            yaw={180}
+            yaw={90}
             hfov={110}
             autoLoad
+            orientationOnByDefault
           >
           </Pannellum>
         </div>
@@ -22,14 +22,14 @@ function App() {
           <Pannellum
             image={VR_IMAGE}
             pitch={10}
-            yaw={180}
+            yaw={90}
             hfov={110}
             autoLoad
+            orientationOnByDefault
           >
           </Pannellum>
         </div>
       </div>
-    </div>
   );
 }
 
