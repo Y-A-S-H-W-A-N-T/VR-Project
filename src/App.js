@@ -1,5 +1,5 @@
 import React from 'react'
-import VR_IMAGE from './vr.jpeg'
+import VR_IMAGE from './vr1.jpg'
 
 import { Pannellum, PannellumVideo } from "pannellum-react"
 import './css/panoramic.css'
