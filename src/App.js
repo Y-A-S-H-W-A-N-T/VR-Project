@@ -10,6 +10,7 @@ function App() {
         <div className='pano'>
           <Pannellum
             image={VR_IMAGE}
+            height='300px'
             pitch={10}
             yaw={90}
             hfov={110}
@@ -21,6 +22,7 @@ function App() {
         <div className='pano'>
           <Pannellum
             image={VR_IMAGE}
+            height='300px'
             pitch={10}
             yaw={90}
             hfov={110}
