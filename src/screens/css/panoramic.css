@@ -1,0 +1,15 @@
+.pano{
+    width: 200px;
+    margin: 5px;
+}
+.scene{
+    height: 300px;
+    width: 300px;
+}
+.af{
+    height: 300px;
+    width: 300px;
+}
+.panoramic{
+    display: flex;
+}

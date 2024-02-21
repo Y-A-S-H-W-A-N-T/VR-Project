@@ -9,10 +9,14 @@
     "aframe": "^1.5.0",
     "aframe-particle-system-component": "^1.1.3",
     "aframe-react": "^4.4.0",
+    "aframe-stereo-component": "^1.3.0",
     "pannellum-react": "^1.3.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router": "^6.22.1",
+    "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
+    "react-vr-cli": "^0.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
