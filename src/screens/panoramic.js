@@ -13,7 +13,6 @@ function Pano() {
         <div className='pano'>
           <Pannellum
             image={VR_IMAGE}
-            height='300px'
             pitch={10}
             yaw={90}
             hfov={110}
@@ -25,12 +24,12 @@ function Pano() {
         <div className='pano'>
           <Pannellum
             image={VR_IMAGE}
-            height='300px'
             pitch={10}
             yaw={90}
             hfov={110}
             autoLoad
             orientationOnByDefault
+            showControls={false}
           >
           </Pannellum>
         </div>

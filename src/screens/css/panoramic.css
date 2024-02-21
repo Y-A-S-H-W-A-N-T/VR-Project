@@ -1,5 +1,6 @@
 .pano{
-    width: 200px;
+    width: 300px;
+    height: 4s00px;
     margin: 5px;
 }
 .scene{
@@ -12,4 +13,7 @@
 }
 .panoramic{
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 50px;
 }
