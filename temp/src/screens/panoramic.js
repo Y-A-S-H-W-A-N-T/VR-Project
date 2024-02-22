@@ -29,7 +29,6 @@ function Pano() {
             hfov={110}
             autoLoad
             orientationOnByDefault
-            showControls={false}
           >
           </Pannellum>
         </div>
