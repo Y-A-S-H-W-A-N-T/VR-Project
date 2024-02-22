@@ -9,8 +9,8 @@ function App() {
     <div>
       <BrowserRouter >
         <Routes>
-          <Route path="/" element={<Panoramic />} />
-          <Route path="/vr" element={<Vr />} />
+          <Route path="/stereo-view" element={<Panoramic />} />
+          <Route path="/mono-view" element={<Vr />} />
         </Routes>
       </BrowserRouter>
     </div>
