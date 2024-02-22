@@ -1,23 +1,18 @@
-import VR_IMAGE from './vr.jpeg'
-import { Pannellum, PannellumVideo } from 'pannellum-react'
 import 'aframe'
-import { Entity, Scene } from 'aframe-react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Panoramic from './screens/panoramic.jsx'
+import Vr from './screens/vr.jsx'
 
 function App() {
 
   return (
     <div>
-      <Scene>
-            <a-sky src={VR_IMAGE}/>
-      </Scene>
-      {/* <Pannellum
-            image={VR_IMAGE}
-            pitch={10}
-            yaw={90}
-            hfov={110}
-            autoLoad
-            orientationOnByDefault
-      /> */}
+      <BrowserRouter >
+        <Routes>
+          <Route path="/" element={<Panoramic />} />
+          <Route path="/vr" element={<Vr />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

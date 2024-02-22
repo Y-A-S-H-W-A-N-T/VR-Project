@@ -1,0 +1,10 @@
+.pano-screen{
+    height: 2340px;
+    width: 400px;
+    margin: 10px;
+}
+
+.stereoscopic-view{
+    display: flex;
+    justify-content: center;
+}
