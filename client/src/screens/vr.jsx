@@ -1,14 +1,18 @@
 import React from 'react'
 import 'aframe'
-import VR_IMAGE from '../vr.jpeg'
+import VR_IMAGE from '../vr2.jpg'
+import 'aframe-particle-system-component';
+import Table from '../table.png'
 import { Entity, Scene } from 'aframe-react'
 
 function Vr() {
+
   return (
     <div>
-      <Scene>
-        <a-sky src={VR_IMAGE}/>
-      </Scene>
+      <a-scene>
+        <a-sky src={VR_IMAGE}></a-sky>
+        <a-image src={Table} position="0 0 -5" rotation="0 120 0"></a-image>
+      </a-scene>
     </div>
   )
 }
