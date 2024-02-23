@@ -12,6 +12,7 @@ function Vr() {
       <a-scene>
         <a-sky src={VR_IMAGE}></a-sky>
         <a-image src={Table} position="0 0 -5" rotation="0 120 0"></a-image>
+        <a-entity look-controls position="0 1.6 0" touchEnabled enabled></a-entity>
       </a-scene>
     </div>
   )
