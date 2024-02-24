@@ -11,12 +11,11 @@ function Vr() {
     <div>
       <a-scene>
         <a-sky src={VR_IMAGE}></a-sky>
-        <a-entity id="main-camera-wrapper">
-          <a-camera id="main-camera">
-            <a-cursor id="fuse-cursor" material="opacity: 0;" position="0 0 -.99"></a-cursor>
-            <a-image src={Table} position="0 0 -.99" width="0.2" height="0.2"></a-image>
-          </a-camera>
-        </a-entity>
+        <a-entity
+          gltf-model="https://cdn.glitch.com/36cb8393-65c6-408d-a538-055ada20431b/Astronaut.glb?1542147958948"
+          scale="5 5 5"
+          position="0 -10 -10"
+          ></a-entity>
       </a-scene>
     </div>
   )
