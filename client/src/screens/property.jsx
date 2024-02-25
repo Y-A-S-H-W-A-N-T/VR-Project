@@ -16,6 +16,7 @@ function Property() {
         <img src={data.property.image}/>
         <Link to='/vr-view' state={{pano: data.property.image}}>VIEW IN VR</Link>
         <Link to='/ar' state={{pano: data.property.image}}>VIEW AR</Link>
+        {/* add arfor mobile also */}
     </div>
   )
 }

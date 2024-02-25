@@ -14,7 +14,7 @@ function App() {
     <div>
       <BrowserRouter >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/vr-view" element={<Panoramic />} />
           <Route path="/ar" element={<AR />} />
           <Route path="/mobilear" element={<MobileAR />} />

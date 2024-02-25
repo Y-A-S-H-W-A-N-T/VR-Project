@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import 'aframe'
 import VR_IMAGE from '../vr2.jpg'
 import 'aframe-particle-system-component'
@@ -14,8 +14,7 @@ function Vr() {
   return (
     <div>
       <a-scene>
-        <a-sky src={VR_IMAGE}></a-sky>   
-        {/* USE DYNAMIC PANO IMAGE HERE */}
+        <a-sky src={`/src/images/${pano}`}></a-sky>
           <a-camera id="main-camera">
             <a-cursor id="fuse-cursor" material="opacity: 0;" position="0 0 -1"></a-cursor>
           </a-camera>
