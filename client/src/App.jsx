@@ -6,6 +6,7 @@ import Home from './screens/home.jsx'
 import MobileAR from './screens/mobileAR.jsx'
 import Property from './screens/property.jsx'
 import {Register} from './screens/register.jsx'
+import { PropUpload } from './screens/propUploads.jsx'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/mobilear" element={<MobileAR />} />
           <Route path="/property" element={<Property />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/propUpload" element={<PropUpload />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,13 +5,19 @@ const roomSchema= new mongoose.Schema({
         type:String,
        
     },
-    city:{
+    price:{
         type:String,
         required:true,
     },
-    images:{
+    name:{
        type:String,
     },
+    type:{
+        type:String,
+     },
+    image:{
+        type:String,
+     },
 },{
     timestamps:true
 }

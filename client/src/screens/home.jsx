@@ -1,12 +1,27 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { data } from '../properties/data'
 import { Link } from "react-router-dom";
-
+import axios from "axios"
 function Home() {
 
   const [search,setSearch] = useState('')
-  console.log(data)
+  console.log("data",data)
+  const [properties, setProperties] = useState([]);
+
+  useEffect(() => {
+      
+      axios.get('/property/show')
+          .then(response => {
+              setProperties(response.data); 
+              
+          })
+          .catch(error => {
+              console.error("Error:", error);
+          });
+  }, []); 
+
+  console.log("------------------------------------------------------",properties)
   return (
     <div>
         <input
@@ -49,7 +64,29 @@ function Home() {
 
           }
         </div>
+
+
+        {/* new prop */}
+
+        <div>
+            <h2>Properties</h2>
+            <ul>
+                {properties.map(property => (
+                    <li key={property._id}>
+                        <p>Property Name: {property.name}</p>
+                        <p>Location: {property.location}</p>
+                        <p>Price: {property.price}</p>
+                        <p>Type: {property.type}</p>
+                        <img src={property.image} alt="Property" style={{ width: '100px' }} />
+                    </li>
+                ))}
+            </ul>
+        </div>
     </div>
+
+
+
+    
   )
 }
 

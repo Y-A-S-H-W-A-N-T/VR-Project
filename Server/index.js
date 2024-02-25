@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv"
 import userRouter from "./Routes/userRouter.js"
 import adminRouter from "./Routes/adminRouter.js"
+import propRouter from './Routes/propRouter.js'
 import bodyParser from "body-parser"
 import cors from "cors"
 import multer from "multer"
@@ -21,7 +22,7 @@ app.use('/uploads', express.static('./uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/user",userRouter);
 app.use("/admin",adminRouter);
-
+app.use("/property",propRouter);
 
 app.listen(PORT,()=>{console.log("Challo! Server hogaya suru...")})
 
