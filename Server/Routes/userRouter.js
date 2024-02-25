@@ -7,10 +7,12 @@ const app = express();
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "./public/uploads/postimages/",
+  destination: function(req,file,cb){
+    cb(null,"../client/src/images")
+  },
   filelocation: function (req, file, cb) {
     cb(
-      null,file.fieldlocation + "-" + Date.now() + path.extlocation(file.originallocation)
+      null,file.fieldlocation + "-" + Date.now() + path.extlocation(file.originalname)
     );
   },
 });
@@ -37,7 +39,6 @@ router.post("/register", (req, res) => {
         }
 
         const user = new User({
-        
           name: req.body.name,
           email: req.body.email,
           number: req.body.number,

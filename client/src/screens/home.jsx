@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react'
+import { useState,useEffect } from 'react'
+import { data } from '../properties/data'
+import { Link } from "react-router-dom"
+import axios from "axios"
 
 
 function Home() {
@@ -19,33 +21,50 @@ function Home() {
 
   return (
     <div>
-      <input
-        type='text'
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button>SEARCH</button>
+        <input
+          type='text'
+          value={search}
+          onChange={(res)=>setSearch(res.target.value)}
+        />
+        <button>SEARCH</button>
+        <div>
+          {
+            properties.filter((val)=>{
+              if(search.toLowerCase()=='')
+              {
+                return val
+              }
+              else if(val.location.toLowerCase().includes(search.toLowerCase()))
+              {
+                return val
+              }
+              else if(val.type.toLowerCase().includes(search.toLowerCase()))
+              {
+                return val
+              }
+            })
+            .map((item)=>{
+              return(
+                <div key={item.id} style={{border: '2px black solid'}}>
+                  <Link to='/property' state={{property: item}}>
+                    <div style={{display: 'flex'}}>
+                      <h1>IMAGE -</h1><img src={`/src/images/${item.image}`} alt='propert image' height={100} width={400}/>
+                    </div>
+                    <div>
+                      <h1>LOCATION : {item.location}</h1>
+                      <h1>PRICE : {item.price}</h1>
+                      <h1>NAME : {item.name}</h1>
+                      <h1>TYPE : {item.type}</h1>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })
 
-      <div>
-        {properties.map(property => (
-          <div key={property._id} style={{ border: '2px black solid', margin: '10px' }}>
-            <Link to='/property' state={{ property }}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <h1>IMAGE -</h1>
-                <img src={`../postimages/${property.image}`} alt={`${property.image}`} height={100} width={400} />
-              </div>
-              <div>
-                <h1>LOCATION: {property.location}</h1>
-                <h1>PRICE: {property.price}</h1>
-                <h1>NAME: {property.name}</h1>
-                <h1>TYPE: {property.type}</h1>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+          }
+        </div>
     </div>
-  );
+  )
 }
 
 export default Home;
