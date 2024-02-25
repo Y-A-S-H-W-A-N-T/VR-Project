@@ -3,6 +3,7 @@ import '../css/panoramic.css'
 import { Pannellum, PannellumVideo } from 'pannellum-react'
 import { useLocation } from 'react-router'
 import VRIMAGE from '../vr1.jpg'
+import Test from '../../../Server/public/uploads/postimages/image-1708861310035.png'
 
 function Panoramic() {
 
@@ -21,7 +22,7 @@ function Panoramic() {
         <div className='pano-screen'>
           {/* USE DYNAMIC PANO IMAGE HERE */}
           <Pannellum
-            image={panoImage}
+            image={Test}
             pitch={10}
             yaw={90}
             hfov={110}
@@ -31,7 +32,7 @@ function Panoramic() {
         </div>
         <div className='pano-screen'>
           <Pannellum
-            image={panoImage}
+            image={Test}
             pitch={10}
             yaw={90}
             hfov={110}

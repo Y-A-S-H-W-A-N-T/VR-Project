@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import { data } from '../properties/data'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import axios from "axios"
 function Home() {
 
@@ -32,7 +32,7 @@ function Home() {
         <button>SEARCH</button>
         <div>
           {
-            data.filter((val)=>{
+            properties.filter((val)=>{
               if(search.toLowerCase()=='')
               {
                 return val
@@ -46,47 +46,27 @@ function Home() {
                 return val
               }
             })
-            .map((item)=>(
-              <div key={item.id} style={{border: '2px black solid'}}>
-                <Link to='/property' state={{property: item}}>
-                  <div style={{display: 'flex'}}>
-                    <h1>IMAGE -</h1><img src={item.image} alt='propert image' height={100} width={400}/>
-                  </div>
-                  <div>
-                    <h1>LOCATION : {item.location}</h1>
-                    <h1>PRICE : {item.price}</h1>
-                    <h1>NAME : {item.name}</h1>
-                    <h1>TYPE : {item.type}</h1>
-                  </div>
-                </Link>
-              </div>
-            ))
+            .map((item)=>{
+              return(
+                <div key={item.id} style={{border: '2px black solid'}}>
+                  <Link to='/property' state={{property: item}}>
+                    <div style={{display: 'flex'}}>
+                      <h1>IMAGE -</h1><img src={`/src/images/${item.image}`} alt='propert image' height={100} width={400}/>
+                    </div>
+                    <div>
+                      <h1>LOCATION : {item.location}</h1>
+                      <h1>PRICE : {item.price}</h1>
+                      <h1>NAME : {item.name}</h1>
+                      <h1>TYPE : {item.type}</h1>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })
 
           }
         </div>
-
-
-        {/* new prop */}
-
-        <div>
-            <h2>Properties</h2>
-            <ul>
-                {properties.map(property => (
-                    <li key={property._id}>
-                        <p>Property Name: {property.name}</p>
-                        <p>Location: {property.location}</p>
-                        <p>Price: {property.price}</p>
-                        <p>Type: {property.type}</p>
-                        <img src={property.image} alt="Property" style={{ width: '100px' }} />
-                    </li>
-                ))}
-            </ul>
-        </div>
     </div>
-
-
-
-    
   )
 }
 

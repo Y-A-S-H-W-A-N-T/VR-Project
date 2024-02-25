@@ -7,7 +7,9 @@ const app = express();
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "./public/uploads/postimages/",
+  destination: function(req,file,cb){
+    cb(null,"../client/src/images")
+  },
   filename: function (req, file, cb) {
     cb(
       null,
