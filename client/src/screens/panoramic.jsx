@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import '../css/panoramic.css'
 import { Pannellum, PannellumVideo } from 'pannellum-react'
 import { useLocation } from 'react-router'
-import VRIMAGE from '../vr1.jpg'
-import Test from '../../../Server/public/uploads/postimages/image-1708861310035.png'
 
 function Panoramic() {
 

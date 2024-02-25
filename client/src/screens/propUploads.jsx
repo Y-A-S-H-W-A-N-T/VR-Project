@@ -8,15 +8,14 @@ export const PropUpload = () => {
     const [image, setImage] = useState(null); 
     const [Type, setType] = useState(""); 
 
-    const onSubmit = () => {
+    const onSubmit =async() => {
         const formData = new FormData();
-        formData.append('propName', propName);
-        formData.append('location', location);
-        formData.append('price', price);
-        formData.append('image', image);
-        formData.append('Type', Type);
-        
-        axios.post('/property/register', formData)
+        formData.append('propName', propName)
+        formData.append('location', location)
+        formData.append('price', price)
+        formData.append('image', image)
+        formData.append('Type', Type)
+        await axios.post('/property/register', formData)
             .then(response => {
                 if (response.status === 200) {
                     console.log("Uploaded");
@@ -31,7 +30,7 @@ export const PropUpload = () => {
 
     const handleFileChange = (e) => {
         setImage(e.target.files[0]); 
-        console.log("Selected file:", e.target.files[0]);
+        console.log("Selected file:", e.target.files[0])
     };
 
     return (
