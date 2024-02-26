@@ -11,10 +11,9 @@ const app=express();
 const PORT=3000
 dotenv.config()
 
-mongoose.connect(process.env.MONGODB)
+mongoose.connect('mongodb+srv://abishchhetri2502:gKa7BjeOgvMiw2DU@cluster0.n6whocg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=>{console.log("Yeahh Elvishhh Bhaii DB Connected!!!")})
 .catch((err)=>{console.log(err)})
-
 
 app.use(cors())
 app.use(express.json());

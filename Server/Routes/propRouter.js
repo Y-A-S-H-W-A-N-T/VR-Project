@@ -26,7 +26,7 @@ const upload = multer({
   limits: { fileSize: 10000000000 }, 
 }).single("image");
 
-app.use('/uploads', express.static(path.resolve('../../client/src/postimages')));
+app.use('/uploads', express.static(path.resolve('../client/src/images')));
 
 router.post("/register", (req, res) => {
   upload(req, res, async (err) => {
@@ -37,6 +37,7 @@ router.post("/register", (req, res) => {
     try {
       let imagePath = req.file ? req.file.filename : null;
       if (!imagePath) {
+        console.log('Insert an image')
         return res.status(400).send("Image upload failed.");
       }
 

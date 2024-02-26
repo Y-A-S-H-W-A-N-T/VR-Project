@@ -1,12 +1,19 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import { data } from '../properties/data'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
 
 
+
 function Home() {
-  const [search, setSearch] = useState('');
+
+  const location = useLocation()
+  const { property } = location.state
+
+  console.log("type  = ",property)
+
+  const [search, setSearch] = useState(property);
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -38,7 +45,7 @@ function Home() {
               {
                 return val
               }
-              else if(val.type.toLowerCase().includes(search.toLowerCase()))
+              else if(val.type.toLowerCase()==property)
               {
                 return val
               }

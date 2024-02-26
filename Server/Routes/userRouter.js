@@ -23,7 +23,7 @@ const upload = multer({
 }).single("image");
 
 
-app.use('/uploads', express.static(path.resolve('./public/uploads/postimages')));
+app.use('/uploads', express.static(path.resolve('../client/src/images')));
 
 router.post("/register", (req, res) => {
   upload(req, res, async (err) => {
