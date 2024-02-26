@@ -26,6 +26,8 @@ function Home() {
       });
   }, []);
 
+
+
   return (
     <div>
         <input
@@ -55,7 +57,7 @@ function Home() {
                 <div key={item.id} style={{border: '2px black solid'}}>
                   <Link to='/property' state={{property: item}}>
                     <div style={{display: 'flex'}}>
-                      <h1>IMAGE -</h1><img src={`/src/images/${item.image}`} alt='propert image' height={100} width={400}/>
+                      <h1>IMAGE -</h1><img src={`http://localhost:3000/uploads/${item.image}`} alt='propert image' height={100} width={400}/>
                     </div>
                     <div>
                       <h1>LOCATION : {item.location}</h1>
@@ -64,6 +66,8 @@ function Home() {
                       <h1>TYPE : {item.type}</h1>
                     </div>
                   </Link>
+
+                  
                 </div>
               )
             })

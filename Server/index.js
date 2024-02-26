@@ -16,9 +16,10 @@ mongoose.connect('mongodb+srv://abishchhetri2502:gKa7BjeOgvMiw2DU@cluster0.n6who
 .catch((err)=>{console.log(err)})
 
 app.use(cors())
-app.use(express.json());
-app.use('/uploads', express.static('./uploads'));
+
+app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use("/user",userRouter);
 app.use("/admin",adminRouter);
 app.use("/property",propRouter);

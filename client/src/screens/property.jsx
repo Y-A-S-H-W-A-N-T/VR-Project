@@ -14,7 +14,7 @@ function Property() {
         <h1>{data.property.name}</h1>
         <h1>{data.property.type}</h1>
         <h1>{data.property.price}</h1>
-        <img src={`/src/images/${data.property.image}`} height={100} width={100}/><br></br>
+        <img src={`http://localhost:3000/uploads/${data.property.image}`} height={100} width={100}/><br></br>
         <Link to='/vr-view' state={{pano: data.property.image}}>VIEW IN VR</Link><br></br>
         <Link to='/ar' state={{pano: data.property.image}}>VIEW AR</Link><br></br>
         <button>TRY ADDING FURNITURES</button>
