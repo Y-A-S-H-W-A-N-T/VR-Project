@@ -15,7 +15,6 @@ mongoose.connect('mongodb+srv://abishchhetri2502:gKa7BjeOgvMiw2DU@cluster0.n6who
 .then(()=>{console.log("Yeahh Elvishhh Bhaii DB Connected!!!")})
 .catch((err)=>{console.log(err)})
 
-
 app.use(cors())
 app.use(express.json());
 app.use('/uploads', express.static('./uploads'));

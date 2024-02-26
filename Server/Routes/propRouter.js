@@ -37,6 +37,7 @@ router.post("/register", (req, res) => {
     try {
       let imagePath = req.file ? req.file.filename : null;
       if (!imagePath) {
+        console.log('Insert an image')
         return res.status(400).send("Image upload failed.");
       }
 

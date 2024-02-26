@@ -15,17 +15,19 @@ export const PropUpload = () => {
         formData.append('price', price)
         formData.append('image', image)
         formData.append('Type', Type)
-        await axios.post('/property/register', formData)
-            .then(response => {
-                if (response.status === 200) {
-                    console.log("Uploaded");
-                } else {
-                    console.log("Upload failed");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+        await axios.post('/property/register', formData,
+            { headers: {"Content-Type": "multipart/form-data"}}
+        )
+        .then(response => {
+            if (response.status === 200) {
+                console.log("Uploaded");
+            } else {
+                console.log("Upload failed");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     };
 
     const handleFileChange = (e) => {

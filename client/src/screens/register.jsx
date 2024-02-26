@@ -16,17 +16,19 @@ export const Register = () => {
         formData.append('number', number);
         formData.append('image', image);
         console.log(formData)
-        axios.post('/user/register', formData)
-            .then(response => {
-                if (response.status === 200) {
-                    console.log("Uploaded");
-                } else {
-                    console.log("Upload failed");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+        axios.post('/user/register', formData,
+            { headers: {"Content-Type": "multipart/form-data"}}
+        )
+        .then(response => {
+            if (response.status === 200) {
+                console.log("Uploaded");
+            } else {
+                console.log("Upload failed");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     };
     const handleFileChange = (e) => {
         setImage(e.target.files[0]); 

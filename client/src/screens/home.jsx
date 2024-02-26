@@ -13,7 +13,7 @@ function Home() {
 
   console.log("type  = ",property)
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(property);
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function Home() {
               {
                 return val
               }
-              else if(val.type.toLowerCase().includes(search.toLowerCase()))
+              else if(val.type.toLowerCase()==property)
               {
                 return val
               }
