@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-
+import "../css/home.css"
 function Property() {
 
     const location = useLocation()
@@ -9,7 +9,7 @@ function Property() {
     console.log(data.property)
 
   return (
-    <div>
+    <div className='Property-Box'>
         <h1>{data.property.location}</h1>
         <h1>{data.property.name}</h1>
         <h1>{data.property.type}</h1>

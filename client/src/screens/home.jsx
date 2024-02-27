@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react'
 import { data } from '../properties/data'
 import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
-
+import "../css/home.css"
 
 
 function Home() {
@@ -54,7 +54,7 @@ function Home() {
             })
             .map((item)=>{
               return(
-                <div key={item.id} style={{border: '2px black solid'}}>
+                <div key={item.id} className='Property-Box' >
                   <Link to='/property' state={{property: item}}>
                     <div style={{display: 'flex'}}>
                       <h1>IMAGE -</h1><img src={`http://localhost:3000/uploads/${item.image}`} alt='propert image' height={100} width={400}/>
