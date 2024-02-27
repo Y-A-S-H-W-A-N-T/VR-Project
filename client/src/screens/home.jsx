@@ -57,11 +57,14 @@ function Home() {
                 <div key={item.id} className='Property-Box' >
                   <Link to='/property' state={{property: item}}>
                     <div style={{display: 'flex'}}>
-                      <h1>IMAGE -</h1><img src={`http://localhost:3000/uploads/${item.image}`} alt='propert image' height={100} width={400}/>
+                      {item.Room1=='NoAvail.jpg'?<></>:<><img src={`http://localhost:3000/uploads/${item.Room1}`}  height={100} width={400}/></>}
+                      {item.Room2=='NoAvail.jpg'?<></>:<><img src={`http://localhost:3000/uploads/${item.Room2}`}  height={100} width={400}/></>}
+                      {item.Room3=='NoAvail.jpg'?<></>:<><img src={`http://localhost:3000/uploads/${item.Room3}`}  height={100} width={400}/></>}
+                      {item.Room4=='NoAvail.jpg'?<></>:<><img src={`http://localhost:3000/uploads/${item.Room4}`}  height={100} width={400}/></>}
                     </div>
                     <div>
                       <h1>LOCATION : {item.location}</h1>
-                      <h1>PRICE : {item.price}</h1>
+                      <h1>PRICE : {item.price}</h1>       
                       <h1>NAME : {item.name}</h1>
                       <h1>TYPE : {item.type}</h1>
                     </div>

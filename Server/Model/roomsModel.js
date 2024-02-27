@@ -11,13 +11,29 @@ const roomSchema= new mongoose.Schema({
     },
     name:{
        type:String,
+       
     },
     type:{
         type:String,
+        
      },
-    image:{
+    Room1:{
         type:String,
+        default:"NoAvail.jpg"
      },
+    Room2:{
+        type:String,
+        default:"NoAvail.jpg"
+     },
+    Room3:{
+        type:String,
+        default:"NoAvail.jpg"
+     },
+     Room4:{
+        type:String,
+        default:"NoAvail.jpg"
+    },
+
 },{
     timestamps:true
 }
