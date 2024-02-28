@@ -5,18 +5,10 @@ import path from "path";
 
 const app = express();
 const router = express.Router();
-const storage = multer.diskStorage({
-  destination: './public/uploads',
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
 
-app.use('/uploads', express.static(path.resolve('./public/uploads')));
-
-router.post("/register", upload.array('image'), async (req, res) => {
+router.post("/register",async (req, res) => {
   console.log(req.body)
+  return
   try {
     let roomFiles = [];
     if (req.files.length > 0) {

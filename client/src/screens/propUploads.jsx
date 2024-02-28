@@ -22,15 +22,18 @@ export const PropUpload = () => {
             "\nPROPERTY LOCATION - ",location,
 
         )
-        const formData = new FormData();
-        formData.append('propName', propName)
-        formData.append('location', location)
-        formData.append('price', price)
-        formData.append('image', image)
-        formData.append('Type', Type)
-        formData.append('room_Images',rooms)
-        formData.append('room_Names',room_name)
-        await axios.post('/property/register', formData)
+        const DATA = {
+            name: propName,
+            type: Type,
+            property_Image: image,
+            price: price,
+            location: location,
+            room_info: {
+                room_images: rooms,
+                room_names: room_name
+            }
+        }
+        await axios.post('/property/register', DATA)
         .then(response => {
             if (response.status === 200) {
                 console.log("Uploaded");
@@ -91,7 +94,12 @@ export const PropUpload = () => {
             <label>Price</label>
             <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} />
             <label>Type</label>
-            <input value={Type} type="text" onChange={(e) => setType(e.target.value)} /> 
+            <select id="type" value={Type} onChange={(e) => setType(e.target.value)}>
+                    <option value="">Select Type</option>
+                    <option value="Rent">Rents</option>
+                    <option value="Property">Property</option>
+                    <option value="Land">Land</option>
+            </select>
             <label>Image</label>
             <input type="file" onChange={handleFileChange} />
             <br/>
