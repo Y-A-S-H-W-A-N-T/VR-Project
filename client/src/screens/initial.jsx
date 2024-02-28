@@ -1,15 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
 
+import Navbar from "../components/navbar";
+import Heroimg from "../assets/heroimg.png"
+import Banner from "../components/Banner";
+import MiddleHero from "../components/MiddleHero";
 function Initial() {
-
   return (
     <div>
-      <Link to='/home' state={{property: 'land'}}>LAND</Link><br/>
-      <Link to='/home' state={{property: 'property'}}>PROPERTY</Link><br/>
-      <Link to='/home' state={{property: 'rent'}}>RENTS</Link>
+      <Navbar />
+      <Banner/>
+     <MiddleHero/>
     </div>
-  )
+  );
 }
 
-export default Initial
+export default Initial;
