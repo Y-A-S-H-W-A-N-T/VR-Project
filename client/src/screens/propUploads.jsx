@@ -2,28 +2,26 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 export const PropUpload = () => {
-    const [propName, setPropName] = useState("");
-    const [location, setLocation] = useState("");
-    const [price, setPrice] = useState("");
-    const [images, setImages] = useState([]);
-    const [Type, setType] = useState(""); 
+    const [propName, setPropName] = useState("")
+    const [location, setLocation] = useState("")
+    const [price, setPrice] = useState("")
+    const [image, setImage] = useState(null) 
+    const [Type, setType] = useState("")
+    const [Loading,setLoading] = useState(false)
 
-    const onSubmit = async () => {
+    const [rooms, setRooms] = useState([])
+    const [room_name,setRoom_name] =useState([])
+
+    const onSubmit =async() => {
         const formData = new FormData();
-        formData.append('propName', propName);
-        formData.append('location', location);
-        formData.append('price', price);
-        formData.append('Type', Type);
-       
-        images.forEach((image, index) => {
-            formData.append(`image`, image); 
-        });
-
-        await axios.post('/property/register', formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        })
+        formData.append('propName', propName)
+        formData.append('location', location)
+        formData.append('price', price)
+        formData.append('image', image)
+        formData.append('Type', Type)
+        await axios.post('/property/register', formData,
+            { headers: {"Content-Type": "multipart/form-data"}}
+        )
         .then(response => {
             if (response.status === 200) {
                 console.log("Uploaded");
@@ -33,12 +31,38 @@ export const PropUpload = () => {
         })
         .catch(error => {
             console.error("Error:", error);
-        });
+        })
+        console.log("ROOMS SENT - ",rooms)
+        console.log("ROOM NAMES SENT - ",room_name)
     };
 
     const handleFileChange = (e) => {
-        setImages([...images, e.target.files[0]]);
-    };
+        setImage(e.target.files[0]); 
+        console.log("Selected file:", e.target.files[0])
+    }
+    
+    const [roomName,setRoomName] = useState()
+    const [roomImage,setRoomImage] = useState()
+    const uploadImage = (e)=>{
+        setRoomImage(e.target.files[0])
+    }
+
+
+    const ADD = async(e)=>{
+        e.preventDefault()
+        setLoading(true)
+        const formData = new FormData()
+        formData.append('image', roomImage)
+        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6',formData)
+        .then((res)=>{
+            setRooms((prev)=>[...prev,res.data.data.url])
+            setRoom_name((prev)=>[...prev,roomName])
+            setLoading(false)
+            console.log(" - ",room_name)
+            console.log(" - ",rooms)
+        })
+    }
+
 
     return (
         <div>
@@ -50,12 +74,22 @@ export const PropUpload = () => {
             <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} />
             <label>Type</label>
             <input value={Type} type="text" onChange={(e) => setType(e.target.value)} /> 
-            <label>Rooms:</label>
+            <label>Image</label>
+            <input type="file" onChange={handleFileChange} />
             <br/>
-            <input type="file" name="image" onChange={handleFileChange} />
-            <input type="file" name="image" onChange={handleFileChange} multiple/>
-            <input type="file" name="image" onChange={handleFileChange} multiple />
-            <input type="file" name="image" onChange={handleFileChange} multiple />
+            <h1>FOR ROOMS</h1>
+            <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)}></input>
+            <input type="file" onChange={(e)=>uploadImage(e)}/>
+            {Loading && <>LOADING.....</>}
+            <button onClick={(e)=>ADD(e)}>ADD ROOM</button>
+            {
+                room_name.map((item)=>(
+                    <div style={{margin: '20px',paddin: '10px'}}>
+                        <button>{item}</button>
+                    </div>
+                ))
+            }
+            <br/>
             <button onClick={onSubmit}>Submit</button>
         </div>
     );
