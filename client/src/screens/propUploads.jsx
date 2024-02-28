@@ -5,19 +5,25 @@ export const PropUpload = () => {
     const [propName, setPropName] = useState("");
     const [location, setLocation] = useState("");
     const [price, setPrice] = useState("");
-    const [image, setImage] = useState(null); 
+    const [images, setImages] = useState([]);
     const [Type, setType] = useState(""); 
 
-    const onSubmit =async() => {
+    const onSubmit = async () => {
         const formData = new FormData();
-        formData.append('propName', propName)
-        formData.append('location', location)
-        formData.append('price', price)
-        formData.append('image', image)
-        formData.append('Type', Type)
-        await axios.post('/property/register', formData,
-            { headers: {"Content-Type": "multipart/form-data"}}
-        )
+        formData.append('propName', propName);
+        formData.append('location', location);
+        formData.append('price', price);
+        formData.append('Type', Type);
+       
+        images.forEach((image, index) => {
+            formData.append(`image`, image); 
+        });
+
+        await axios.post('/property/register', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
         .then(response => {
             if (response.status === 200) {
                 console.log("Uploaded");
@@ -31,8 +37,7 @@ export const PropUpload = () => {
     };
 
     const handleFileChange = (e) => {
-        setImage(e.target.files[0]); 
-        console.log("Selected file:", e.target.files[0])
+        setImages([...images, e.target.files[0]]);
     };
 
     return (
@@ -45,8 +50,12 @@ export const PropUpload = () => {
             <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} />
             <label>Type</label>
             <input value={Type} type="text" onChange={(e) => setType(e.target.value)} /> 
-            <label>Image</label>
-            <input type="file" onChange={handleFileChange} />
+            <label>Rooms:</label>
+            <br/>
+            <input type="file" name="image" onChange={handleFileChange} />
+            <input type="file" name="image" onChange={handleFileChange} multiple/>
+            <input type="file" name="image" onChange={handleFileChange} multiple />
+            <input type="file" name="image" onChange={handleFileChange} multiple />
             <button onClick={onSubmit}>Submit</button>
         </div>
     );
