@@ -26,6 +26,8 @@ function Home() {
       });
   }, [])
 
+  console.log(properties)
+
 
 
   return (
@@ -40,12 +42,15 @@ function Home() {
         <div>
           {
             properties.map((item)=>(
-              <div key={item.id} style={{border: "5px black solid"}}>
+              <Link to='/property' state={{property: item}}>
+                <div key={item.id} style={{border: "5px black solid"}}>
                 <p>{item.name}</p>
                 <p>{item.location}</p>
                 <p>{item.type}</p>
                 <p>{item.price}</p>
+                <img src={item.property_Image}/>
               </div>
+              </Link>
             ))
           }
         </div>

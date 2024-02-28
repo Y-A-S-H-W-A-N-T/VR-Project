@@ -13,7 +13,7 @@ function Panoramic() {
       <div className='stereoscopic-view'>
         <div className='pano-screen'>
           <Pannellum
-            image={`http://localhost:3000/uploads/${pano}`}
+            image={pano}
             pitch={10}
             yaw={90}
             hfov={110}
@@ -23,7 +23,7 @@ function Panoramic() {
         </div>
         <div className='pano-screen'>
           <Pannellum
-            image={`http://localhost:3000/uploads/${pano}`}
+            image={pano}
             pitch={10}
             yaw={90}
             hfov={110}

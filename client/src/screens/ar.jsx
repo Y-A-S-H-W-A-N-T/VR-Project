@@ -14,7 +14,7 @@ function Vr() {
   return (
     <div>
       <a-scene>
-        <a-sky src={`http://localhost:3000/uploads/${pano}`}></a-sky>
+        <a-sky src={pano}></a-sky>
           <a-camera id="main-camera">
             <a-cursor id="fuse-cursor" material="opacity: 0;" position="0 0 -1"></a-cursor>
           </a-camera>
