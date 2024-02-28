@@ -4,6 +4,7 @@ import Heroimg from "../assets/heroimg.png"
 import logo from '../assets/logo.png'
 
 import { TypeAnimation } from 'react-type-animation';
+import SearchBar from './Searchcomp';
 const Banner = () => {
   return (
     <div>
@@ -21,12 +22,7 @@ const Banner = () => {
       
         repeat={Infinity}
       />
-      <div className="flex justify-around pt-20 ">
-      
-<input type="text" className=" w-full h-14 p-6 rounded z-0 bg-gray-300 focus:shadow focus:outline-none" placeholder="Search ..... 🔍 " />
-
-
-        </div>
+      <SearchBar  />
         </div>
         <div>
         <img src={Heroimg} alt="Logo" className=' h-auto max-w-lg p-0  '/>
