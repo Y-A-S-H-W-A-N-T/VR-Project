@@ -7,21 +7,30 @@ export const PropUpload = () => {
     const [price, setPrice] = useState("")
     const [image, setImage] = useState(null) 
     const [Type, setType] = useState("")
-    const [Loading,setLoading] = useState(false)
-
     const [rooms, setRooms] = useState([])
     const [room_name,setRoom_name] =useState([])
+    const [Loading,setLoading] = useState(false)
 
     const onSubmit =async() => {
+        console.log(
+           "PROPERTY NAME - ", propName,
+            "\nROOMS NAME - ",room_name,
+            "\nROOMS IMAGES - ",rooms,
+            "\nPROPERTY TYPE - ",Type,
+            "\nPROPERTY IMAGE - ",image,
+            "\nPROPERTY PRICE - ",price,
+            "\nPROPERTY LOCATION - ",location,
+
+        )
         const formData = new FormData();
         formData.append('propName', propName)
         formData.append('location', location)
         formData.append('price', price)
         formData.append('image', image)
         formData.append('Type', Type)
-        await axios.post('/property/register', formData,
-            { headers: {"Content-Type": "multipart/form-data"}}
-        )
+        formData.append('room_Images',rooms)
+        formData.append('room_Names',room_name)
+        await axios.post('/property/register', formData)
         .then(response => {
             if (response.status === 200) {
                 console.log("Uploaded");
@@ -32,27 +41,29 @@ export const PropUpload = () => {
         .catch(error => {
             console.error("Error:", error);
         })
-        console.log("ROOMS SENT - ",rooms)
-        console.log("ROOM NAMES SENT - ",room_name)
     };
 
-    const handleFileChange = (e) => {
-        setImage(e.target.files[0]); 
-        console.log("Selected file:", e.target.files[0])
+    const handleFileChange = async(e) => {
+        setLoading(true)
+        const formData = new FormData()
+        formData.append('image', e.target.files[0])
+        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6',formData)
+        .then((res)=>{
+            setImage(res.data.data.url)
+            setLoading(false)
+        })
     }
     
     const [roomName,setRoomName] = useState()
     const [roomImage,setRoomImage] = useState()
+
     const uploadImage = (e)=>{
         setRoomImage(e.target.files[0])
     }
 
-
-    const ADD = async(e)=>{
-        e.preventDefault()
-        setLoading(true)
+    const getImage_URL = async(image)=>{
         const formData = new FormData()
-        formData.append('image', roomImage)
+        formData.append('image', image)
         await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6',formData)
         .then((res)=>{
             setRooms((prev)=>[...prev,res.data.data.url])
@@ -61,6 +72,13 @@ export const PropUpload = () => {
             console.log(" - ",room_name)
             console.log(" - ",rooms)
         })
+    }
+
+
+    const ADD = async(e)=>{
+        e.preventDefault()
+        setLoading(true)
+        getImage_URL(roomImage)        
     }
 
 
