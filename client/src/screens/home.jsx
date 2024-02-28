@@ -41,7 +41,7 @@ function Home() {
 
         <div>
           {
-            properties.map((item)=>(
+            properties.map((item,index)=>(
               <Link to='/property' state={{property: item}}>
                 <div key={item.id} style={{border: "5px black solid"}}>
                 <p>{item.name}</p>
