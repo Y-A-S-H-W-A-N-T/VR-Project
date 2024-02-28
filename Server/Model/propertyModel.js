@@ -27,6 +27,9 @@ const propertySchema = new Schema({
     room_info: {
         type: roomSchema,
         required: true
+    },
+    property_Image:{
+        type: String,
     }
 }, {
     timestamps: true

@@ -12,6 +12,7 @@ router.post("/register", async (req, res) => {
       price: req.body.price,
       name: req.body.name,
       type: req.body.type,
+      property_Image:req.body.property_Image,
       room_info: { 
         room_images: req.body.room_info.room_images,
         room_names: req.body.room_info.room_names,
