@@ -1,44 +1,29 @@
 import express from "express";
-import Property from "../Model/roomsModel.js";
-import multer from "multer";
-import path from "path";
+import Property from "../Model/propertyModel.js";
 
 const app = express();
 const router = express.Router();
 
-router.post("/register",async (req, res) => {
-  console.log(req.body)
-  return
+router.post("/register", async (req, res) => {
+  console.log("new",req.body)
   try {
-    let roomFiles = [];
-    if (req.files.length > 0) {
-      roomFiles = req.files.map(file => file.filename);
-    } else if (req.file) {
-      roomFiles.push(req.file.filename);
-    }
-
-    const user = new Property({
+    const newProperty = new Property({
       location: req.body.location,
       price: req.body.price,
-      name: req.body.propName,
-      type: req.body.Type,
+      name: req.body.name,
+      type: req.body.type,
+      room_info: { 
+        room_images: req.body.room_info.room_images,
+        room_names: req.body.room_info.room_names,
+      }
     });
 
-    // Dynamically populate the Room properties
-    roomFiles.forEach((filename, index) => {
-      user[`Room${index + 1}`] = filename || "NoAvail.jpg";
-    });
-
-    const savedUser = await user.save();
-    console.log(savedUser);
-    if (savedUser) {
-      return res.status(200).json(savedUser);
-    } else {
-      return res.status(500).send("Failed to save user");
-    }
+    const savedProperty = await newProperty.save();
+    console.log(savedProperty);
+    res.status(200).json(savedProperty); 
   } catch (err) {
     console.error("Error:", err);
-    return res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Error");
   }
 });
 

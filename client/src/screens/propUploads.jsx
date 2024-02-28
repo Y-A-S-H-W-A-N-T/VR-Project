@@ -13,7 +13,7 @@ export const PropUpload = () => {
 
     const onSubmit =async() => {
         console.log(
-           "PROPERTY NAME - ", propName,
+           "PROPERTY NAME - ",propName,
             "\nROOMS NAME - ",room_name,
             "\nROOMS IMAGES - ",rooms,
             "\nPROPERTY TYPE - ",Type,

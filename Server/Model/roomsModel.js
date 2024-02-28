@@ -1,38 +1,14 @@
 import mongoose from "mongoose";
 
 const roomSchema= new mongoose.Schema({
-    location:{
-        type:String,
-       
-    },
-    price:{
-        type:String,
-        required:true,
-    },
-    name:{
-       type:String,
-       
-    },
-    type:{
-        type:String,
-        
-     },
-    Room1:{
-        type:String,
-        default:"NoAvail.jpg"
-     },
-    Room2:{
-        type:String,
-        default:"NoAvail.jpg"
-     },
-    Room3:{
-        type:String,
-        default:"NoAvail.jpg"
-     },
-     Room4:{
-        type:String,
-        default:"NoAvail.jpg"
-    },
+    name: [{
+        type: String,
+        required: true
+    }],
+    images: [{
+        type: String,
+        required: true
+    }]
 
 },{
     timestamps:true
