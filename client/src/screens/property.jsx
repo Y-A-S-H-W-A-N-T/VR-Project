@@ -17,7 +17,7 @@ function Property() {
         <h1>{data.property.type}</h1>
         <h1>{data.property.price}</h1>
         <img src={data.property.property_Image} height={100} width={100}/><br></br>
-        {data.property.room_info.room_names && <button onClick={()=>setShowRooms(!showRooms)}>{showRooms?<>❌</>:<>Show Rooms</>}</button>}
+        <button onClick={()=>setShowRooms(!showRooms)}>{showRooms?<>❌</>:<>Show Rooms</>}</button>
         {showRooms && <Rooms data={data}/>}
         {/* add ar for mobile also */}
     </div>

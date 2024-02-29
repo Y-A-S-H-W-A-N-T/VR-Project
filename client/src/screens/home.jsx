@@ -48,7 +48,7 @@ function Home() {
                 <p>{item.location}</p>
                 <p>{item.type}</p>
                 <p>{item.price}</p>
-                <img src={item.property_Image}/>
+                <img src={item.property_Image} height={50} width={50}/>
               </div>
               </Link>
             ))
