@@ -8,6 +8,7 @@ import Property from './screens/property.jsx'
 import {Register} from './screens/register.jsx'
 import { PropUpload } from './screens/propUploads.jsx'
 import Initial from './screens/initial.jsx'
+import Furniture from './screens/furniture.jsx'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/property" element={<Property />} />
           <Route path="/register" element={<Register />} />
           <Route path="/propUpload" element={<PropUpload />} />
+          <Route path="/furniture" element={<Furniture />} />
         </Routes>
       </BrowserRouter>
     </div>
