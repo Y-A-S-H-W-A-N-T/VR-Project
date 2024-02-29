@@ -11,7 +11,7 @@ function Property() {
   const [showRooms,setShowRooms] = useState(false)
 
   return (
-    <div className='Property-Box grid gri-cols-4'>
+    <div className='Property-Box '>
         <h1>{data.property.location}</h1>
         <h1>{data.property.name}</h1>
         <h1>{data.property.type}</h1>
