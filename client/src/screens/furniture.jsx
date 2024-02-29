@@ -20,8 +20,8 @@ function Furniture() {
         <option value="chair">Chair</option>
         <option value="tv">TV</option>
       </select><br/>
-      <Link to='/mobilear' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in MOBILE</Link><br/>
-      <Link to='/3D-model' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in PC</Link>
+      {fur && <><Link to='/mobilear' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in MOBILE</Link><br/>
+      <Link to='/3D-model' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in PC</Link></>}
     </div>
   )
 }
