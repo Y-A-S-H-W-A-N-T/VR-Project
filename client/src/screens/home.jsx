@@ -42,15 +42,28 @@ function Home() {
         <div>
           {
             properties.map((item,index)=>(
-              <Link to='/property' state={{property: item}}>
-                <div key={item.id} style={{border: "5px black solid"}}>
-                <p>{item.name}</p>
-                <p>{item.location}</p>
-                <p>{item.type}</p>
-                <p>{item.price}</p>
-                <img src={item.property_Image}/>
-              </div>
-              </Link>
+              <Link
+      to='/property'
+      state={{ property: item }}
+      className="block mb-8 w-full max-w-sm mx-auto sm:max-w-none sm:w-1/2 md:w-1/3 lg:w-1/4"
+    >
+      <div
+        key={item.id}
+        className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
+      >
+        <img
+          src={item.property_Image}
+          alt={item.name}
+          className="w-full h-56 object-cover"
+        />
+        <div className="p-4">
+          <p className="text-lg font-two mb-2">{item.name}</p>
+          <p className="text-gray-600 mb-2">{item.location}</p>
+          <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
+          <p className="text-green-600 font-two">{item.price}</p>
+        </div>
+      </div>
+    </Link>
             ))
           }
         </div>
