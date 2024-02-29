@@ -83,7 +83,7 @@ export const PropUpload = () => {
         setLoading(true)
         getImage_URL(roomImage)        
     }
-
+    //////////////////////////////////////////////// SHOW IMAGE PREVIEW
 
     return (
         <div>

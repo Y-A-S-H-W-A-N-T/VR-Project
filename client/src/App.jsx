@@ -9,6 +9,7 @@ import {Register} from './screens/register.jsx'
 import { PropUpload } from './screens/propUploads.jsx'
 import Initial from './screens/initial.jsx'
 import Furniture from './screens/furniture.jsx'
+import Model3D from './screens/Model3D.jsx'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/propUpload" element={<PropUpload />} />
           <Route path="/furniture" element={<Furniture />} />
+          <Route path="/3D-model" element={<Model3D />} />
         </Routes>
       </BrowserRouter>
     </div>
