@@ -6,32 +6,64 @@ export const Register = () => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
-    const [image, setImage] = useState(null); 
+    const [personalDocument, setPersonalDocument] = useState(null);
+    const [propertyDocument, setPropertyDocument] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
+        console.log(
+            "NAME - ", name,
+            "\nEMAIL - ", email,
+            "\nNUMBER - ", number,
+            "\nPASSWORD - ", password,
+            "\nPERSONAL DOCUMENT - ", personalDocument,
+            "\nPROPERTY DOCUMENT - ", propertyDocument,
+        );
+
+        const userData = {
+            name: name,
+            email: email,
+            number: number,
+            password: password,
+            personal_document: personalDocument,
+            property_document: propertyDocument
+        };
+
+        await axios.post('/user/register', userData)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log("User registered successfully");
+                } else {
+                    console.log("User registration failed");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    };
+
+    const handlePersonalDocumentChange = async (e) => {
+        setLoading(true);
         const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('number', number);
-        formData.append('image', image);
-        console.log(formData)
-        axios.post('/user/register', formData)
-        .then(response => {
-            if (response.status === 200) {
-                console.log("Uploaded");
-            } else {
-                console.log("Upload failed");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        formData.append('document', e.target.files[0]);
+        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6', formData)
+            .then((res) => {
+                setPersonalDocument(res.data.documentUrl);
+                setLoading(false);
+            });
     };
-    const handleFileChange = (e) => {
-        setImage(e.target.files[0]); 
-        console.log("Selected file:", e.target.files[0]);
+
+    const handlePropertyDocumentChange = async (e) => {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('document', e.target.files[0]);
+        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6', formData)
+            .then((res) => {
+                setPropertyDocument(res.data.documentUrl);
+                setLoading(false);
+            });
     };
+
     return (
         <div>
             <label>Name</label>
@@ -39,11 +71,15 @@ export const Register = () => {
             <label>Email</label>
             <input value={email} type="email" onChange={(e) => setEmail(e.target.value)} />
             <label>Number</label>
-            <input value={number} type="number" onChange={(e) => setNumber(e.target.value)} />
+            <input value={number} type="tel" onChange={(e) => setNumber(e.target.value)} />
             <label>Password</label>
-            <input value={password} type="text" onChange={(e) => setPassword(e.target.value)} />
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={onSubmit}>Submit</button>
+            <input value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
+            <label>Personal Document</label>
+            <input type="file" onChange={handlePersonalDocumentChange} />
+            <label>Property Document</label>
+            <input type="file" onChange={handlePropertyDocumentChange} />
+            {loading && <>Loading...</>}
+            <button onClick={onSubmit}>Register</button>
         </div>
     );
 };
