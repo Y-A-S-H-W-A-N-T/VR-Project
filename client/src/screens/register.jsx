@@ -6,8 +6,6 @@ export const Register = () => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
-    const [personalDocument, setPersonalDocument] = useState(null);
-    const [propertyDocument, setPropertyDocument] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async () => {
@@ -16,8 +14,7 @@ export const Register = () => {
             "\nEMAIL - ", email,
             "\nNUMBER - ", number,
             "\nPASSWORD - ", password,
-            "\nPERSONAL DOCUMENT - ", personalDocument,
-            "\nPROPERTY DOCUMENT - ", propertyDocument,
+         
         );
 
         const userData = {
@@ -25,9 +22,9 @@ export const Register = () => {
             email: email,
             number: number,
             password: password,
-            personal_document: personalDocument,
-            property_document: propertyDocument
+            
         };
+        console.log(userData)
 
         await axios.post('/user/register', userData)
             .then(response => {
@@ -42,28 +39,9 @@ export const Register = () => {
             });
     };
 
-    const handlePersonalDocumentChange = async (e) => {
-        setLoading(true);
-        const formData = new FormData();
-        formData.append('document', e.target.files[0]);
-        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6', formData)
-            .then((res) => {
-                setPersonalDocument(res.data.documentUrl);
-                setLoading(false);
-            });
-    };
+   
 
-    const handlePropertyDocumentChange = async (e) => {
-        setLoading(true);
-        const formData = new FormData();
-        formData.append('document', e.target.files[0]);
-        await axios.post('https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6', formData)
-            .then((res) => {
-                setPropertyDocument(res.data.documentUrl);
-                setLoading(false);
-            });
-    };
-
+   
     return (
         <div>
             <label>Name</label>
@@ -74,11 +52,7 @@ export const Register = () => {
             <input value={number} type="tel" onChange={(e) => setNumber(e.target.value)} />
             <label>Password</label>
             <input value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
-            <label>Personal Document</label>
-            <input type="file" onChange={handlePersonalDocumentChange} />
-            <label>Property Document</label>
-            <input type="file" onChange={handlePropertyDocumentChange} />
-            {loading && <>Loading...</>}
+            
             <button onClick={onSubmit}>Register</button>
         </div>
     );
