@@ -103,15 +103,17 @@ export const PropUpload = () => {
             <label>Image</label>
             <input type="file" onChange={handleFileChange} />
             <br/>
+            {image && <img src={image} alt="property image" height={200} width={200}/>}
             <h1>FOR ROOMS</h1>
             <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)}></input>
             <input type="file" onChange={(e)=>uploadImage(e)}/>
             {Loading && <>LOADING.....</>}
             <button onClick={(e)=>ADD(e)}>ADD ROOM</button>
             {
-                room_name.map((item)=>(
-                    <div style={{margin: '20px',paddin: '10px'}}>
+                room_name.map((item,index)=>(
+                    <div style={{margin: '20px',paddin: '10px'}} key={index}>
                         <button>{item}</button>
+                        <img src={rooms[index]} height={50} width={50}/>
                     </div>
                 ))
             }
