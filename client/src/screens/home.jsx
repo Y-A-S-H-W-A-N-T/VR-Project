@@ -3,7 +3,8 @@ import { useState,useEffect } from 'react'
 import { data } from '../properties/data'
 import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
-import "../css/home.css"
+
+
 
 
 function Home() {
@@ -32,7 +33,7 @@ function Home() {
 
   return (
     
-    <div className="   px-4 py-8 ">
+    <div className=" bg-gradient-to-r from-amber-50 via-purple-200  to-amber-50   px-4 py-8 ">
     
     <div className="mb-4">
       <input
@@ -61,9 +62,9 @@ function Home() {
             />
             <div className="p-4">
               <p className="text-lg font-semibold mb-2">{item.name}</p>
-              <p className="text-gray-600 mb-2">{item.location}</p>
+              <p className="text-gray-600 mb-2">{item.location} ➴</p>
               <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
-              <p className="text-green-600 font-semibold">{item.price}</p>
+              <p className="text-green-600 font-semibold">{item.price} ₨</p>
             </div>
           </div>
         </Link>

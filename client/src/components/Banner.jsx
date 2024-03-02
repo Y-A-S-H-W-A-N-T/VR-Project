@@ -19,7 +19,7 @@ const Banner = () => {
         1000,
         "",
       ]}
-      speed={40}
+      speed={45}
       className="font-two text-4xl text-amber-400 pt-6"
       repeat={Infinity}
     />

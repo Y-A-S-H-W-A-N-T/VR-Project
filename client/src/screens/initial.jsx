@@ -4,8 +4,8 @@ import Navbar from "../components/navbar";
 
 import Banner from "../components/Banner";
 import MiddleHero from "../components/MiddleHero";
-import DownHero from "./DownHero";
-import Foooter from "./Footer";
+import DownHero from "../components/DownHero";
+import Foooter from "../components/Footer";
 function Initial() {
   return (
     <div>
