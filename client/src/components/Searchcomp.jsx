@@ -2,10 +2,10 @@ import React from "react";
 
 function SearchBar() {
   return (
-    <div className="relative">
+    <div className="relative pr-4">
       <input
         type="text"
-        placeholder={"Eg. Land in Kanpur,India"}
+        placeholder={"Eg.Land in Kanpur"}
         className="py-2 mt-12 px-4 pr-12 block w-full rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:bg-white focus:border-blue-500"
         onChange={''}
       />

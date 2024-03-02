@@ -31,7 +31,9 @@ function Home() {
 
 
   return (
-    <div className="container mx-auto px-4 py-8 ">
+    
+    <div className="   px-4 py-8 ">
+    
     <div className="mb-4">
       <input
         type="text"
@@ -40,10 +42,10 @@ function Home() {
         placeholder="Search..."
         className="border border-gray-300 rounded-md px-4 py-2 "
       />
-      <button className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Search</button>
+      <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md">Search</button>
     </div>
     
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+    <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
       {properties.map((item) => (
         <Link
           key={item.id}
