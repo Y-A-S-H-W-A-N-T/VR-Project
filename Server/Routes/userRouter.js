@@ -33,11 +33,13 @@ router.post('/login',async(req,res)=>{
     const{email, password}= req.body;
 
     const findUser=await User.findOne({email});
-
+    
     if(findUser){
       if(findUser.password==password){
         console.log("Sucessfully login")
-        res.status(200).json({mesg:"Sucessfully login"})
+        const id=findUser._id
+        console.log(id)
+        res.status(200).json(id)
       }else{
         res.status(200).json({mesg:"password didn't match"})
       }

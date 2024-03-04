@@ -1,13 +1,43 @@
-import {useState, createContext} from "react"
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const UserContext=createContext();
+const UserContext = createContext();
 
+export const UserProvider = ({ children }) => {
+  useEffect(() => {
+    localStorage.removeItem('userId');
+  }, []);
 
-const Global=()=>{
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
-    return(
-        <UserContext.Provider>
-            
-        </UserContext.Provider>
-    )
-}
+  useEffect(() => {
+    localStorage.setItem('userId', userId);
+
+    
+    const clearLocalStorage = () => {
+      localStorage.removeItem('userId');
+      setUserId(null);
+      
+    };
+
+    const timeoutId = setTimeout(clearLocalStorage, 900000); 
+
+    
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [userId]);
+
+  return (
+    <UserContext.Provider value={{ userId, setUserId}}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
+};

@@ -11,6 +11,7 @@ import Initial from './screens/initial.jsx'
 import Furniture from './screens/furniture.jsx'
 import Model3D from './screens/Model3D.jsx'
 import {Login} from './screens/login.jsx'
+import UserPropertyList from './screens/UserProperty.jsx'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/furniture" element={<Furniture />} />
           <Route path="/3D-model" element={<Model3D />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/userPropertyList' elment={<UserPropertyList/>} />
         </Routes>
       </BrowserRouter>
     </div>
