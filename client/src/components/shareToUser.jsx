@@ -1,34 +1,47 @@
-import React from 'react'
+import {useEffect,useState} from 'react'
 import '../css/shareScreen.css'
 import axios from 'axios'
 
 function ShareToUser({ toggleShareScreen, propertyID }) {
+    const[Users, setUsers]=useState([]);
 
+    // const Users = [
 
-    const Users = [
+    //     {
+    //         "id": 1,
+    //         "name": 'Yashwant'
+    //     },
+    //     {
+    //         "id": 2,
+    //         "name": 'Abish'
+    //     },
+    //     {
+    //         "id": 3,
+    //         "name": 'Soumya'
+    //     }
+    // ]
+    useEffect(() => {
+          axios.get("/user/show").then((response)=>{
+            console.log(response.data)
+            setUsers(response.data)
+          }).catch((err)=>{console.log(err)})
+          
+       
+      }, []);
 
-        {
-            "id": 1,
-            "name": 'Yashwant'
-        },
-        {
-            "id": 2,
-            "name": 'Abish'
-        },
-        {
-            "id": 3,
-            "name": 'Soumya'
-        }
-    ]
 
 
     const Send = async(e,id)=>{
         e.preventDefault()
         console.log("PROPERTY ID : ",propertyID)
         console.log("USER ID : ",id)
-        await axios.post('URL',{propertyID: propertyID, userID: id})
+        await axios.post('user/updateProperty',{propertyID: propertyID, userID: id})
         .then((res)=>{
-
+          if(res.status==200){
+            console.log("updated")
+          }else{
+            console.log("Error")
+          }
         })
         .catch((err)=>{
             console.log(err)
@@ -47,7 +60,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
                         Users.map((val)=>(
                             <div key={val.id}>
                                 <p>NAME : {val.name}</p>
-                                <button style={{backgroundColor: 'black',color: 'white'}} onClick={(e)=>Send(e,val.id)}>SEND</button>
+                                <button style={{backgroundColor: 'black',color: 'white'}} onClick={(e)=>Send(e,val._id)}>SEND</button>
                             </div>
                         ))
                     }

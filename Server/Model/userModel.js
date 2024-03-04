@@ -16,6 +16,9 @@ const userSchema= new mongoose.Schema({
     },
     password:{
         type:String,
+    },
+    showProperty:{
+        type:[String]
     }
 },{
     timestamps:true

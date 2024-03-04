@@ -51,6 +51,41 @@ router.post('/login',async(req,res)=>{
 })
 
 
+router.get('/show',async(req,res)=>{
+  try {
+    const properties = await User.find();
+    const data=properties.map(property=>({
+       _id: property._id,
+       name: property.name,
+       email: property.email,
+    }))
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+router.post('/updateProperty',async(req,res)=>{
+  try {
+    const update=await User.updateOne({_id:req.body.userID},{$push:{showProperty:req.body.propertyID}})
+    if(update){
+      res.status(200)
+      console.log('updated')
+      const user= await User.findById({_id:req.body.userID})
+      console.log(user)
+    }else{
+      res.status(400)
+    }
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
+
 app.use(router);
 
 export default app;
