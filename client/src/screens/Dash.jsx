@@ -1,47 +1,50 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { data } from '../properties/data'
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import ShareToUser from '../components/shareToUser'
+import NotVerified from '../components/notVerified'
 
 
 
 
-function Home() {
+function Dash() {
 
-  const location = useLocation()
-  const { property } = location.state
-
-  console.log("type  = ",property)
-
-  const [search, setSearch] = useState(property)
+  const [search, setSearch] = useState('')
   const [properties, setProperties] = useState([])
   const [shareScreen,setShareScreen] = useState(false)
   const [sharedProperty,setSharedProperty] = useState('')
+  const [isAdmin,setAdmin] = useState(true)  /// for Admin to share properties
+  const [showUpload,setShowUpload] = useState(false)
 
   const toggleShareScreen = ()=>{
     setShareScreen(!shareScreen)
+  }
+
+  const toggleShowUpload = ()=>{
+    setShowUpload(!showUpload)
   }
 
   useEffect(() => {
     axios.get('/property/show')
       .then(response => {
         setProperties(response.data)
-        console.log(response.data)
       })
       .catch(error => {
         console.error("Error:", error);
       });
   },[])
 
- 
+  console.log(properties)
+
 
   const Share = (e,id)=>{
     e.stopPropagation()
     setSharedProperty(id)
     setShareScreen(!shareScreen)
   }
+
+
 
   return (
     
@@ -60,6 +63,10 @@ function Home() {
       </div>
       <div className='p-5'>
       </div>
+      {isAdmin && <div>
+            <p onClick={()=>setShowUpload(!showUpload)}>Not verified Properties</p>
+      </div>}
+      {showUpload && <NotVerified toggleShowUpload={toggleShowUpload}/>}
     </div>
     <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
       {properties.map((item,ind) => (
@@ -80,16 +87,11 @@ function Home() {
               <p className="text-lg font-semibold mb-2">{item.name}</p>
               <p className="text-gray-600 mb-2">{item.location} ➴</p>
               <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
-              <p className="text-green-600 font-semibold">Rs.{item.price}</p>
-             {item.isVerified ? 
-             <span class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
-: 
-             <span class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
-            }
+              <p className="text-green-600 font-semibold">{item.price} ₨</p>
             </div>
           </div>
         </Link>
-        <p onClick={(e)=>Share(e,item._id)} style={{backgroundColor: 'red', display: 'flex',justifyContent: 'center',color: 'white',cursor: 'pointer'}}>SHARE</p>
+        {isAdmin && <p onClick={(e)=>Share(e,item._id)} style={{backgroundColor: 'red', display: 'flex',justifyContent: 'center',color: 'white',cursor: 'pointer'}}>SHARE</p>}
         </div>
       ))}
     </div>
@@ -98,4 +100,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default Dash;

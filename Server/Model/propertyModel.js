@@ -30,6 +30,10 @@ const propertySchema = new Schema({
     },
     property_Image:{
         type: String,
+    },
+    isVerified:{
+        type: Boolean,
+        default: false,
     }
 }, {
     timestamps: true

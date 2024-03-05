@@ -25,6 +25,7 @@ function Furniture() {
     <div>
       <h1>TRY FURNITURES</h1>
       <p>note: Choose images without background. Use remove bg website to remove background in a click</p>
+      <h1>TO DO : ADD ROTATION, SIZE SELECTION</h1>
       {fur && <img src={fur} alt="test" height={100} width={100}/>}
       <input type='file' onChange={handleUpload}/><br/>
       {fur && <><Link to='/mobilear' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in MOBILE</Link><br/>
