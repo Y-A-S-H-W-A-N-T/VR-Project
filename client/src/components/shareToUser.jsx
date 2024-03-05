@@ -3,23 +3,8 @@ import '../css/shareScreen.css'
 import axios from 'axios'
 
 function ShareToUser({ toggleShareScreen, propertyID }) {
+
     const[Users, setUsers]=useState([]);
-
-    // const Users = [
-
-    //     {
-    //         "id": 1,
-    //         "name": 'Yashwant'
-    //     },
-    //     {
-    //         "id": 2,
-    //         "name": 'Abish'
-    //     },
-    //     {
-    //         "id": 3,
-    //         "name": 'Soumya'
-    //     }
-    // ]
     useEffect(() => {
           axios.get("/user/show").then((response)=>{
             console.log(response.data)
@@ -46,6 +31,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
         .catch((err)=>{
             console.log(err)
         })
+        window.location.reload(false)
     }
 
   return (

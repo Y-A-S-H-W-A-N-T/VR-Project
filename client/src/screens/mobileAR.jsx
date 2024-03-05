@@ -20,7 +20,7 @@ function Vr() {
         <a-sky src={pano}></a-sky>
         <a-camera id="main-camera">
             <a-cursor id="fuse-cursor" material="opacity: 0;" position="0 0 -1"></a-cursor>
-            <a-image src={furniture} position="0 0 -.99" height="0.2" width="0.2"></a-image>
+            <a-image src={furniture} position="0 0 -.99" height="0.2" width="0.2" ></a-image>
         </a-camera>
       </a-scene>
     </div>

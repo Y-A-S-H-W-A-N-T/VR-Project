@@ -5,6 +5,7 @@ import Rooms from '../components/rooms'
 import { MdLocationOn } from 'react-icons/md';
 import { MdBusiness } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
+import Maps from '../components/Maps';
 function Property() {
 
   const location = useLocation()
@@ -31,6 +32,7 @@ function Property() {
           <MdLocationOn className="mr-2 text-amber-500" />
           Location: {data.property.location}
         </p>
+        <Maps className="p-11"/>
         <p className="text-lg font-semibold mb-2 flex items-center">
           <MdBusiness className="mr-2 text-amber-500" />
           Type: {data.property.type}

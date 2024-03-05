@@ -28,7 +28,8 @@ function Dash() {
   useEffect(() => {
     axios.get('/property/show')
       .then(response => {
-        setProperties(response.data)
+        const verified = response.data.filter(property => property.isVerified);
+        setProperties(verified)
       })
       .catch(error => {
         console.error("Error:", error);
@@ -64,7 +65,7 @@ function Dash() {
       <div className='p-5'>
       </div>
       {isAdmin && <div>
-            <p onClick={()=>setShowUpload(!showUpload)}>Not verified Properties</p>
+            <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
       </div>}
       {showUpload && <NotVerified toggleShowUpload={toggleShowUpload}/>}
     </div>
