@@ -30,12 +30,27 @@ router.post("/register", async (req, res) => {
 
 router.get('/show', async (req, res) => {
   try {
-    const properties = await Property.find();
-  
-    res.json(properties);
+    const properties = await Property.find()
+    res.json(properties)
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });
+  }
+})
+
+router.post('/verifyProperty',async(req, res)=>{
+  console.log("Property ID : ",req.body.id)
+  try{
+    const temp = await Property.findOne({_id: req.body.id})
+    console.log(temp)
+    const result = await Property.updateOne({_id:req.body.id},{ isVerified: true })
+    res.status(200).json({ message: 'Property Verified'})
+    console.log("Property Verified")
+    console.log(result)
+  }
+  catch(err)
+  {
+    console.log(err)
   }
 })
 
