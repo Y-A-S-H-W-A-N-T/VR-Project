@@ -28,7 +28,8 @@ function Dash() {
   useEffect(() => {
     axios.get('/property/show')
       .then(response => {
-        setProperties(response.data)
+        const verified = response.data.filter(property => property.isVerified);
+        setProperties(verified)
       })
       .catch(error => {
         console.error("Error:", error);
