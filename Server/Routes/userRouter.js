@@ -1,6 +1,6 @@
 import express from "express";
 import User from "../Model/userModel.js";
-
+import Property from "../Model/propertyModel.js"
 const app = express();
 const router = express.Router();
 
@@ -81,11 +81,38 @@ router.post('/updateProperty',async(req,res)=>{
     }
     
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
 
+router.get('/showCustomProperty/:id', async (req, res) => {
+  try {
+    const response = await User.findById({ _id: req.params.id });
+    const addProp = [];
+
+    if (response) {
+      const property = response.showProperty;
+
+      for (const propertyId of property) {
+        if (propertyId) {
+          const prop = await Property.findById(propertyId);
+          addProp.push(prop);
+        } else {
+          console.log(`Invalid property ID: ${propertyId}`);
+        }
+      }
+
+
+      res.status(200).json(addProp);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 
 
 app.use(router);

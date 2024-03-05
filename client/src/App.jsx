@@ -1,20 +1,35 @@
-import 'aframe'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Panoramic from './screens/panoramic.jsx'
-import AR from './screens/ar.jsx'
-import Home from './screens/home.jsx'
-import MobileAR from './screens/mobileAR.jsx'
-import Property from './screens/property.jsx'
-import {Register} from './screens/register.jsx'
-import { PropUpload } from './screens/propUploads.jsx'
-import Initial from './screens/initial.jsx'
-import Furniture from './screens/furniture.jsx'
-import Model3D from './screens/Model3D.jsx'
-import {Login} from './screens/login.jsx'
-import UserPropertyList from './screens/UserProperty.jsx'
+import 'aframe';
+import { Routes, Route, BrowserRouter, Navigate, Outlet } from 'react-router-dom';
+import Panoramic from './screens/panoramic.jsx';
+import AR from './screens/ar.jsx';
+import Home from './screens/home.jsx';
+import MobileAR from './screens/mobileAR.jsx';
+import Property from './screens/property.jsx';
+import { Register } from './screens/register.jsx';
+import { PropUpload } from './screens/propUploads.jsx';
+import Initial from './screens/initial.jsx';
+import Furniture from './screens/furniture.jsx';
+import Model3D from './screens/Model3D.jsx';
+import { Login } from './screens/login.jsx';
+import UserPropertyList from './screens/UserProperty.jsx';
+import PrivateRoute from './Private/PrivateRoute.jsx';
+
+// import { useUser } from './useContext.jsx'; 
+
+
+// const PrivateRoute = ({ element: Element, ...rest }) => {
+//   const { userId } = useUser();
+
+//   return (
+//     <Routes>
+//     <Route
+//       {...rest}
+//       element={userId ? <Outlet /> : <Navigate to="/login" />}
+//     /></Routes>
+//   );
+// };
 
 function App() {
-
   return (
     <div>
       <BrowserRouter >
@@ -30,11 +45,17 @@ function App() {
           <Route path="/furniture" element={<Furniture />} />
           <Route path="/3D-model" element={<Model3D />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/userPropertyList' elment={<UserPropertyList/>} />
+          <Route path="/p" element={<PrivateRoute />} >
+         <Route path='userPropertyList' element={<UserPropertyList />} />
+
+          </Route>
+          
         </Routes>
+        
+       
       </BrowserRouter>
     </div>
   )
 }
 
-export default App
+export default App;
