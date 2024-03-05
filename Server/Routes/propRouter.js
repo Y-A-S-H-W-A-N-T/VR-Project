@@ -37,7 +37,9 @@ router.get('/show', async (req, res) => {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
-});
+})
+
+
 
 app.use(router);
 
