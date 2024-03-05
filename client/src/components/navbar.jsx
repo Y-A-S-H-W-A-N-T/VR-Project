@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import logo from '../assets/logo.png'
+import {Link} from 'react-router-dom'
 const Navbar = () => {
   
   const [nav, setNav] = useState(false);
@@ -11,11 +12,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 1, text: 'Home' },
-    { id: 2, text: 'Company' },
-    { id: 3, text: 'Resources' },
-    { id: 4, text: 'About' },
-    { id: 5, text: 'Contact' },
+    { id: 1, text: 'Home', route:'/' },
+    { id: 2, text: 'Account', route:'/p/userPropertyList'},
+    { id: 3, text: 'Sign In',route:'/register' },
+    { id: 4, text: 'Login',route:'/login' },
+    { id: 5, text: 'Sell',route:'/propUpload' },
   ];
 
   return (
@@ -25,12 +26,13 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <ul className='hidden md:flex'>
         {navItems.map(item => (
+          <Link to={item.route}>
           <li
             key={item.id}
             className="p-4 text-black block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
           >
             {item.text}
-          </li>
+          </li></Link>
         ))}
       </ul>
 

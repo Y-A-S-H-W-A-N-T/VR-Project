@@ -2,6 +2,8 @@ import React from 'react'
 import '../css/shareScreen.css'
 
 function NotVerified({ toggleShowUpload }) {
+
+    
   return (
     <div className='modal'>
         <div className='overlay'>

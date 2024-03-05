@@ -1,14 +1,31 @@
-import React from 'react'
-import { Outlet, Navigate } from 'react-router'
-import {useUser} from '../useContext.jsx'
-const PrivateRoute = () => {
-    const{userId}=useUser()
-    console.log(userId)
-  return (
-    <div>
-       {  userId !== null && userId !== undefined ? <Outlet/> : <Navigate to='/login'></Navigate>}
-    </div>
-  )
-}
+import React, { useEffect, useState } from 'react';
+import { Outlet, Navigate } from 'react-router';
+import { useUser } from '../useContext.jsx';
 
-export default PrivateRoute
+const PrivateRoute = () => {
+    const { userId } = useUser();
+    const [checkedUserId, setCheckedUserId] = useState(userId);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          console.log("Checking userId:", userId);
+          setCheckedUserId(userId);
+        }, 1000);
+
+        return () => {
+        clearInterval(intervalId);
+        };
+    }, [userId]);
+          
+    useEffect(() => {
+        console.log("userId changed:", checkedUserId);
+    }, [checkedUserId]); 
+          
+    return (
+        <div>
+            {checkedUserId !== null && checkedUserId !== undefined ? <Outlet /> : <Navigate to='/login' />}
+        </div>
+    );
+};
+
+export default PrivateRoute;
