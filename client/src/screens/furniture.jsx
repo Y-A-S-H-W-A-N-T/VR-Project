@@ -9,6 +9,10 @@ function Furniture() {
 
   const [fur,setFur] = useState('')
   const [furniture,setFurniture] = useState('')
+  const [size,setSize] = useState('')
+  const [rotateX,setRotateX] = useState(0)
+  const [rotateY,setRotateY] = useState(0)
+  const [rotateZ,setRotateZ] = useState(0)
 
 
   const handleUpload = async(e)=>{
@@ -35,7 +39,23 @@ function Furniture() {
         <option value="https://cdn.glitch.global/168e0451-dc78-4fa9-9a84-028ef51d9561/File.glb?v=1651912125168">Table</option>
         <option value="https://cdn.glitch.global/ededd3e3-c762-41e8-93f6-c667b87a9882/signBoard.glb?v=1709577727732">Chair</option>
       </select>
-      <Link to='/3D-model' state={{pano: data.pano, furniture: furniture}}>TRY OUT THE FURNITURE FEATURE IN AR in PC</Link>
+      <select id="type" value={size} onChange={(e) => setSize(e.target.value)}>
+        <option value="">Select Size</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+      <input type="range" min="0" max="360" value={rotateX} onChange={(e)=>setRotateX(e.target.value)}></input>
+      <input type="range" min="0" max="360" value={rotateY} onChange={(e)=>setRotateY(e.target.value)}></input>
+      <input type="range" min="0" max="360" value={rotateZ} onChange={(e)=>setRotateZ(e.target.value)}></input>
+      {console.log(rotateX,rotateY,rotateZ)}
+      <Link to='/3D-model' state={{pano: data.pano, furniture: furniture, size: size, x: rotateX, y: rotateY, z: rotateZ}}>TRY OUT THE FURNITURE FEATURE IN AR in PC</Link>
     </div>
   )
 }
