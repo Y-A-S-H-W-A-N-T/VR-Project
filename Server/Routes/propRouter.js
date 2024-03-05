@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
 router.get('/show', async (req, res) => {
   try {
     const properties = await Property.find();
-    console.log(properties);
+  
     res.json(properties);
   } catch (err) {
     console.error(err);
