@@ -13,6 +13,7 @@ import Model3D from './screens/Model3D.jsx';
 import { Login } from './screens/login.jsx';
 import UserPropertyList from './screens/UserProperty.jsx';
 import PrivateRoute from './Private/PrivateRoute.jsx';
+import Dash from './screens/Dash.jsx';
 
 // import { useUser } from './useContext.jsx'; 
 
@@ -45,9 +46,9 @@ function App() {
           <Route path="/furniture" element={<Furniture />} />
           <Route path="/3D-model" element={<Model3D />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dash" element={<Dash />} />
           <Route path="/p" element={<PrivateRoute />} >
-         <Route path='userPropertyList' element={<UserPropertyList />} />
-
+          <Route path='userPropertyList' element={<UserPropertyList />} />
           </Route>
           
         </Routes>

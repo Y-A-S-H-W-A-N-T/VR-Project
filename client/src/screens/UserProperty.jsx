@@ -72,7 +72,6 @@ function UserPropertyList() {
                 </div>
               </div>
             </Link>
-            <p onClick={(e) => Share(e, item._id)} style={{ backgroundColor: 'red', display: 'flex', justifyContent: 'center', color: 'white', cursor: 'pointer' }}>SHARE</p>
           </div>
         ))}
       </div>
