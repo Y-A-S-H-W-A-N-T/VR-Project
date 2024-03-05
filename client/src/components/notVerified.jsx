@@ -26,6 +26,7 @@ function NotVerified({ toggleShowUpload }) {
         axios.post('/property/verifyProperty',{id: id})
         .then((res)=>{
             console.log("Property Verified")
+            window.location.reload(false)
         })
         .catch((err)=>{
             console.log(err)
@@ -44,7 +45,7 @@ function NotVerified({ toggleShowUpload }) {
                 {loading && <p>LOADING......</p>}
                 {
                     notVerified.map((val,ind)=>(
-                        <div key={ind}>
+                        <div key={ind} className='test'>
                             <Link to="/property" state={{ property: val }}>{val.name}</Link>
                             <button className='p-6' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
                         </div>

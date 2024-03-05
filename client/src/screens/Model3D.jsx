@@ -22,7 +22,7 @@ function Model3D() {
     <div>
       <a-scene>
         <a-sky src={pano}></a-sky>
-        <a-gltf-model src='https://cdn.glitch.global/168e0451-dc78-4fa9-9a84-028ef51d9561/File.glb?v=1651912125168'></a-gltf-model>
+        <a-gltf-model src={furniture}></a-gltf-model>
       </a-scene>
     </div>
   )

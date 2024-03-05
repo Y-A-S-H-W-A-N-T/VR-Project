@@ -65,7 +65,7 @@ function Dash() {
       <div className='p-5'>
       </div>
       {isAdmin && <div>
-            <p onClick={()=>setShowUpload(!showUpload)}>Not verified Properties</p>
+            <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
       </div>}
       {showUpload && <NotVerified toggleShowUpload={toggleShowUpload}/>}
     </div>
