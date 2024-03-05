@@ -28,14 +28,14 @@ function Home() {
     axios.get('/property/show')
       .then(response => {
         setProperties(response.data)
+        console.log(response.data)
       })
       .catch(error => {
         console.error("Error:", error);
       });
   },[])
 
-  console.log(properties)
-
+ 
 
   const Share = (e,id)=>{
     e.stopPropagation()
@@ -80,7 +80,11 @@ function Home() {
               <p className="text-lg font-semibold mb-2">{item.name}</p>
               <p className="text-gray-600 mb-2">{item.location} ➴</p>
               <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
-              <p className="text-green-600 font-semibold">{item.price} ₨</p>
+              <p className="text-green-600 font-semibold">Rs.{item.price}</p>
+             {item.isVerified ? <span class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
+: 
+             <span class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
+            }
             </div>
           </div>
         </Link>
