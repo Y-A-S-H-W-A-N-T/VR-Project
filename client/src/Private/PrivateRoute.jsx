@@ -18,12 +18,12 @@ const PrivateRoute = () => {
     }, [userId]);
           
     useEffect(() => {
-        console.log("userId changed:", checkedUserId);
+        console.log("userId changed:", checkedUserId)
     }, [checkedUserId]); 
           
     return (
         <div>
-            {checkedUserId !== null && checkedUserId !== undefined ? <Outlet /> : <Navigate to='/login' />}
+            {checkedUserId !== null && checkedUserId !== undefined ? <Navigate to='/dash' /> : <Navigate to='/login' />}
         </div>
     );
 };

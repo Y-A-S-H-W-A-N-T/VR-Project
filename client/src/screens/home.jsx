@@ -69,7 +69,7 @@ function Home() {
               <p className="text-green-600 font-semibold">Rs.{item.price}</p>
              {item.isVerified ? 
              <span class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
-: 
+            : 
              <span class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
             }
             </div>
