@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { data } from '../properties/data'
 import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
 import ShareToUser from '../components/shareToUser'
