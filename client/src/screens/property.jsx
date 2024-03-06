@@ -6,6 +6,7 @@ import { MdLocationOn } from 'react-icons/md';
 import { MdBusiness } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
+import Footer2 from '../components/Footer2';
 function Property() {
 
   const location = useLocation()
@@ -14,6 +15,7 @@ function Property() {
   const [showRooms,setShowRooms] = useState(false)
 
   return (
+    <>
     <div className="Property-Box bg-white p-6 m-4 pr-5 md:p-8 lg:p-10 xl:p-12 border border-gray-300 rounded-lg shadow-md w-full">
     <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-amber-900">{data.property.name}</h1>
     {data.property.isVerified ? 
@@ -56,6 +58,8 @@ function Property() {
       <p className="text-gray-600 mt-2">AR functionality for mobile</p>
     </div>
   </div>
+<Footer2/>
+  </>
   )
 }
 

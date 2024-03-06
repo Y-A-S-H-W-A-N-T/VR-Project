@@ -4,7 +4,7 @@ import { data } from '../properties/data'
 import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
 import ShareToUser from '../components/shareToUser'
-import logo from "../assets/logo.png"
+import Footer2 from '../components/Footer2'
 
 
 
@@ -30,12 +30,12 @@ function Home() {
   },[])
 
   return (
-    
+    <>
     <div className="   px-4 py-8 ">
    
     <div className='flex justify-center'>
       <div className="mb-4 flex justify-between flex-row">
-      <img src={logo} alt="logo" className=' pr-10 top-0 right-1 sm:hidden h-8 '/>
+      
         <input
           type="text"
           value={search}
@@ -76,11 +76,14 @@ function Home() {
             </div>
           </div>
         </Link>
-        <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p>
+        <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400  hover:bg-transparent hover:text-amber-500 text-center font-two'>SHARE</p>
         </div>
       ))}
     </div>
   </div>
+  <Footer2/>
+
+  </>
   )
 }
 

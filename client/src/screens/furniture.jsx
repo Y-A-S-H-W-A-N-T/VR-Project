@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
+import Footer2 from '../components/Footer2'
 function Furniture() {
 
   const location = useLocation()
@@ -25,6 +26,7 @@ function Furniture() {
   }
 
   return (
+    <div>
     <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
 
     <div className="flex flex-col lg:flex-row p-6">
@@ -141,9 +143,9 @@ function Furniture() {
       </div>
     </div>
     </div>
-    
+    <Footer2/>
   
-
+</div>
   )
 }
 
