@@ -4,45 +4,69 @@ import { useUser } from '../useContext';
 import { Link } from 'react-router-dom';
 import ShareToUser from '../components/shareToUser';
 import { useNavigate } from 'react-router-dom';
+import NotVerified from '../components/notVerified'
 
 function UserPropertyList() {
-  const [search, setSearch] = useState('');
-  const [properties, setProperties] = useState([]);
-  const [shareScreen, setShareScreen] = useState(false);
-  const [sharedProperty, setSharedProperty] = useState('');
-  const { userId } = useUser();
-  const navigate = useNavigate();
+  const [search, setSearch] = useState('')
+  const [properties, setProperties] = useState([])
+  const [shareScreen, setShareScreen] = useState(false)
+  const [sharedProperty, setSharedProperty] = useState('')
+  const { userId, isAdmin } = useUser()
+  const [showUpload,setShowUpload] = useState(false)
+  const navigate = useNavigate()
+
+  console.log(isAdmin)
 
   useEffect(() => {
     if (!userId) {
       navigate('/a/login');
       return;
     }
-
-    axios.post(`/user/showCustomProperty`,{userId})
+    console.log("CAME : ",userId)
+    if (userId==null) {
+      navigate('/a/login');
+      return; 
+    }
+    if(isAdmin === 'true')
+    {
+      console.log("Admin ke liye")
+      axios.get('/property/show')
       .then(response => {
-        console.log("Response:", response.data);
-        setProperties(response.data);
+        const verified = response.data.filter(property => property.isVerified);
+        setProperties(verified)
       })
       .catch(error => {
-        console.error("Error:", error);
-        navigate('/a/login');
-      });
-  }, [userId, navigate]);
+        console.log(error)
+        navigate('/a/login')
+      })
+    }
+    else
+    {
+      console.log("User ke liye")
+      axios.post(`/user/showCustomProperty`,{userId: userId})
+      .then(response => {
+          console.log("Response:", response.data)
+          setProperties(response.data)
+      })
+      .catch(error => {
+        console.error("Error:", error)
+        navigate('/a/login')
+      })
+    }
+  },[isAdmin, userId])
 
   const toggleShareScreen = () => {
     setShareScreen(!shareScreen);
-  };
+  }
+  const toggleShowUpload = ()=>{
+    setShowUpload(!showUpload)
+  }
 
   const Share = (e, id) => {
     e.stopPropagation();
     setSharedProperty(id);
     setShareScreen(!shareScreen);
   };
-
-  const filteredProperties = properties.filter(property => {
-    return property.name.toLowerCase().includes(search.toLowerCase());
-  });
 
   const handleLogOut=()=>{
     localStorage.removeItem('userId');
@@ -66,12 +90,20 @@ function UserPropertyList() {
           />
           <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md">Search</button>
         </div>
+        {
+          isAdmin==='true'?
+          <div>
+              <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
+          </div>
+          : <></>
+        }
+        {showUpload && <NotVerified toggleShowUpload={toggleShowUpload}/>}
         <div className="p-5">
-</div>
+      </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-        {filteredProperties.length > 0 ? (
-          filteredProperties.map((item, ind) => (
+        {properties.length > 0 ? (
+          properties.map((item, ind) => (
             <div key={ind} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg">
               <Link
                 to="/property"
@@ -92,6 +124,7 @@ function UserPropertyList() {
                   </div>
                 </div>
               </Link>
+              {isAdmin==='true'? <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p> : <></>}
             </div>
           ))
         ) : (
