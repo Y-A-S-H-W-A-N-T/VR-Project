@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 import ShareToUser from '../components/shareToUser'
 import NotVerified from '../components/notVerified'
+import { useUser } from '../useContext'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,8 +16,44 @@ function Dash() {
   const [properties, setProperties] = useState([])
   const [shareScreen,setShareScreen] = useState(false)
   const [sharedProperty,setSharedProperty] = useState('')
-  const [isAdmin,setAdmin] = useState(true)  /// for Admin to share properties
+  const [isAdmin,setAdmin] = useState(false)  /// for Admin to share properties
   const [showUpload,setShowUpload] = useState(false)
+  const { userId } = useUser()
+  const navigate = useNavigate()
+
+  if (!userId) {
+    navigate('/login');
+    return; 
+  }else{
+
+    useEffect(() => {
+      console.log("CAME : ",userId)
+      if (userId==null) {
+        navigate('/login');
+        return; 
+      }
+      isAdmin?
+      axios.get('/property/show')
+      .then(response => {
+        const verified = response.data.filter(property => property.isVerified);
+        setProperties(verified)
+        console.log("Mera wala : ",verified)
+      })
+      .catch(error => {
+        navigate('/login')
+      })
+      :
+      axios.get(`/user/showCustomProperty/${userId}`)
+        .then(response => {
+            console.log("Response:", response.data)
+            setProperties(response.data)
+        })
+        .catch(error => {
+          console.error("Error:", error)
+          navigate('/login')
+        })
+    }, [userId])
+  }
 
   const toggleShareScreen = ()=>{
     setShareScreen(!shareScreen)
@@ -25,18 +63,7 @@ function Dash() {
     setShowUpload(!showUpload)
   }
 
-  useEffect(() => {
-    axios.get('/property/show')
-      .then(response => {
-        const verified = response.data.filter(property => property.isVerified);
-        setProperties(verified)
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-  },[])
-
-  console.log(properties)
+  console.log("Ye properties ayi hai : ",properties)
 
 
   const Share = (e,id)=>{

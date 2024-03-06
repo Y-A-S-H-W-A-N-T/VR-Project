@@ -86,7 +86,6 @@ router.post('/updateProperty',async(req,res)=>{
   }
 });
 router.get('/showCustomProperty/:id', async (req, res) => {
-  
   if (req.params.id==null) {
     res.status(400).json({ message: 'Invalid user ID' });
     return;
@@ -97,8 +96,7 @@ router.get('/showCustomProperty/:id', async (req, res) => {
       res.status(400).json({ message: 'Invalid user ID' });
       return;
     }
-
-    const response = await User.findById(req.params.id);
+    const response = await User.findById(req.params.id)
     if (response) {
       const addProp = [];
       const property = response.showProperty;
@@ -115,6 +113,7 @@ router.get('/showCustomProperty/:id', async (req, res) => {
           console.log(`Invalid property ID: ${propertyId}`);
         }
       }
+      console.log("Ye sare properties hai : ",addProp)
 
       res.status(200).json(addProp);
     } else {

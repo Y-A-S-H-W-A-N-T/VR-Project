@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useUser } from '../useContext';
+import { useUser } from '../useContext'
 import { Link } from 'react-router-dom';
 import ShareToUser from '../components/shareToUser';
 import { useNavigate } from 'react-router-dom';
 
 function UserPropertyList() {
-  const [search, setSearch] = useState('');
-  const [properties, setProperties] = useState([]);
-  const [shareScreen, setShareScreen] = useState(false);
-  const [sharedProperty, setSharedProperty] = useState('');
+  const [search, setSearch] = useState('')
+  const [properties, setProperties] = useState([])
+  const [shareScreen, setShareScreen] = useState(false)
+  const [sharedProperty, setSharedProperty] = useState('')
   const navigate = useNavigate();
   const { userId } = useUser();
 if (!userId) {
@@ -18,7 +18,7 @@ if (!userId) {
   }else{
 
     useEffect(() => {
-      if (!userId) {
+      if (userId==null) {
         navigate('/login');
         return; 
       }
@@ -36,7 +36,7 @@ if (!userId) {
           console.error("Error:", error);
           navigate('/login'); 
         });
-    }, [userId, navigate]);
+    }, [userId, navigate])
   
 
   }
