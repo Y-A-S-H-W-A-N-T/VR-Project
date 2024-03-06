@@ -23,11 +23,7 @@ function UserPropertyList() {
       return;
     }
     console.log("CAME : ",userId)
-    if (userId==null) {
-      navigate('/a/login');
-      return; 
-    }
-    if(isAdmin === 'true')
+    if(isAdmin === true || isAdmin === 'true')
     {
       console.log("Admin ke liye")
       axios.get('/property/show')
@@ -40,7 +36,7 @@ function UserPropertyList() {
         navigate('/a/login')
       })
     }
-    else
+    else if (isAdmin === false || isAdmin === 'false')
     {
       console.log("User ke liye")
       axios.post(`/user/showCustomProperty`,{userId: userId})
@@ -53,7 +49,11 @@ function UserPropertyList() {
         navigate('/a/login')
       })
     }
-  },[isAdmin, userId])
+    else{
+      console.log("Use Context is maakichut")
+      console.log(isAdmin)
+    }
+  },[])
 
   const toggleShareScreen = () => {
     setShareScreen(!shareScreen);
@@ -91,7 +91,7 @@ function UserPropertyList() {
           <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md">Search</button>
         </div>
         {
-          isAdmin==='true'?
+          isAdmin === true || isAdmin === 'true'?
           <div>
               <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
           </div>
@@ -121,10 +121,12 @@ function UserPropertyList() {
                     <p className="text-gray-600 mb-2">{item.location} ➴</p>
                     <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
                     <p className="text-green-600 font-semibold">{item.price} ₨</p>
+                    {isAdmin=== 'true' && <><p>edit property</p>
+                    <p>delete property</p></>}
                   </div>
                 </div>
               </Link>
-              {isAdmin==='true'? <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p> : <></>}
+              {isAdmin === true || isAdmin === 'true'? <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p> : <></>}
             </div>
           ))
         ) : (
