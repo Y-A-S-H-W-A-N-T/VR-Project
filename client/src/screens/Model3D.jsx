@@ -14,10 +14,6 @@ function Model3D() {
 
   const location = useLocation()
   const { pano, furniture, size, x, y, z } = location.state
-  var temp = furniture
-
-  const [Furniture,setFurniture] = useState(null)
-
   return (
     <div>
       <a-scene>

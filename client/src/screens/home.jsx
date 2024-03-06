@@ -17,12 +17,6 @@ function Home() {
 
   const [search, setSearch] = useState(property)
   const [properties, setProperties] = useState([])
-  const [shareScreen,setShareScreen] = useState(false)
-  const [sharedProperty,setSharedProperty] = useState('')
-
-  const toggleShareScreen = ()=>{
-    setShareScreen(!shareScreen)
-  }
 
   useEffect(() => {
     axios.get('/property/show')
@@ -34,14 +28,6 @@ function Home() {
         console.error("Error:", error);
       });
   },[])
-
- 
-
-  const Share = (e,id)=>{
-    e.stopPropagation()
-    setSharedProperty(id)
-    setShareScreen(!shareScreen)
-  }
 
   return (
     
@@ -89,11 +75,9 @@ function Home() {
             </div>
           </div>
         </Link>
-        <p onClick={(e)=>Share(e,item._id)} style={{backgroundColor: 'red', display: 'flex',justifyContent: 'center',color: 'white',cursor: 'pointer'}}>SHARE</p>
         </div>
       ))}
     </div>
-      {shareScreen && <ShareToUser toggleShareScreen={toggleShareScreen} propertyID={sharedProperty}/>}
   </div>
   )
 }
