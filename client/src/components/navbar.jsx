@@ -14,8 +14,8 @@ const Navbar = () => {
   const navItems = [
     { id: 1, text: 'Home', route:'/' },
     { id: 2, text: 'Account', route:'/p/userPropertyList'},
-    { id: 3, text: 'Sign In',route:'/register' },
-    { id: 4, text: 'Login',route:'/login' },
+    { id: 3, text: 'Sign In',route:'/a/register' },
+    { id: 4, text: 'Login',route:'/a/login' },
     { id: 5, text: 'Sell',route:'/propUpload' },
   ];
 

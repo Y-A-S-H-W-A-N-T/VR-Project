@@ -4,31 +4,26 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   useEffect(() => {
-    localStorage.removeItem('userId');
+    if (localStorage.getItem('userId') === null) {
+      localStorage.removeItem('userId','isAdmin');
+    }
   }, []);
 
   const [userId, setUserId] = useState(localStorage.getItem('userId'));
+  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin'));
 
   useEffect(() => {
-    localStorage.setItem('userId', userId);
-
-    
-    const clearLocalStorage = () => {
+    if (userId !== null) {
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('isAdmin', isAdmin);
+    } else {
       localStorage.removeItem('userId');
-      setUserId(null);
-      
-    };
-
-    const timeoutId = setTimeout(clearLocalStorage, 900000); 
-
-    
-    return () => {
-      clearTimeout(timeoutId);
-    };
+      localStorage.removeItem('isAdmin');
+    }
   }, [userId]);
 
   return (
-    <UserContext.Provider value={{ userId, setUserId}}>
+    <UserContext.Provider value={{ userId, setUserId, isAdmin, setIsAdmin }}>
       {children}
     </UserContext.Provider>
   );
@@ -37,7 +32,7 @@ export const UserProvider = ({ children }) => {
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('useUser must be used within a UserProvider');
+    throw new Error('error----------------------------');
   }
   return context;
 };

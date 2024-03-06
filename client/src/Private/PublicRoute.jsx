@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Outlet, Navigate } from 'react-router';
 import { useUser } from '../useContext.jsx';
 
-export const PrivateRoute = () => {
+export const PublicRoute = () => {
     const{userId}=useUser();
     if(userId){
-        return(<Outlet/>)
+        return(<Navigate to='/p/userPropertyList'></Navigate>)
+        
     }else{
-        return(<Navigate to='/a/login'></Navigate>)
+        return(<Outlet/>)
     }
 }

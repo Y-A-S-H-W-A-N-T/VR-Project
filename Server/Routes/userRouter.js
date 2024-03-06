@@ -37,9 +37,9 @@ router.post('/login',async(req,res)=>{
     if(findUser){
       if(findUser.password==password){
         console.log("Sucessfully login")
-        const id=findUser._id
-        console.log(id)
-        res.status(200).json(id)
+        const {_id, isAdmin}=findUser
+        console.log("Details",_id, isAdmin)
+        res.status(200).json({_id, isAdmin})
       }else{
         res.status(200).json({mesg:"password didn't match"})
       }
@@ -85,40 +85,39 @@ router.post('/updateProperty',async(req,res)=>{
     res.status(500).json({ message: 'Server Error' });
   }
 });
-router.get('/showCustomProperty/:id', async (req, res) => {
-  if (req.params.id==null) {
-    res.status(400).json({ message: 'Invalid user ID' });
-    return;
-  }
-  console.log('--------------------------------------------------------------------',req.params.id)
-  try {
-    if (!req.params.id) {
-      res.status(400).json({ message: 'Invalid user ID' });
-      return;
-    }
-    const response = await User.findById(req.params.id)
-    if (response) {
-      const addProp = [];
-      const property = response.showProperty;
 
-      for (const propertyId of property) {
-        if (propertyId) {
-          const prop = await Property.findById(propertyId);
-          if (prop) {
-            addProp.push(prop);
+
+router.post('/showCustomProperty', async (req, res) => {
+ 
+  try {
+    if (req.body.userId==null) {
+      res.status(400)
+    }else{
+      const response = await User.findById(req.body.userId)
+      if (response) {
+        const addProp = [];
+        const property = response.showProperty;
+  
+        for (const propertyId of property) {
+          if (propertyId) {
+            const prop = await Property.findById(propertyId);
+            if (prop) {
+              addProp.push(prop);
+            } else {
+              console.log(`Invalid property ID: ${propertyId}`);
+            }
           } else {
             console.log(`Invalid property ID: ${propertyId}`);
           }
-        } else {
-          console.log(`Invalid property ID: ${propertyId}`);
         }
+  
+        res.status(200).json(addProp);
+      } else {
+        res.status(404).json({ message: 'User not found' });
       }
-      console.log("Ye sare properties hai : ",addProp)
 
-      res.status(200).json(addProp);
-    } else {
-      res.status(404).json({ message: 'User not found' });
     }
+   
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });
