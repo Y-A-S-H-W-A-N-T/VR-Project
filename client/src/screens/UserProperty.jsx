@@ -44,9 +44,16 @@ function UserPropertyList() {
     return property.name.toLowerCase().includes(search.toLowerCase());
   });
 
+  const handleLogOut=()=>{
+    localStorage.removeItem('userId');
+    localStorage.removeItem('isAdmin');
+    navigate('/')
+  }
+
   return (
+    <div>
     <div className="bg-gradient-to-r from-amber-50 via-purple-200 to-amber-50 px-4 py-8">
-    
+      
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className="mb-4">
           <input
@@ -58,7 +65,8 @@ function UserPropertyList() {
           />
           <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md">Search</button>
         </div>
-        <div className="p-5"></div>
+        <div className="p-5">
+</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {filteredProperties.length > 0 ? (
@@ -90,6 +98,12 @@ function UserPropertyList() {
         )}
       </div>
       {shareScreen && <ShareToUser toggleShareScreen={toggleShareScreen} propertyID={sharedProperty} />}
+      
+    
+    </div>
+    <button onClick={handleLogOut} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+     Logout
+    </button>
     </div>
   );
 }
