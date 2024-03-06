@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
+import Footer2 from '../components/Footer2'
 function Furniture() {
 
   const location = useLocation()
@@ -25,126 +26,40 @@ function Furniture() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
-
-    <div className="flex flex-col lg:flex-row p-6">
-    
-      {/* Content for 'Use Your Furniture' section */}
-      <div className='flex flex-col justify-between item-center p-4 w-full lg:w-1/2'>
-        <h1 className='text-center text-4xl lg:text-6xl pb-8 text-amber-600 '>Use Your Furniture</h1>
-        <a href="https://www.remove.bg/" target="_blank" rel="noopener noreferrer" className='border border-2 rounded-full border-yellow-100 rounded-md bg-amber-100 focus:outline-none text-center w-1/2 lg:w-full mb-3 p-2'>Click me for bg-removal</a>
-        <p className="mb-4 text-slate-300 text-wrap font-sans ">Note: Select images with transparent backgrounds for best results. Utilize external websites for easy background removal in a click.</p>
-        <h1 className="text-xl py-4 mb-2 text-yellow-600">TO DO: ADD ROTATION, SIZE SELECTION</h1>
-        {fur && <img src={fur} alt="Furniture" className="w-24 h-24 mb-4 rounded-full border-yellow-500 rounded-md bg-yellow-100 focus:outline-none" />}
-        <input type="file" className="mb-4 py-2" onChange={handleUpload} />
-        {fur && (
-          <Link
-            to="/mobilear"
-            state={{ pano: data.pano, furniture: fur }}
-            className="rounded-md bg-blue-500 focus:outline-none hover:bg-blue-200 text-center p-2 mb-2 w-full"
-          >
-            Try With Image
-          </Link>
-        )}
-      </div>
-    
-      {/* Content for 'Use Our 3D Simulations' section */}
-      <div className='flex flex-col justify-between item-center p-4 w-full lg:w-1/2'>
-        <h1 className='text-center text-4xl lg:text-6xl pb-8 text-amber-600'>Use Our 3D Simulations</h1>
-        <div>
-          <select
-            id="type"
-            value={furniture}
-            onChange={(e) => setFurniture(e.target.value)}
-            className="mb-4 border-2 border-yellow-500 rounded-md bg-white focus:outline-none text-center w-1/2 lg:w-1/2 p-2 mb-2"
-          >
-            <option value="">Select Furniture</option>
-            <option value="https://cdn.glitch.global/d0e6a6bc-d958-44c6-be4a-0f9e40b44944/bench.glb?v=1709578521404v">
-              Bench
-            </option>
-            <option value="https://cdn.glitch.global/168e0451-dc78-4fa9-9a84-028ef51d9561/File.glb?v=1651912125168">
-              Table
-            </option>
-            <option value="https://cdn.glitch.global/ededd3e3-c762-41e8-93f6-c667b87a9882/signBoard.glb?v=1709577727732">
-              Chair
-            </option>
-          </select>
-          <select
-            id="size"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-            className="mb-4 border-2 border-yellow-500 rounded-md bg-white focus:outline-none text-center w-1/2 lg:w-1/2 p-2 mb-2"
-          >
-            <option value="">Select Size</option>
-            {[...Array(9)].map((_, index) => (
-              <option key={index} value={index + 1}>
-                {index + 1}
-              </option>
-            ))}
-          </select>
-          {/* Range inputs for rotation */}
-          <div className="relative">
-          <input
-        type="range"
-        min="0"
-        max="360"
-        value={rotateX}
-        onChange={(e) => setRotateX(e.target.value)}
-        className="mb-2 w-full bg-yellow-100"
-      />
-      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateX}°
-      </div>
-          </div>
-          <div className="relative">
-          <input
-        type="range"
-        min="0"
-        max="360"
-        value={rotateY}
-        onChange={(e) => setRotateY(e.target.value)}
-        className="mb-2 w-full bg-yellow-100"
-      />
-      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateY}°
-      </div>
-          </div>
-          <div className="relative">
-          <input
-        type="range"
-        min="0"
-        max="360"
-        value={rotateZ}
-        onChange={(e) => setRotateZ(e.target.value)}
-        className="mb-2 w-full bg-yellow-100"
-      />
-      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateZ}°
-      </div>
-          </div>
-        </div>
-        {/* Link to try with 3D model */}
-        <Link
-          to="/3D-model"
-          state={{
-            pano: data.pano,
-            furniture: furniture,
-            size: size,
-            x: rotateX,
-            y: rotateY,
-            z: rotateZ,
-          }}
-          className="rounded-md bg-blue-500 focus:outline-none hover:bg-blue-200 text-center p-2 mb-2 w-full"
-        >
-          Try With 3D Model
-        </Link>
-      </div>
+    <div>
+      <h1>TRY FURNITURES</h1>
+      <p>note: Choose images without background. Use remove bg website to remove background in a click</p>
+      <h1>TO DO : ADD ROTATION, SIZE SELECTION</h1>
+      {fur && <img src={fur} alt="test" height={100} width={100}/>}
+      <input type='file' onChange={handleUpload}/><br/>
+      {fur && <><Link to='/mobilear' state={{pano: data.pano, furniture: fur}}>TRY OUT THE FURNITURE FEATURE IN AR in MOBILE</Link></>}<br/>
+      <select id="type" value={furniture} onChange={(e) => setFurniture(e.target.value)}>
+        <option value="">Select Furniture</option>
+        <option value="https://cdn.glitch.global/d0e6a6bc-d958-44c6-be4a-0f9e40b44944/bench.glb?v=1709578521404v">Bench</option>
+        <option value="https://cdn.glitch.global/168e0451-dc78-4fa9-9a84-028ef51d9561/File.glb?v=1651912125168">Table</option>
+        <option value="https://cdn.glitch.global/ededd3e3-c762-41e8-93f6-c667b87a9882/signBoard.glb?v=1709577727732">Chair</option>
+      </select>
+      <select id="type" value={size} onChange={(e) => setSize(e.target.value)}>
+        <option value="">Select Size</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+      <input type="range" min="0" max="360" value={rotateX} onChange={(e)=>setRotateX(e.target.value)}></input>
+      <input type="range" min="0" max="360" value={rotateY} onChange={(e)=>setRotateY(e.target.value)}></input>
+      <input type="range" min="0" max="360" value={rotateZ} onChange={(e)=>setRotateZ(e.target.value)}></input>
+      {console.log(rotateX,rotateY,rotateZ)}
+      <Link to='/3D-model' state={{pano: data.pano, furniture: furniture, size: size, x: rotateX, y: rotateY, z: rotateZ}}>TRY OUT THE FURNITURE FEATURE IN AR in PC</Link>
     </div>
-    </div>
-    
-  
-
   )
 }
 
 export default Furniture
+
+

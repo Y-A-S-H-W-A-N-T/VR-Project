@@ -30,8 +30,8 @@ function Home() {
 
   return (
     
-    <div className=" bg-gradient-to-r from-amber-50 via-purple-200  to-amber-50   px-4 py-8 ">
-    
+    <div className=" bg-gradient-to-r from-amber-50  to-white   px-4 py-8 ">
+   
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div className="mb-4">
         <input
@@ -55,7 +55,7 @@ function Home() {
           state={{ property: item }}
           className="block"
         >
-          <div>
+          <div className=''>
             <img
               src={item.property_Image}
               alt={item.name}
@@ -67,13 +67,14 @@ function Home() {
               <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
               <p className="text-green-600 font-semibold">Rs.{item.price}</p>
              {item.isVerified ? 
-             <span class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
-            : 
-             <span class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
+             <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
+: 
+             <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
             }
             </div>
           </div>
         </Link>
+        <p onClick={(e)=>ShareToUser(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p>
         </div>
       ))}
     </div>
