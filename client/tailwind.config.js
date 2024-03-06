@@ -8,7 +8,11 @@ export default {
     extend: {
       fontFamily:{
         one:["Libre Baskerville", "serif","bold-700"],
-        two:["Nunito", "sans-serif"]
+        two:["Nunito", "sans-serif"],
+        new:["Archivo Black", "sans-serif","font-weight-400"]
+      },
+      backgroundImage: {
+        'furr': "url('../assets/furnitureback.png')"
       }
     },
   },

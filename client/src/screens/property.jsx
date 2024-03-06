@@ -17,9 +17,9 @@ function Property() {
     <div className="Property-Box bg-white p-6 m-4 pr-5 md:p-8 lg:p-10 xl:p-12 border border-gray-300 rounded-lg shadow-md w-full">
     <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-amber-900">{data.property.name}</h1>
     {data.property.isVerified ? 
-    <span class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
+    <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
      :
-    <span class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>}
+    <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>}
     <p className="text-gray-600 mb-4">{data.property.description}</p>
     
   
