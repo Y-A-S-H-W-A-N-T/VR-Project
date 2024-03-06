@@ -2,9 +2,6 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import { Link, useLocation } from "react-router-dom"
 import axios from "axios"
-import ShareToUser from '../components/shareToUser'
-
-
 
 
 function Home() {
@@ -74,7 +71,6 @@ function Home() {
             </div>
           </div>
         </Link>
-        <p onClick={(e)=>ShareToUser(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p>
         </div>
       ))}
     </div>
