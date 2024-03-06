@@ -85,34 +85,47 @@ router.post('/updateProperty',async(req,res)=>{
     res.status(500).json({ message: 'Server Error' });
   }
 });
-
 router.get('/showCustomProperty/:id', async (req, res) => {
+  
+  if (req.params.id==null) {
+    res.status(400).json({ message: 'Invalid user ID' });
+    return;
+  }
+  console.log('--------------------------------------------------------------------',req.params.id)
   try {
-    const response = await User.findById({ _id: req.params.id });
-    const addProp = [];
+    if (!req.params.id) {
+      res.status(400).json({ message: 'Invalid user ID' });
+      return;
+    }
 
+    const response = await User.findById(req.params.id);
     if (response) {
+      const addProp = [];
       const property = response.showProperty;
 
       for (const propertyId of property) {
         if (propertyId) {
           const prop = await Property.findById(propertyId);
-          addProp.push(prop);
+          if (prop) {
+            addProp.push(prop);
+          } else {
+            console.log(`Invalid property ID: ${propertyId}`);
+          }
         } else {
           console.log(`Invalid property ID: ${propertyId}`);
         }
       }
-
 
       res.status(200).json(addProp);
     } else {
       res.status(404).json({ message: 'User not found' });
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
 
 
 app.use(router);

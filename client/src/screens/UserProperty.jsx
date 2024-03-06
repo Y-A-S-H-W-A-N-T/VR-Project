@@ -3,31 +3,47 @@ import axios from 'axios';
 import { useUser } from '../useContext';
 import { Link } from 'react-router-dom';
 import ShareToUser from '../components/shareToUser';
+import { useNavigate } from 'react-router-dom';
 
 function UserPropertyList() {
-  const { userId } = useUser();
   const [search, setSearch] = useState('');
   const [properties, setProperties] = useState([]);
   const [shareScreen, setShareScreen] = useState(false);
   const [sharedProperty, setSharedProperty] = useState('');
+  const navigate = useNavigate();
+  const { userId } = useUser();
+if (!userId) {
+    navigate('/login');
+    return; 
+  }else{
 
+    useEffect(() => {
+      if (!userId) {
+        navigate('/login');
+        return; 
+      }
+  
+      axios.get(`/user/showCustomProperty/${userId}`)
+        .then(response => {
+          if (response.data.status==200) {
+            console.log("Response:", response.data);
+            setProperties(response.data);
+          } else {
+            navigate('/login'); 
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          navigate('/login'); 
+        });
+    }, [userId, navigate]);
+  
+
+  }
+  
   const toggleShareScreen = () => {
     setShareScreen(!shareScreen);
   };
-
-  useEffect(() => {
-    axios.get(`/user/showCustomProperty/${userId}`)
-      .then(response => {
-        if(response.status===200){
-            console.log("Response:", response.data);
-            setProperties(response.data);
-        }
-       
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-  }, [userId]);
 
   const Share = (e, id) => {
     e.stopPropagation();
