@@ -48,6 +48,7 @@ function UserPropertyList() {
     localStorage.removeItem('userId');
     localStorage.removeItem('isAdmin');
     navigate('/')
+    window.location.reload()
   }
 
   return (
