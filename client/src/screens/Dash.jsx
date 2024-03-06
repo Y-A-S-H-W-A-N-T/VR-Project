@@ -16,7 +16,7 @@ function Dash() {
   const [properties, setProperties] = useState([])
   const [shareScreen,setShareScreen] = useState(false)
   const [sharedProperty,setSharedProperty] = useState('')
-  const [isAdmin,setAdmin] = useState(false)  /// for Admin to share properties
+  const [isAdmin,setAdmin] = useState(true)  /// for Admin to share properties
   const [showUpload,setShowUpload] = useState(false)
   const { userId } = useUser()
   const navigate = useNavigate()
@@ -119,7 +119,7 @@ function Dash() {
             </div>
           </div>
         </Link>
-        {isAdmin && <p onClick={(e)=>Share(e,item._id)} style={{backgroundColor: 'red', display: 'flex',justifyContent: 'center',color: 'white',cursor: 'pointer'}}>SHARE</p>}
+        {isAdmin && <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p>}
         </div>
       ))}
     </div>
