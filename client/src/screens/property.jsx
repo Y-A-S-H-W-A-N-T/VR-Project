@@ -42,7 +42,10 @@ function Property() {
         <p className="text-lg font-semibold mb-2 flex items-center">
           <MdPriceCheck className="mr-2 text-amber-500" />
           Price: {data.property.price}
+          <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button>
         </p>
+        
+
   
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-500 hover:text-amber-700 focus:outline-none">
           {showRooms ? '❌ Close Rooms' : '🔍 Show Rooms'}

@@ -4,7 +4,7 @@ import { useUser } from '../useContext';
 import { Link } from 'react-router-dom';
 import ShareToUser from '../components/shareToUser';
 import { useNavigate } from 'react-router-dom';
-
+import { FaUserCircle } from "react-icons/fa";
 function UserPropertyList() {
   const [search, setSearch] = useState('');
   const [properties, setProperties] = useState([]);
@@ -50,11 +50,18 @@ function UserPropertyList() {
     navigate('/')
     window.location.reload()
   }
+  const handleProfile=()=>{
+    console.log("hello")
+  }
 
   return (
     <div>
-    <div className="bg-gradient-to-r from-amber-50 via-purple-200 to-amber-50 px-4 py-8">
       
+      
+    <div className="bg-gradient-to-r from-amber-50 via-purple-200 to-amber-50 px-4 py-8">
+    <div onClick={handleProfile}>
+    <FaUserCircle size={48} className="text-gray-600" onclick={handleProfile}/>
+    </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className="mb-4">
           <input

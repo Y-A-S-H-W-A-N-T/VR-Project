@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useUser } from '../useContext.jsx';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from '../components/navbar.jsx'
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +32,11 @@ export const Login = () => {
     };
     
     return (
+      <div>
+      <Navbar/>
         <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
+            
+            
             <div className="w-full max-w-md p-6">
                 <h1 className="text-center text-3xl text-amber-400 mb-4">Login</h1>
                 <input
@@ -55,6 +59,7 @@ export const Login = () => {
                     Submit
                 </button>
             </div>
+        </div>
         </div>
     );
 };

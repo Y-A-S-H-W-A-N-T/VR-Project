@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-
+import Navbar from '../components/navbar.jsx'
 export const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -43,6 +43,7 @@ export const Register = () => {
 
    
     return (
+      <div><Navbar/>
         <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
   <div className="w-full max-w-md p-6">
     <label className="text-gray-600">Name</label>
@@ -79,6 +80,7 @@ export const Register = () => {
     >
       Register
     </button>
+  </div>
   </div>
 </div>
 

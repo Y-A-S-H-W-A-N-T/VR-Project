@@ -20,6 +20,8 @@ const Navbar = () => {
   ];
 
   return (
+    <div>
+      
     <div className='font-two flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
       
       <img src={logo} alt="Logo" className='w-32'/>
@@ -62,7 +64,7 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </div></div>
   );
 };
 
