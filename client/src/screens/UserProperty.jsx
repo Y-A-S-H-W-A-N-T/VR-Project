@@ -51,7 +51,6 @@ function UserPropertyList() {
       })
     }
     else{
-      console.log("Use Context is maakichut")
       console.log(isAdmin)
     }
   },[])
@@ -129,12 +128,14 @@ function UserPropertyList() {
                     <p className="text-gray-600 mb-2">{item.location} ➴</p>
                     <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
                     <p className="text-green-600 font-semibold">{item.price} ₨</p>
-                    {isAdmin=== 'true' && <><p>edit property</p>
-                    <p>delete property</p></>}
                   </div>
                 </div>
               </Link>
-              {isAdmin === true || isAdmin === 'true'? <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p> : <></>}
+              { isAdmin === true || isAdmin === 'true'?
+                <p onClick={(e)=>Share(e,item._id)} className='p-3 bg-amber-400 text-center font-two'>SHARE</p>
+                :
+                <></>
+              }
             </div>
           ))
         ) : (

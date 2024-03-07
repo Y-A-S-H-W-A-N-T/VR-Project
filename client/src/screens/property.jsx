@@ -8,7 +8,10 @@ import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
 import Footer2 from '../components/Footer2';
 import PayButton from '../components/PayButton'
-import { useUser } from '../useContext';
+import { useUser } from '../useContext'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 
 function Property() {
@@ -16,8 +19,46 @@ function Property() {
   const location = useLocation()
   const data = location.state
 
+  const navigate = useNavigate();
+
   const [showRooms,setShowRooms] = useState(false)
-  const { userId } = useUser()
+  const { userId, isAdmin } = useUser()
+
+  const DeleteProperty = async()=>{
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be reversed!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "red",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        await axios.post('/property/deleteProperty',{ id: data.property._id})
+        .then((res)=>{
+          res.status==200?
+            (
+              Swal.fire({
+              title: "Deleted!",
+              text: res.data.message,
+              icon: "success"
+              })
+            ) 
+          :
+            Swal.fire({
+              title: "Error!",
+              text: res.data.message,
+              icon: "error"
+            })
+            navigate(-1)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+      }
+    })    
+  }
 
   return (
     <>
@@ -56,14 +97,19 @@ function Property() {
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-500 hover:text-amber-700 focus:outline-none">
           {showRooms ? '❌ Close Rooms' : '🔍 Show Rooms'}
         </button>
+        {isAdmin === 'true' || isAdmin === true ?
+          <>
+            <p>📝</p>
+            <p onClick={DeleteProperty} style={{cursor: 'pointer'}}>🗑️</p>
+          </>
+          :
+          <></>
+        }
       </div>
     </div>
   
     {showRooms && <Rooms data={data} />}
-  
-    {/* AR functionality for mobile */}
     <div className="md:hidden">
-      {/* Render AR functionality here */}
       <p className="text-gray-600 mt-2">AR functionality for mobile</p>
     </div>
   </div>

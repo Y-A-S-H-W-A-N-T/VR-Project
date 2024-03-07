@@ -54,6 +54,12 @@ router.post('/verifyProperty',async(req, res)=>{
   }
 })
 
+router.post('/deleteProperty',async(req,res)=>{
+  console.log(req.body.id)
+  const result = await Property.deleteOne({_id: req.body.id})
+  result.acknowledged? res.status(200).json({ message: 'Property Deleted Succesfully' }) : res.status(400).json({ message: 'Error in Deleteing Property' })
+})
+
 
 
 app.use(router);
