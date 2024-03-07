@@ -56,12 +56,14 @@ const Navbar = () => {
 
         {/* Mobile Navigation Items */}
         {navItems.map(item => (
-          <li
-            key={item.id}
-            className='p-4   hover:bg-[#CDCDCD] duration-300 hover:text-white cursor-pointer '
-          >
-            {item.text}
-          </li>
+          <Link to={item.route}>
+            <li
+              key={item.id}
+              className='p-4   hover:bg-[#CDCDCD] duration-300 hover:text-white cursor-pointer '
+            >
+              {item.text}
+            </li>
+          </Link>
         ))}
       </ul>
     </div></div>
