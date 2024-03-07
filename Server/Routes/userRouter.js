@@ -88,16 +88,15 @@ router.post('/updateProperty',async(req,res)=>{
 
 
 router.post('/showCustomProperty', async (req, res) => {
- 
   try {
     if (req.body.userId==null) {
       res.status(400)
     }else{
       const response = await User.findById(req.body.userId)
+      console.log(response)
       if (response) {
         const addProp = [];
         const property = response.showProperty;
-  
         for (const propertyId of property) {
           if (propertyId) {
             const prop = await Property.findById(propertyId);

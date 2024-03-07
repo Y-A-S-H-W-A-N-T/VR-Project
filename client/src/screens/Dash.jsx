@@ -16,7 +16,7 @@ function Dash() {
   const [properties, setProperties] = useState([])
   const [shareScreen,setShareScreen] = useState(false)
   const [sharedProperty,setSharedProperty] = useState('')
-  const [isAdmin,setAdmin] = useState(true)  /// for Admin to share properties
+  const [isAdmin,setAdmin] = useState(false)  /// for Admin to share properties
   const [showUpload,setShowUpload] = useState(false)
   const { userId } = useUser()
   const navigate = useNavigate()
