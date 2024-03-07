@@ -26,7 +26,7 @@ function PayButton() {
             return;
         }
 
-        const result = await axios.post("http://localhost:3000/Payment/orders");
+        const result = await axios.post("/Payment/orders");
 
         if (!result) {
             alert("Server error. Are you online?");
@@ -74,7 +74,7 @@ function PayButton() {
 
     return (
         <div className="">
-                <button className="App-link" className='p-2 m-2 bg-green-400 text-white  rounded-full pl-5 pr-5 ' onClick={displayRazorpay}>
+                <button  className='p-2 m-2 bg-green-400 text-white  rounded-full pl-5 pr-5 ' onClick={displayRazorpay}>
                     Book Now!
                 </button>
             
