@@ -7,13 +7,17 @@ import { MdBusiness } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
 import Footer2 from '../components/Footer2';
-import PayButton from '../components/PayButton';
+import PayButton from '../components/PayButton'
+import { useUser } from '../useContext';
+
+
 function Property() {
 
   const location = useLocation()
   const data = location.state
 
   const [showRooms,setShowRooms] = useState(false)
+  const { userId } = useUser()
 
   return (
     <>
@@ -45,7 +49,7 @@ function Property() {
           Price: {data.property.price}
           {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
-        <PayButton />
+        {userId && <PayButton />}
         
 
   
