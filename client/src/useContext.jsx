@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin'));
 
   useEffect(() => {
-    if (userId !== null) {
+    if (userId !== null && userId !== undefined) {
       localStorage.setItem('userId', userId);
       localStorage.setItem('isAdmin', isAdmin);
     } else {

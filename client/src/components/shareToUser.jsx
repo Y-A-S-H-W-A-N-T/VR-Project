@@ -38,7 +38,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
     <div className='modal'>
         <div className='overlay'>
             <div className='modal-content'>
-                <div style={{display: 'flex'}}>
+                <div className='flex'>
                     <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleShareScreen()}>❌</p>
                 </div>
                 <div className='test'><br/>

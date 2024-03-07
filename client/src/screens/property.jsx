@@ -7,6 +7,7 @@ import { MdBusiness } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
 import Footer2 from '../components/Footer2';
+import PayButton from '../components/PayButton';
 function Property() {
 
   const location = useLocation()
@@ -42,8 +43,9 @@ function Property() {
         <p className="text-lg font-semibold mb-2 flex items-center">
           <MdPriceCheck className="mr-2 text-amber-500" />
           Price: {data.property.price}
-          <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button>
+          {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
+        <PayButton />
         
 
   

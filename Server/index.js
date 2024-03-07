@@ -7,14 +7,17 @@ import propRouter from './Routes/propRouter.js'
 import bodyParser from "body-parser"
 import cors from "cors"
 import multer from "multer"
-const app=express();
-const PORT=3000
+import Razorpay from "razorpay";
+import rout from "./Routes/Payment.js";
+
 dotenv.config()
+const PORT=3000
+const app=express();
+
 
 mongoose.connect('mongodb+srv://abishchhetri2502:gKa7BjeOgvMiw2DU@cluster0.n6whocg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=>{console.log("Yeahh Elvishhh Bhaii DB Connected!!!")})
 .catch((err)=>{console.log(err)})
-
 app.use(cors())
 
 app.use(express.static('./public'))
@@ -23,6 +26,12 @@ app.use(express.json());
 app.use("/user",userRouter);
 app.use("/admin",adminRouter);
 app.use("/property",propRouter);
+
+
+// payment enviorment set up
+app.use(express.json({ extended: false }));
+// route included
+app.use("/payment", rout);
 
 app.listen(PORT,()=>{console.log("Challo! Server hogaya suru...")})
 
