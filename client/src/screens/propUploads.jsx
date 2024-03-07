@@ -11,7 +11,7 @@ export const PropUpload = () => {
     const [room_name,setRoom_name] =useState([])
     const [Loading,setLoading] = useState(false)
 
-    const onSubmit =async() => {
+    const onSubmit = async() => {
         console.log(
            "PROPERTY NAME - ",propName,
             "\nROOMS NAME - ",room_name,
@@ -83,42 +83,39 @@ export const PropUpload = () => {
         setLoading(true)
         getImage_URL(roomImage)        
     }
-    //////////////////////////////////////////////// SHOW IMAGE PREVIEW
 
     return (
-        <div>
-            <label>Property Name</label>
-            <input value={propName} type="text" onChange={(e) => setPropName(e.target.value)} />
-            <label>Location</label>
-            <input value={location} type="text" onChange={(e) => setLocation(e.target.value)} />
-            <label>Price</label>
-            <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} />
-            <label>Type</label>
-            <select id="type" value={Type} onChange={(e) => setType(e.target.value)}>
-                    <option value="">Select Type</option>
-                    <option value="Rent">Rents</option>
-                    <option value="Property">Property</option>
-                    <option value="Land">Land</option>
+        <div className="max-w-4xl mx-auto px-4">
+            <label className="block mb-2">Property Name</label>
+            <input value={propName} type="text" onChange={(e) => setPropName(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
+            <label className="block mb-2">Location</label>
+            <input value={location} type="text" onChange={(e) => setLocation(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
+            <label className="block mb-2">Price</label>
+            <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
+            <label className="block mb-2">Type</label>
+            <select id="type" value={Type} onChange={(e) => setType(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full">
+                <option value="">Select Type</option>
+                <option value="Rent">Rents</option>
+                <option value="Property">Property</option>
+                <option value="Land">Land</option>
             </select>
-            <label>Image</label>
-            <input type="file" onChange={handleFileChange} />
-            <br/>
-            {image && <img src={image} alt="property image" height={200} width={200}/>}
-            <h1>FOR ROOMS</h1>
-            <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)}></input>
-            <input type="file" onChange={(e)=>uploadImage(e)}/>
+            <label className="block mb-2">Image</label>
+            <input type="file" onChange={handleFileChange} className="mb-2" />
+            {image && <img src={image} alt="property image" className="mb-2" height={200} width={200} />}
+            <h1 className="mb-2">FOR ROOMS</h1>
+            <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
+            <input type="file" onChange={(e)=>uploadImage(e)} className="mb-2" />
             {Loading && <>LOADING.....</>}
-            <button onClick={(e)=>ADD(e)}>ADD ROOM</button>
-            {
-                room_name.map((item,index)=>(
-                    <div style={{margin: '20px',paddin: '10px'}} key={index}>
-                        <button>{item}</button>
-                        <img src={rooms[index]} height={50} width={50}/>
-                    </div>
-                ))
-            }
-            <br/>
-            <button onClick={onSubmit}>Submit</button>
+            <button onClick={(e)=>ADD(e)} className="bg-blue-500 text-white px-4 py-2 rounded-md">ADD ROOM</button>
+            {room_name.map((item,index)=>(
+                <div style={{margin: '20px',paddin: '10px'}} key={index} className="flex items-center">
+                    <button className="bg-gray-200 px-4 py-2 rounded-md">{item}</button>
+                    <img src={rooms[index]} alt="room image" height={50} width={50} className="ml-2" />
+                </div>
+            ))}
+            <button onClick={onSubmit} className="bg-green-500 text-white px-4 py-2 rounded-md mt-4">Submit</button>
         </div>
     );
 };
+
+export default PropUpload;
