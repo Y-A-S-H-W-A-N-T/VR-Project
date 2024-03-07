@@ -43,14 +43,16 @@ function NotVerified({ toggleShowUpload }) {
                     <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleShowUpload()}>❌</p>
                 </div>
                 {loading && <p>LOADING......</p>}
-                {
-                    notVerified.map((val,ind)=>(
-                        <div key={ind} className='test'>
-                            <Link to="/property" state={{ property: val }}>{val.name}</Link>
-                            <button className='p-6' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
-                        </div>
-                    ))
-                }
+                <div className='test'>
+                    {
+                        notVerified.map((val,ind)=>(
+                            <div key={ind}>
+                                <Link to="/property" state={{ property: val }}>{val.name}</Link>
+                                <button className='p-6' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>
