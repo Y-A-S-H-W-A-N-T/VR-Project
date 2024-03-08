@@ -76,8 +76,10 @@ function Property() {
 
   const requestProperty = async()=>{
     await axios.post('yaha par api likh dena schema bana kar',{
-      requestedProperty: data.property,
-      requestedUser: user
+      Property_id: data.property._id,
+      User_id: user._id,
+      Property_name: data.property.name,
+      User_name: user.name
     })
     .then((res)=>{
       console.log("Request Sent")
