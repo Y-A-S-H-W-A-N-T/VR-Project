@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import "../css/home.css"
 import Rooms from '../components/rooms'
@@ -116,8 +116,9 @@ function Property() {
           Price: {data.property.price}
           {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
-        {userId && <PayButton />}
-        {isAdmin === 'false' || isAdmin === false ?
+        {isAdmin === 'false' || isAdmin === false ? <>{userId && <PayButton />}</> : <></> }
+        
+        {isAdmin === 'false' || isAdmin === false?
           <>
             <p>📝</p>
             <p onClick={requestProperty} style={{cursor: 'pointer'}}>Request Property 🙏</p>
