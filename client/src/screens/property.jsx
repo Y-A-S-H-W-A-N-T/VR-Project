@@ -11,7 +11,8 @@ import PayButton from '../components/PayButton'
 import { useUser } from '../useContext'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import EditProperty from '../components/editProperty'
 
 
 function Property() {
@@ -24,6 +25,7 @@ function Property() {
   const [showRooms,setShowRooms] = useState(false)
   const { userId, isAdmin } = useUser()
   const [user,setUser] = useState()
+  const [edit,setEdit] = useState(false)
 
   useEffect(()=>{
     userId?
@@ -72,6 +74,10 @@ function Property() {
         })
       }
     })    
+  }
+
+  const ToggleEdit = ()=>{
+    setEdit(!edit)
   }
 
   const requestProperty = async()=>{
@@ -133,12 +139,13 @@ function Property() {
         </button>
         {isAdmin === 'true' || isAdmin == true ?
           <>
-            <p>📝</p>
+            <p onClick={ToggleEdit} style={{cursor: 'pointer'}}>📝</p>
             <p onClick={DeleteProperty} style={{cursor: 'pointer'}}>🗑️</p>
           </>
           :
           <></>
         }
+        {edit && <EditProperty ToggleEdit={ToggleEdit} property={data.property}/>}        
       </div>
     </div>
   

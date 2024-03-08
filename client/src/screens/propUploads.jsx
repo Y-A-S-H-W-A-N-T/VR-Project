@@ -81,7 +81,13 @@ export const PropUpload = () => {
     const ADD = async(e)=>{
         e.preventDefault()
         setLoading(true)
-        getImage_URL(roomImage)        
+        getImage_URL(roomImage)
+        setRoomName('')    
+    }
+
+    const popProperty = (name,link)=>{
+        setRooms(val=> val.filter(item=> item !== link ))
+        setRoom_name(val=> val.filter(item=> item !== name ))
     }
 
     return (
@@ -103,7 +109,7 @@ export const PropUpload = () => {
             <input type="file" onChange={handleFileChange} className="mb-2" />
             {image && <img src={image} alt="property image" className="mb-2" height={200} width={200} />}
             <h1 className="mb-2">FOR ROOMS</h1>
-            <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
+            <input placeholder='ADD ROOM NAME' onChange={(e)=>setRoomName(e.target.value)} value={roomName} className="border border-gray-300 rounded-md p-2 mb-2 w-full" />
             <input type="file" onChange={(e)=>uploadImage(e)} className="mb-2" />
             {Loading && <>LOADING.....</>}
             <button onClick={(e)=>ADD(e)} className="bg-blue-500 text-white px-4 py-2 rounded-md">ADD ROOM</button>
@@ -111,6 +117,7 @@ export const PropUpload = () => {
                 <div style={{margin: '20px',paddin: '10px'}} key={index} className="flex items-center">
                     <button className="bg-gray-200 px-4 py-2 rounded-md">{item}</button>
                     <img src={rooms[index]} alt="room image" height={50} width={50} className="ml-2" />
+                    <p className='ml-4' style={{cursor: 'pointer'}} onClick={()=>popProperty(item,rooms[index])}>❌</p>
                 </div>
             ))}
             <button onClick={onSubmit} className="bg-green-500 text-white px-4 py-2 rounded-md mt-4">Submit</button>

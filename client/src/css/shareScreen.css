@@ -12,6 +12,11 @@
     display: flex;
 }
 
+.back{
+    background-color: rgba(196, 18, 18, 0.3);
+    display: flex;
+}
+
 .modal-content{
     position: absolute;
     top: 50%;
@@ -29,4 +34,18 @@
     overflow: auto;
     margin-left: 10%;
     margin-right: 10%;
+}
+
+.modal-edit, .overlay-edit{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+.overlay-edit{
+    background-color: rgb(255, 255, 255);
+    display: flex;
 }
