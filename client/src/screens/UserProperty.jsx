@@ -29,7 +29,7 @@ function UserPropertyList() {
       console.log("Admin ke liye")
       axios.get('/property/show')
       .then(response => {
-        const verified = response.data.filter(property => property.isVerified);
+        const verified = response.data.filter(property => property.isVerified)
         setProperties(verified)
       })
       .catch(error => {
@@ -82,11 +82,11 @@ function UserPropertyList() {
     <div>
       
       
-    <div className="bg-gradient-to-r from-amber-50 via-purple-200 to-amber-50 px-4 py-8">
+    <div className="bg-gradient-to-r from-amber-50 to-white px-4 py-8">
     <div onClick={handleProfile}>
     <FaUserCircle size={48} className="text-gray-600" onclick={handleProfile}/>
     </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className='flex justify-center flex-row'>
         <div className="mb-4">
           <input
             type="text"
@@ -95,15 +95,16 @@ function UserPropertyList() {
             placeholder="Search..."
             className="border border-gray-300 rounded-md px-4 py-2"
           />
-          <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md">Search</button>
-        </div>
+          <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md text-white font-two pr-6">Search</button>
+        
         {
           isAdmin === true || isAdmin === 'true'?
           <div>
-              <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
+              <p onClick={()=>setShowUpload(!showUpload)} className='bg-amber-900 p-4 m-4 rounded-full cursor-pointer text-white font-two pr-6 text-center '>Not verified Properties</p>
           </div>
           : <></>
         }
+        </div>
         {showUpload && <NotVerified toggleShowUpload={toggleShowUpload}/>}
         <div className="p-5">
       </div>

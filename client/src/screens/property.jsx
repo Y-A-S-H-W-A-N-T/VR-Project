@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import "../css/home.css"
 import Rooms from '../components/rooms'
@@ -23,6 +23,20 @@ function Property() {
 
   const [showRooms,setShowRooms] = useState(false)
   const { userId, isAdmin } = useUser()
+  const [user,setUser] = useState()
+
+  useEffect(()=>{
+    userId?
+    axios.get(`/user/show/${userId}`)
+    .then((res)=>{
+      res.status==200? setUser(res.data) : alert(res.data.message)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    :
+    ''
+  },[])
 
   const DeleteProperty = async()=>{
     await Swal.fire({
@@ -60,6 +74,19 @@ function Property() {
     })    
   }
 
+  const requestProperty = async()=>{
+    await axios.post('yaha par api likh dena schema bana kar',{
+      requestedProperty: data.property,
+      requestedUser: user
+    })
+    .then((res)=>{
+      console.log("Request Sent")
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
   return (
     <>
     <div className="Property-Box bg-white p-6 m-4 pr-5 md:p-8 lg:p-10 xl:p-12 border border-gray-300 rounded-lg shadow-md w-full">
@@ -70,7 +97,6 @@ function Property() {
     <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>}
     <p className="text-gray-600 mb-4">{data.property.description}</p>
     
-  
     <div className="flex flex-wrap items-center mb-4">
       <div className="w-full md:w-auto md:flex-1 md:mr-4">
         <img src={data.property.property_Image} alt="Property" className="w-full h-auto md:w-64 lg:w-72 object-cover rounded-md" />
@@ -91,13 +117,18 @@ function Property() {
           {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
         {userId && <PayButton />}
-        
-
-  
+        {isAdmin === 'false' || isAdmin === false ?
+          <>
+            <p>📝</p>
+            <p onClick={requestProperty} style={{cursor: 'pointer'}}>Request Property 🙏</p>
+          </>
+          :
+          <></>
+        }
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-500 hover:text-amber-700 focus:outline-none">
           {showRooms ? '❌ Close Rooms' : '🔍 Show Rooms'}
         </button>
-        {isAdmin === 'true' || isAdmin === true ?
+        {isAdmin === 'true' || isAdmin == true ?
           <>
             <p>📝</p>
             <p onClick={DeleteProperty} style={{cursor: 'pointer'}}>🗑️</p>

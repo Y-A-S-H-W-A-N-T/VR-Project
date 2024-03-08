@@ -44,7 +44,9 @@ function Home() {
       </div>
     </div>
     <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-      {properties.map((item,ind) => (
+      {properties.filter((val)=>{
+          return val.isVerified==true
+      }).map((item,ind) => (
         <div key={ind} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg">
           <Link
           key={item.id}
@@ -65,7 +67,7 @@ function Home() {
               <p className="text-green-600 font-semibold">Rs.{item.price}</p>
              {item.isVerified ? 
              <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
-: 
+            : 
              <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>
             }
             </div>
