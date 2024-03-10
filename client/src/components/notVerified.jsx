@@ -48,7 +48,8 @@ function NotVerified({ toggleShowUpload }) {
                         notVerified.map((val,ind)=>(
                             <div key={ind}>
                                 <Link to="/property" state={{ property: val }}>{val.name}</Link>
-                                <button className='p-6' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
+                                <button className='p-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
+
                             </div>
                         ))
                     }

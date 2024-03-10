@@ -14,16 +14,14 @@ const Navbar = () => {
   const navItems = [
     { id: 1, text: 'Home', route:'/' },
     { id: 2, text: 'Account', route:'/p/userPropertyList'},
-    { id: 3, text: 'Sign In',route:'/a/register' },
+    { id: 3, text: 'Register',route:'/a/register' },
     { id: 4, text: 'Login',route:'/a/login' },
     { id: 5, text: 'Sell',route:'/propUpload' },
   ];
 
   return (
     <div>
-      
     <div className='font-two flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
-      
       <img src={logo} alt="Logo" className='w-32'/>
       {/* Desktop Navigation */}
       <ul className='hidden md:flex'>

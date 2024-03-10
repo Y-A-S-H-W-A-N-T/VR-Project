@@ -101,7 +101,8 @@ function UserPropertyList() {
         {
           isAdmin === true || isAdmin === 'true'?
           <div>
-              <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}}>Not verified Properties</p>
+              <p onClick={()=>setShowUpload(!showUpload)} style={{cursor: 'pointer'}} className="cursor-pointer text-blue-500 hover:text-blue-700">Not verified Properties</p>
+
           </div>
           : <></>
         }

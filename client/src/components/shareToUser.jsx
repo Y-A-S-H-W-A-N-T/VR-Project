@@ -38,7 +38,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
     <div className='modal'>
         <div className='overlay'>
             <div className='modal-content'>
-                <div className='flex'>
+                <div className='flex '>
                     <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleShareScreen()}>❌</p>
                 </div>
                 <div className='test'><br/>
@@ -46,7 +46,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
                         Users.map((val)=>(
                             <div key={val.id}>
                                 <p>NAME : {val.name}</p>
-                                <button style={{backgroundColor: 'black',color: 'white'}} onClick={(e)=>Send(e,val._id)}>SEND</button>
+                                <button style={{backgroundColor: 'green',color: 'white'}} onClick={(e)=>Send(e,val._id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">SEND</button>
                             </div>
                         ))
                     }
