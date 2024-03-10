@@ -28,9 +28,9 @@ app.use("/admin",adminRouter);
 app.use("/property",propRouter);
 
 
-// payment enviorment set up
+
 app.use(express.json({ extended: false }));
-// route included
+
 app.use("/payment", rout);
 
 app.listen(PORT,()=>{console.log("Challo! Server hogaya suru...")})

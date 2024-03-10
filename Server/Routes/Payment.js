@@ -11,12 +11,12 @@ const rout = express.Router();
 rout.post('/orders', async (req, res) => {
     try {
       const instance = new Razorpay({
-        key_id: process.env.RAZORPAY_KEY_ID, // YOUR RAZORPAY KEY
-        key_secret: process.env.RAZORPAY_SECRET, // YOUR RAZORPAY SECRET
+        key_id: process.env.RAZORPAY_KEY_ID,
+        key_secret: process.env.RAZORPAY_SECRET,
       });
   
       const options = {
-        amount: 90000,
+        amount: 9000000000,
         currency: 'INR',
         receipt: 'receipt_order_74394',
       };
