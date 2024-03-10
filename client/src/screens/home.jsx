@@ -55,14 +55,16 @@ function Home() {
           className="block"
         >
           <div className=''>
-            <img
-              src={item.property_Image}
-              alt={item.name}
-              className="w-full h-56 object-cover"
-            />
+          <img
+                      src={item.property_Image}
+                      alt={item.name}
+                      className="w-full h-56 object-cover"
+                    />
+
+
             <div className="p-4">
               <p className="text-lg font-semibold mb-2">{item.name}</p>
-              <p className="text-gray-600 mb-2">{item.location} ➴</p>
+              <p className="text-gray-600 mb-2">{item.location} </p>
               <p className="text-gray-600 mb-2">Type ➤ {item.type}</p>
               <p className="text-green-600 font-semibold">Rs.{item.price}</p>
              {item.isVerified ? 

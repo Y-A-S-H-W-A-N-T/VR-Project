@@ -93,6 +93,11 @@ function EditProperty({ ToggleEdit, property }) {
         setRoomName('')  
     }
 
+    const popProperty = (name,link)=>{
+        setRooms(val=> val.filter(item=> item !== link ))
+        setRoom_name(val=> val.filter(item=> item !== name ))
+    }   
+
     
       
 

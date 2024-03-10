@@ -39,21 +39,23 @@ function NotVerified({ toggleShowUpload }) {
     <div className='modal'>
         <div className='overlay'>
             <div className='modal-content'>
-                <div style={{display: 'flex'}}>
+                <div className='flex items-center p-4 border-b border-gray-200 md:justify-between'>
                     <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleShowUpload()}>❌</p>
                 </div>
                 {loading && <p>LOADING......</p>}
-                <div className='test'>
+                <div className='test  p-4 pr-3 pl-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                     {
                         notVerified.map((val,ind)=>(
                             <div key={ind}>
-                                <Link to="/property" state={{ property: val }}>{val.name}</Link>
-                                <button className='p-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
-
+                                <Link to="/property" className='font-two' state={{ property: val }}>{val.name}</Link>
+                                <button className='p-6 mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>VerifyProperty(e,val._id)}>VERIFY</button>
                             </div>
                         ))
                     }
                 </div>
+
+
+                
             </div>
         </div>
     </div>
