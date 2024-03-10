@@ -79,13 +79,10 @@ function Property() {
   const ToggleEdit = ()=>{
     setEdit(!edit)
   }
-
   const requestProperty = async()=>{
-    await axios.post('yaha par api likh dena schema bana kar',{
+    await axios.post('/user/test',{
       Property_id: data.property._id,
-      User_id: user._id,
-      Property_name: data.property.name,
-      User_name: user.name
+      User_id: userId,
     })
     .then((res)=>{
       console.log("Request Sent")
@@ -128,7 +125,6 @@ function Property() {
         
         {isAdmin === 'false' || isAdmin === false?
           <>
-            <p>📝</p>
             <p onClick={requestProperty} style={{cursor: 'pointer'}}>Request Property 🙏</p>
           </>
           :
