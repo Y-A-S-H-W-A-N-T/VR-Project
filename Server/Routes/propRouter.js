@@ -1,5 +1,6 @@
 import express from "express";
 import Property from "../Model/propertyModel.js";
+import Request from '../Model/requestModel.js'
 
 const app = express();
 const router = express.Router();
@@ -39,14 +40,14 @@ router.get('/show', async (req, res) => {
 })
 
 router.post('/verifyProperty',async(req, res)=>{
-  console.log("Property ID : ",req.body.id)
+  
   try{
     const temp = await Property.findOne({_id: req.body.id})
-    console.log(temp)
+    // console.log(temp)
     const result = await Property.updateOne({_id:req.body.id},{ isVerified: true })
     res.status(200).json({ message: 'Property Verified'})
     console.log("Property Verified")
-    console.log(result)
+    // console.log(result)
   }
   catch(err)
   {
@@ -74,7 +75,7 @@ router.post("/updateProperty", async (req, res) => {
         room_names: req.body.room_info.room_names,
       }
     }});
-    console.log(savedProperty);
+    // console.log(savedProperty);
     res.status(200).json(savedProperty); 
   } catch (err) {
     console.error("Error:", err);
@@ -82,6 +83,37 @@ router.post("/updateProperty", async (req, res) => {
   }
 });
 
+router.post('/request',async(req,res)=>{
+  try{
+    const newRequest=new Request({
+      PropertyId:req.body.Property_id,
+      UserId:req.body.User_id,
+    })
+
+  const test = await newRequest.save()
+  if(test){
+    res.status(200).json({ message: 'OK'})
+  }else{
+    res.status(400).json({message:"Not saved"})
+  }
+  
+
+   
+
+  }catch(err){
+    console.log(err)
+  }
+})
+
+router.get('/showRequest', async (req, res) => {
+  try {
+    const requests = await Request.find()
+    res.json(requests)
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+})
 
 
 app.use(router);

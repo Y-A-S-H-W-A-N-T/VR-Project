@@ -27,18 +27,6 @@ function Property() {
   const [user,setUser] = useState()
   const [edit,setEdit] = useState(false)
 
-  useEffect(()=>{
-    userId?
-    axios.get(`/user/show/${userId}`)
-    .then((res)=>{
-      res.status==200? setUser(res.data) : alert(res.data.message)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-    :
-    ''
-  },[])
 
   const DeleteProperty = async()=>{
     await Swal.fire({
@@ -81,14 +69,17 @@ function Property() {
   }
 
   const requestProperty = async()=>{
-    await axios.post('yaha par api likh dena schema bana kar',{
+    await axios.post('/property/request',{
       Property_id: data.property._id,
-      User_id: user._id,
-      Property_name: data.property.name,
-      User_name: user.name
+      User_id: userId,
+    
     })
     .then((res)=>{
-      console.log("Request Sent")
+      if(res.status==200){
+        console.log("Saved")
+      }else{
+        console.log("Not Saved")
+      }
     })
     .catch((err)=>{
       console.log(err)
