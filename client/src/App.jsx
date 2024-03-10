@@ -46,8 +46,6 @@ function App() {
           <Route path="/propUpload" element={<PropUpload />} />
           <Route path="/furniture" element={<Furniture />} />
           <Route path="/3D-model" element={<Model3D />} />
-         
-          <Route path="/dash" element={<Dash />} />
 
           <Route path="/p" element={<PrivateRoute />} >
           <Route path='userPropertyList' element={<UserPropertyList />} />

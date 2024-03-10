@@ -30,6 +30,7 @@
     "react-stl-viewer": "^2.5.0",
     "react-type-animation": "^3.2.0",
     "react-typed": "^2.0.12",
+    "sweetalert2": "^11.10.6",
     "swiper": "^11.0.7"
   },
   "devDependencies": {

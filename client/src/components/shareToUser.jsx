@@ -10,8 +10,6 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
             console.log(response.data)
             setUsers(response.data)
           }).catch((err)=>{console.log(err)})
-          
-       
       }, []);
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import "../css/home.css"
 import Rooms from '../components/rooms'
@@ -8,7 +8,11 @@ import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
 import Footer2 from '../components/Footer2';
 import PayButton from '../components/PayButton'
-import { useUser } from '../useContext';
+import { useUser } from '../useContext'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+import EditProperty from '../components/editProperty'
 
 
 function Property() {
@@ -16,8 +20,80 @@ function Property() {
   const location = useLocation()
   const data = location.state
 
+  const navigate = useNavigate();
+
   const [showRooms,setShowRooms] = useState(false)
-  const { userId } = useUser()
+  const { userId, isAdmin } = useUser()
+  const [user,setUser] = useState()
+  const [edit,setEdit] = useState(false)
+
+  useEffect(()=>{
+    userId?
+    axios.get(`/user/show/${userId}`)
+    .then((res)=>{
+      res.status==200? setUser(res.data) : alert(res.data.message)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    :
+    ''
+  },[])
+
+  const DeleteProperty = async()=>{
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be reversed!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "red",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        await axios.post('/property/deleteProperty',{ id: data.property._id})
+        .then((res)=>{
+          res.status==200?
+            (
+              Swal.fire({
+              title: "Deleted!",
+              text: res.data.message,
+              icon: "success"
+              })
+            ) 
+          :
+            Swal.fire({
+              title: "Error!",
+              text: res.data.message,
+              icon: "error"
+            })
+            navigate(-1)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+      }
+    })    
+  }
+
+  const ToggleEdit = ()=>{
+    setEdit(!edit)
+  }
+
+  const requestProperty = async()=>{
+    await axios.post('yaha par api likh dena schema bana kar',{
+      Property_id: data.property._id,
+      User_id: user._id,
+      Property_name: data.property.name,
+      User_name: user.name
+    })
+    .then((res)=>{
+      console.log("Request Sent")
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
 
   return (
     <>
@@ -29,7 +105,6 @@ function Property() {
     <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>}
     <p className="text-gray-600 mb-4">{data.property.description}</p>
     
-  
     <div className="flex flex-wrap items-center mb-4">
       <div className="w-full md:w-auto md:flex-1 md:mr-4">
         <img src={data.property.property_Image} alt="Property" className="w-full h-auto md:w-64 lg:w-72 object-cover rounded-md" />
@@ -49,21 +124,33 @@ function Property() {
           Price: {data.property.price}
           {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
-        {userId && <PayButton />}
+        {isAdmin === 'false' || isAdmin === false ? <>{userId && <PayButton />}</> : <></> }
         
-
-  
+        {isAdmin === 'false' || isAdmin === false?
+          <>
+            <p>📝</p>
+            <p onClick={requestProperty} style={{cursor: 'pointer'}}>Request Property 🙏</p>
+          </>
+          :
+          <></>
+        }
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-500 hover:text-amber-700 focus:outline-none">
           {showRooms ? '❌ Close Rooms' : '🔍 Show Rooms'}
         </button>
+        {isAdmin === 'true' || isAdmin == true ?
+          <>
+            <p onClick={ToggleEdit} style={{cursor: 'pointer'}}>📝</p>
+            <p onClick={DeleteProperty} style={{cursor: 'pointer'}}>🗑️</p>
+          </>
+          :
+          <></>
+        }
+        {edit && <EditProperty ToggleEdit={ToggleEdit} property={data.property}/>}        
       </div>
     </div>
   
     {showRooms && <Rooms data={data} />}
-  
-    {/* AR functionality for mobile */}
     <div className="md:hidden">
-      {/* Render AR functionality here */}
       <p className="text-gray-600 mt-2">AR functionality for mobile</p>
     </div>
   </div>
