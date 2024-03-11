@@ -15,6 +15,8 @@ import { ImCross } from "react-icons/im";
 import { CiLogout } from "react-icons/ci";import { CiUser } from "react-icons/ci";
 import { FaBuildingCircleXmark } from "react-icons/fa6";
 import Assets from '../components/assets'
+import Navbar from "../components/navbar";
+import Footer from "../components/Footer"
 
 function UserPropertyList() {
   const [search, setSearch] = useState("");
@@ -91,20 +93,21 @@ function UserPropertyList() {
     navigate("/");
     window.location.reload();
   };
-  const handleProfile = () => {
-    console.log("hello");
-  };
+ 
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-amber-50 to-white px-4 py-8">
+    <Navbar/>
+      <div className="bg-gradient-to-r from-amber-50 to-white px-4 ">
       <div className="">
-      <div className="flex justify-around lg:justify-between items-center p-2">
+      <div className="flex justify-around lg:justify-between items-center">
 
 
       <div className="lg:justify-normal flex mr-9 pr-5">
-      
-      <CiUser onClick={handleProfile} size={40}  className="mr-3"/>
+      <Link to='/profile'>
+        <CiUser size={40}  className="mr-3"/>
+      </Link>
+     
       
       
       <div className="hidden md:block">
@@ -245,7 +248,7 @@ function UserPropertyList() {
           />
         )}
       </div>
-      
+      <Footer/>
     </div>
   );
 }
