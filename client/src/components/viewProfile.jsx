@@ -7,7 +7,7 @@ const Profile = () => {
     const {userId}=useUser()
     useEffect(() => {
         try{
-             axios.post('/user/userData',{userId}).then((res)=>{
+            axios.post('/user/userData',{userId}).then((res)=>{
                 if(res.status==200){
                     console.log(res.data)
                     setUserData(res.data)
@@ -26,7 +26,7 @@ const Profile = () => {
 
     console.log(userData)
     return (
-        <div >
+        <div>
             {userData==undefined ? <div>Loading...</div> :<div> <div>
                 Name:{userData.name}</div>
                 <div>Email:{userData.email}</div></div> }
