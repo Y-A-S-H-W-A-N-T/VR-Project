@@ -20,22 +20,6 @@ function Notifications({ toggleShowNotification }) {
           })
       },[])
 
-      const Accept = async(e,user_id,property_id)=>{
-        e.preventDefault()
-        console.log(property_id,user_id)
-        await axios.post('/user/updateProperty',{propertyID: property_id, userID: user_id})
-        .then((res)=>{
-            if(res.status==200){
-                console.log("Accepted Request")
-            }else{
-                console.log("Error")
-            }
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
-
   return (
     <div className='modal'>
         <div className='overlay'>
@@ -49,8 +33,7 @@ function Notifications({ toggleShowNotification }) {
                         allNotifications.map((val,ind)=>(
                             <div key={ind}>
                                 <p className='font-two' state={{ property: val }}>Property</p>
-                                    {console.log(val)}
-                                <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>Accept(e,val.UserId,val.PropertyId)}>Accept</button>
+                                <Link to='/request' state={{ property_id: val.PropertyId, user_id: val.UserId }} className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700'>Check</Link>
                             </div>
                         ))
                     }
