@@ -31,7 +31,6 @@ router.post('/login',async(req,res)=>{
   console.log(req.body)
   try{
     const{email, password}= req.body;
-
     const findUser=await User.findOne({email});
     
     if(findUser){
@@ -68,23 +67,27 @@ router.get('/show',async(req,res)=>{
   }
 });
 
-router.post('/updateProperty',async(req,res)=>{
-  console.log(req.body.userID)
-  console.log(req.body.propertyID)
-  const user= await User.findById({_id:req.body.userID})
-  console.log(user)
+router.post('/updateProperty', async (req, res) => {
+  console.log(req.body)
+  console.log(req.body.userID);
+  console.log(req.body.propertyID);
+  
   try {
-    const update=await User.updateOne({_id:req.body.userID},{$push:{showProperty:req.body.propertyID}})
-    console.log(update)
-    if(update.acknowledged){
-      res.status(200)
-      console.log('updated')
-      const user= await User.findById({_id:req.body.userID})
-      console.log(user)
-    }else{
-      res.status(400)
-    }
+    const user = await User.findOne({ _id:req.body.userID });
+    console.log("user details",user);
     
+    const update = await User.updateOne({ _id: req.body.userID }, { $push: { showProperty: req.body.propertyID } });
+    console.log(update);
+
+    if (update.acknowledged) {
+      console.log('updated');
+      const updatedUser = await User.findById(req.body.userID);
+      console.log(updatedUser);
+      res.status(200).json({ message: 'Updated successfully', user: updatedUser });
+    } else {
+      console.log('Not updated');
+      res.status(400).json({ message: 'Failed to update' });
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Server Error' });

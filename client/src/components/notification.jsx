@@ -49,7 +49,7 @@ function Notifications({ toggleShowNotification }) {
                     {
                         allNotifications.map((val,ind)=>(
                             <div key={ind}>
-                                <p className='font-two' state={{ property: val }}>Property</p>
+                                <p className='font-two' state={{ property: val }}>{val.UserId}</p>
                                 <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>Accept(e,val.PropertyId,val.UserId)}>Accept</button>
                             </div>
                         ))

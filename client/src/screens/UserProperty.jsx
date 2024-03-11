@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../useContext";
 import { Link } from "react-router-dom";
-import ShareToUser from "../components/shareToUser";
+import ShareToUser from "../components/notification";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import NotVerified from "../components/notVerified"
