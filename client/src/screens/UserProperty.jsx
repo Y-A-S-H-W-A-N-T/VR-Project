@@ -92,13 +92,13 @@ function UserPropertyList() {
   return (
     <div>
       <div className="bg-gradient-to-r from-amber-50 to-white px-4 py-8">
-        <div onClick={handleProfile}>
+        <Link to='/profile'>
           <FaUserCircle
             size={48}
             className="text-gray-600"
             onclick={handleProfile}
           />
-        </div>
+        </Link>
         <div className="flex justify-center flex-row">
           <div className="mb-4">
             <input

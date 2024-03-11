@@ -141,7 +141,8 @@ router.post('/userData', async (req, res) => {
           return res.status(404).json({ error: 'User not found' });
       }else{
         console.log("------------------------",userData)
-         res.status(200).json(userData);
+        
+        res.status(200).json(userData);
       }
 
       

@@ -27,7 +27,9 @@ const Profile = () => {
     console.log(userData)
     return (
         <div >
-            {userData==undefined ? <div>Loading...</div> : <div>hello{userData.name}</div> }
+            {userData==undefined ? <div>Loading...</div> :<div> <div>
+                Name:{userData.name}</div>
+                <div>Email:{userData.email}</div></div> }
 
         </div>
     );
