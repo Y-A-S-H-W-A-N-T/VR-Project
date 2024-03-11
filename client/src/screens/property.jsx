@@ -6,7 +6,7 @@ import { MdLocationOn } from 'react-icons/md';
 import { MdBusiness } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
 import Maps from '../components/Maps';
-import Footer2 from '../components/Footer2';
+import Footer from '../components/Footer';
 import PayButton from '../components/PayButton'
 import { useUser } from '../useContext'
 import axios from 'axios'
@@ -146,7 +146,7 @@ function Property() {
       <p className="text-gray-600 mt-2">AR functionality for mobile</p>
     </div>
   </div>
-<Footer2/>
+<Footer/>
   </>
   )
 }
