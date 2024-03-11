@@ -87,9 +87,7 @@ function UserPropertyList() {
     navigate("/");
     window.location.reload();
   };
-  const handleProfile = () => {
-    console.log("hello");
-  };
+ 
 
   return (
     <div>
@@ -125,7 +123,7 @@ function UserPropertyList() {
               onClick={() => setShowUpload(!showUpload)}
               className="bg-gradient-to-t from-red-200  to-red-800 rounded-full cursor-pointer text-white font-two p-3 mt-2 text-center flex  "
             >
-              Un-Verified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
+              UnVerified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
             </p>
           </div>
         ) : (

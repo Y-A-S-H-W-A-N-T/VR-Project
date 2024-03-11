@@ -2,12 +2,19 @@ import { useState } from "react";
 import axios from 'axios';
 import { useUser } from '../useContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar.jsx'
+import Navbar from '../components/navbar.jsx';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { setUserId, setIsAdmin } = useUser();
     const navigate = useNavigate();
+
+    const notify=()=>{
+        toast.success("successful", { autoClose: 3000 });
+    }
+
 
     const handleSubmit = () => {
         try {
@@ -18,6 +25,8 @@ export const Login = () => {
                         setIsAdmin(response.data.isAdmin);
                         console.log(response.data.isAdmin)
                         console.log("Login successful");
+                    
+
                         navigate("/p/userPropertyList"); 
                     } else {
                         console.log("Login Failed:", response.data.message);
