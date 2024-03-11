@@ -72,15 +72,13 @@ function Property() {
     await axios.post('/property/request',{
       Property_id: data.property._id,
       User_id: userId,
-    
-
   
     })
     .then((res)=>{
       if(res.status==200){
-        console.log("Saved")
+        console.log(res.data.message)
       }else{
-        console.log("Not Saved")
+        console.log(res.data.message)
       }
     })
     .catch((err)=>{
