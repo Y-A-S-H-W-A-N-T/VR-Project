@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../useContext";
 import { Link } from "react-router-dom";
-import ShareToUser from "../components/shareToUser";
+import ShareToUser from "../components/notification";
 import { useNavigate } from "react-router-dom";
 import { MdNotificationsActive } from "react-icons/md";
 import NotVerified from "../components/notVerified"
@@ -94,8 +94,25 @@ function UserPropertyList() {
   return (
     <div>
       <div className="bg-gradient-to-r from-amber-50 to-white px-4 py-8">
-      <div className="">
-      <div className="flex justify-around lg:justify-between items-center p-2">
+        <Link to='/profile'>
+          <FaUserCircle
+            size={48}
+            className="text-gray-600"
+            onclick={handleProfile}
+          />
+        </Link>
+        <div className="flex justify-center flex-row">
+          <div className="mb-4">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="border border-gray-100 bg-gradient-to-r from-amber-100 to-white rounded-md px-4 py-2 "
+            />
+            <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
+              Search
+            </button>
 
 
       <div className="lg:justify-normal flex mr-9 pr-5">

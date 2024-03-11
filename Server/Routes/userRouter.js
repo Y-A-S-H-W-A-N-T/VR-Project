@@ -31,7 +31,6 @@ router.post('/login',async(req,res)=>{
   console.log(req.body)
   try{
     const{email, password}= req.body;
-
     const findUser=await User.findOne({email});
     
     if(findUser){
@@ -69,20 +68,22 @@ router.get('/show',async(req,res)=>{
 });
 
 router.post('/updateProperty',async(req,res)=>{
-  const test = await User.findOne({_id : req.body.userID})
-  console.log(test)
   try {
-    const update=await User.updateOne({_id:req.body.userID},{$push:{showProperty:req.body.propertyID}})
-    console.log(update)
-    if(update.acknowledged){
-      res.status(200)
-      console.log('updated')
-      const user= await User.findById({_id:req.body.userID})
-      console.log(user)
-    }else{
-      res.status(400)
-    }
+    const user = await User.findOne({ _id:req.body.userID });
+    console.log("user details",user);
     
+    const update = await User.updateOne({ _id: req.body.userID }, { $push: { showProperty: req.body.propertyID } });
+    console.log(update);
+
+    if (update.acknowledged) {
+      console.log('updated');
+      const updatedUser = await User.findById(req.body.userID);
+      console.log(updatedUser);
+      res.status(200).json({ message: 'Updated successfully', user: updatedUser });
+    } else {
+      console.log('Not updated');
+      res.status(400).json({ message: 'Failed to update' });
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Server Error' });
@@ -134,17 +135,27 @@ router.post('/userData', async (req, res) => {
           return res.status(400).json({ error: 'userId is required' });
       }
 
-      const userData = await User.Find({userId});
-
+      const userData = await User.findOne({_id:req.body.userId});
+       console.log(userData)
       if (!userData) {
           return res.status(404).json({ error: 'User not found' });
+      }else{
+        console.log("------------------------",userData)
+        
+        res.status(200).json(userData);
       }
 
-      res.status(200).json(userData);
+      
   } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
   }
+})
+
+router.get('/userDetails/:id',async(req,res)=>{
+  const test = await User.findOne({_id: req.params.id})
+  console.log(test)
+  res.json(test)
 })
 
 app.use(router);

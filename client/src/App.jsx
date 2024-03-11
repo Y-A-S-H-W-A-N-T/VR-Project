@@ -15,6 +15,8 @@ import UserPropertyList from './screens/UserProperty.jsx';
 import {PrivateRoute} from './Private/PrivateRoute.jsx';
 import {PublicRoute} from './Private/PublicRoute.jsx'
 import Dash from './screens/Dash.jsx';
+import Profile from './components/viewProfile.jsx'
+import Request from './screens/request.jsx';
 
 // import { useUser } from './useContext.jsx'; 
 
@@ -42,6 +44,8 @@ function App() {
           <Route path="/ar" element={<AR />} />
           <Route path="/mobilear" element={<MobileAR />} />
           <Route path="/property" element={<Property />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/request" element={<Request />} />
          
           <Route path="/propUpload" element={<PropUpload />} />
           <Route path="/furniture" element={<Furniture />} />
