@@ -72,7 +72,10 @@ function Property() {
     await axios.post('/property/request',{
       Property_id: data.property._id,
       User_id: userId,
+<<<<<<< HEAD
   
+=======
+>>>>>>> 190126cb59cd9cd5cb3b5b57eae9cf67a5cfdd1c
     })
     .then((res)=>{
       if(res.status==200){
