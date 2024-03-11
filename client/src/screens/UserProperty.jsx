@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { MdNotificationsActive } from "react-icons/md";
 import NotVerified from "../components/notVerified"
 import Notifications from "../components/notification"
-import { MdDoNotDisturb } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { MdBusiness } from "react-icons/md";
@@ -100,9 +99,9 @@ function UserPropertyList() {
 
       <div className="lg:justify-normal flex mr-9 pr-5">
       
-      <CiUser onClick={handleProfile} size={40} />
+      <CiUser onClick={handleProfile} size={40}  className="mr-3"/>
       
-      <CiLogout onClick={handleLogOut} size={40}  className="mr-5"/>
+      
       <div className="hidden md:block">
         <input
           type="text"
@@ -125,7 +124,7 @@ function UserPropertyList() {
               onClick={() => setShowUpload(!showUpload)}
               className="bg-gradient-to-t from-red-200  to-red-800 rounded-full cursor-pointer text-white font-two p-3 mt-2 text-center flex  "
             >
-              Un-Verified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
+              Unverified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
             </p>
           </div>
         ) : (
@@ -143,7 +142,9 @@ function UserPropertyList() {
             <></>
           )}
           {notification && <Notifications toggleShowNotification={toggleShowNotification} />}
+       
         </div>
+        <CiLogout onClick={handleLogOut} size={40}  className="mr-5 mt-2"/>
       </div>
     </div>
 
