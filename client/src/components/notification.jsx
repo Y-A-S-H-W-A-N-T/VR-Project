@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function Notifications({ toggleShowNotification }) {
 
     const [allNotifications,setAllNotifications] = useState([])
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] =  useState(true)
 
     useEffect(() => {
         axios.get('/property/showRequest')
@@ -34,7 +34,6 @@ function Notifications({ toggleShowNotification }) {
         .catch((err)=>{
             console.log(err)
         })
-        window.location.reload(false)
     }
 
   return (
@@ -49,8 +48,14 @@ function Notifications({ toggleShowNotification }) {
                     {
                         allNotifications.map((val,ind)=>(
                             <div key={ind}>
+<<<<<<< HEAD
                                 <p className='font-two' state={{ property: val }}>{val.UserId}</p>
                                 <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>Accept(e,val.PropertyId,val.UserId)}>Accept</button>
+=======
+                                <p className='font-two' state={{ property: val }}>Property</p>
+                                    {console.log(val)}
+                                <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>Accept(e,val.UserId,val.PropertyId)}>Accept</button>
+>>>>>>> 315b13a208d3a23fd44e392265c92aa68e991b4d
                             </div>
                         ))
                     }

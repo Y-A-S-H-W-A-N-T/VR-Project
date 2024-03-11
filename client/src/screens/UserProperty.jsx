@@ -8,6 +8,12 @@ import { FaUserCircle } from "react-icons/fa";
 import NotVerified from "../components/notVerified"
 import Notifications from "../components/notification"
 
+import { FaCheck } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { MdBusiness } from "react-icons/md";
+import { MdPriceCheck } from "react-icons/md";
+import { ImCross } from "react-icons/im";
+
 function UserPropertyList() {
   const [search, setSearch] = useState("");
   const [properties, setProperties] = useState([]);
@@ -100,9 +106,9 @@ function UserPropertyList() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="border border-gray-300 rounded-md px-4 py-2"
+              className="border border-gray-100 bg-gradient-to-r from-amber-100 to-white rounded-md px-4 py-2 "
             />
-            <button className="ml-2 bg-amber-500 hover:bg-amber-600 text-white font-two py-2 px-4 rounded-md text-white font-two pr-6">
+            <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
               Search
             </button>
 
@@ -144,34 +150,61 @@ function UserPropertyList() {
                 key={ind}
                 className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
               >
-                <Link
-                  to="/property"
-                  state={{ property: item }}
-                  className="block"
-                >
-                  <div>
-                    <img
-                      src={item.property_Image}
-                      alt={item.name}
-                      className="w-full h-56 object-cover"
-                    />
-                    <ul className="p-4 ">
-                      <li className="text-lg font-semibold mb-2">{item.name}</li>
-                      <li className="text-gray-600 mb-2">{item.location}</li>
-                      <li className="text-gray-600 mb-2">{item.type}</li>
-                      <li className="text-green-600 font-semibold">
-                        {item.price} ₨
-                      </li>
-                    </ul>
+                 <Link
+                key={item.id}
+                to="/property"
+                state={{ property: item }}
+                className="block"
+              >
+                <div className="">
+                  <img
+                    src={item.property_Image}
+                    alt={item.name}
+                    className="w-full h-56 object-cover"
+                  />
+
+                  <div className="p-4 pb-5">
+                    <div className="flex justify-between text-justify">
+                      <p className="text-lg font-semibold mb-2 ">{item.name}</p>
+                      {item.isVerified ? (
+                        <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-green-100 bg-green-500 rounded-full flex ">
+                        <FaCheck className="mr-1"/> Verified
+                        </span>
+                      ) : (
+                        <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-red-800 bg-red-100 rounded-full flex">
+                        <ImCross  className="mr-1"/>
+                          Not Verified
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-amber-900 mb-2 flex m-1">
+                      <MdLocationOn className=" mr-3 text-amber-500" />
+                      {item.location}{" "}
+                    </p>
+                    <p className="text-amber-900 mb-2 flex m-1"><MdBusiness  className="mr-3  text-amber-500 " />{item.type}</p>
+
+                    <p className="text-green-600 font-semibold flex">
+                      <MdPriceCheck className="mr-3 ml-1 text-amber-500" />
+                      {item.price}
+                    </p>
+                    <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-400 pr-5">
+                      Enter a freshly updated and thoughtfully furnished
+                      peaceful home surrounded by ancient trees, stone walls,
+                      and open meadows.
+                    </p>
                   </div>
-                </Link>
+                </div>
+              </Link>
                 {isAdmin === true || isAdmin === "true" ? (
-                  <p
-                    onClick={(e) => Share(e, item._id)}
-                    className="p-3 bg-amber-400 text-center font-two"
-                  >
-                    SHARE
-                  </p>
+                  /* button */
+                  <div className="p-6 pt-3">
+    <button
+      className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      type="button"
+      onClick={(e) => Share(e, item._id)}>
+      Share
+    </button>
+  </div>
                 ) : (
                   <></>
                 )}

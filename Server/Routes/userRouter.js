@@ -67,11 +67,9 @@ router.get('/show',async(req,res)=>{
   }
 });
 
-router.post('/updateProperty', async (req, res) => {
-  console.log(req.body)
-  console.log(req.body.userID);
-  console.log(req.body.propertyID);
-  
+router.post('/updateProperty',async(req,res)=>{
+  const test = await User.findOne({_id : req.body.userID})
+  console.log(test)
   try {
     const user = await User.findOne({ _id:req.body.userID });
     console.log("user details",user);
@@ -92,7 +90,7 @@ router.post('/updateProperty', async (req, res) => {
     console.log(err);
     res.status(500).json({ message: 'Server Error' });
   }
-});
+})
 
 
 router.post('/showCustomProperty', async (req, res) => {
@@ -150,8 +148,7 @@ router.post('/userData', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
   }
-});
-
+})
 
 app.use(router);
 
