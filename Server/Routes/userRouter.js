@@ -69,9 +69,12 @@ router.get('/show',async(req,res)=>{
 });
 
 router.post('/updateProperty',async(req,res)=>{
+  const test = await User.findOne({_id : req.body.userID})
+  console.log(test)
   try {
     const update=await User.updateOne({_id:req.body.userID},{$push:{showProperty:req.body.propertyID}})
-    if(update){
+    console.log(update)
+    if(update.acknowledged){
       res.status(200)
       console.log('updated')
       const user= await User.findById({_id:req.body.userID})
@@ -84,7 +87,7 @@ router.post('/updateProperty',async(req,res)=>{
     console.log(err);
     res.status(500).json({ message: 'Server Error' });
   }
-});
+})
 
 
 router.post('/showCustomProperty', async (req, res) => {
@@ -142,8 +145,7 @@ router.post('/userData', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
   }
-});
-
+})
 
 app.use(router);
 

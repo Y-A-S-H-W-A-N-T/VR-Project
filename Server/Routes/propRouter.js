@@ -84,11 +84,12 @@ router.post("/updateProperty", async (req, res) => {
 });
 
 router.post('/request',async(req,res)=>{
-  try{
-    const newRequest=new Request({
-      PropertyId:req.body.Property_id,
-      UserId:req.body.User_id,
-    })
+  console.log(req.body)
+    try{
+      const newRequest=new Request({
+        PropertyId:req.body.Property_id,
+        UserId:req.body.User_id,
+      })
 
   const test = await newRequest.save()
   if(test){
@@ -96,10 +97,6 @@ router.post('/request',async(req,res)=>{
   }else{
     res.status(400).json({message:"Not saved"})
   }
-  
-
-   
-
   }catch(err){
     console.log(err)
   }
