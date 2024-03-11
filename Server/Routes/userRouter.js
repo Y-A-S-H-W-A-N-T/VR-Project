@@ -135,13 +135,16 @@ router.post('/userData', async (req, res) => {
           return res.status(400).json({ error: 'userId is required' });
       }
 
-      const userData = await User.Find({userId});
-
+      const userData = await User.findOne({_id:req.body.userId});
+      console.log(userData)
       if (!userData) {
           return res.status(404).json({ error: 'User not found' });
+      }else{
+        console.log("------------------------",userData)
+         res.status(200).json(userData);
       }
 
-      res.status(200).json(userData);
+      
   } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
