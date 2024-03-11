@@ -4,15 +4,17 @@ import { useUser } from "../useContext";
 import { Link } from "react-router-dom";
 import ShareToUser from "../components/shareToUser";
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { MdNotificationsActive } from "react-icons/md";
 import NotVerified from "../components/notVerified"
 import Notifications from "../components/notification"
-
+import { MdDoNotDisturb } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { MdBusiness } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
 import { ImCross } from "react-icons/im";
+import { CiLogout } from "react-icons/ci";import { CiUser } from "react-icons/ci";
+import { FaBuildingCircleXmark } from "react-icons/fa6";
 
 function UserPropertyList() {
   const [search, setSearch] = useState("");
@@ -92,55 +94,60 @@ function UserPropertyList() {
   return (
     <div>
       <div className="bg-gradient-to-r from-amber-50 to-white px-4 py-8">
-        <div onClick={handleProfile}>
-          <FaUserCircle
-            size={48}
-            className="text-gray-600"
-            onclick={handleProfile}
-          />
-        </div>
-        <div className="flex justify-center flex-row">
-          <div className="mb-4">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search..."
-              className="border border-gray-100 bg-gradient-to-r from-amber-100 to-white rounded-md px-4 py-2 "
-            />
-            <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
-              Search
-            </button>
+      <div className="">
+      <div className="flex justify-around lg:justify-between items-center p-2">
 
-            {isAdmin === true || isAdmin === "true" ? (
-              <div>
-                <p
-                  onClick={() => setShowUpload(!showUpload)}
-                  className="bg-amber-900 p-4 m-4 rounded-full cursor-pointer text-white font-two pr-6 text-center "
-                >
-                  Not verified Properties
-                </p>
-              </div>
-            ) : (
-              <></>
-            )}
-            {showUpload && <NotVerified toggleShowUpload={toggleShowUpload} />}
-          </div>
+
+      <div className="lg:justify-normal flex mr-9 pr-5">
+      
+      <CiUser onClick={handleProfile} size={40} />
+      
+      <CiLogout onClick={handleLogOut} size={40}  className="mr-5"/>
+      <div className="hidden md:block">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search..."
+          className="border border-gray-100 bg-gradient-to-r from-amber-100 to-white rounded-md px-4 py-2 "
+        />
+        <button className="ml-2 bg-amber-700 hover:bg-amber-600 text-white py-2 px-4 rounded-md">
+          Search
+        </button>
+      </div></div>
+      
+        
+      
+      <div className="flex justify-center flex-row">
+        {isAdmin === true || isAdmin === "true" ? (
           <div>
-          {isAdmin === true || isAdmin === "true" ? (
-              <div>
-                <p
-                  onClick={() => setNotification(!notification)}
-                  className="bg-amber-900 p-4 m-4 rounded-full cursor-pointer text-white font-two pr-6 text-center "
-                >
-                  Notifications
-                </p>
-              </div>
-            ) : (
-              <></>
-            )}
-            {notification && <Notifications toggleShowNotification={toggleShowNotification} />}
+            <p
+              onClick={() => setShowUpload(!showUpload)}
+              className="bg-gradient-to-t from-red-200  to-red-800 rounded-full cursor-pointer text-white font-two p-3 mt-2 text-center flex  "
+            >
+              Un-Verified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
+            </p>
           </div>
+        ) : (
+          <></>
+        )}
+        {showUpload && <NotVerified toggleShowUpload={toggleShowUpload} />}
+        <div>
+          {isAdmin === true || isAdmin === "true" ? (
+            <div onClick={() => setNotification(!notification)} >
+            
+              <p className="m-1 text-amber-500 rounded-full p-2 flex"><MdNotificationsActive size={36} />{properties.length}</p>
+             
+            </div>
+          ) : (
+            <></>
+          )}
+          {notification && <Notifications toggleShowNotification={toggleShowNotification} />}
+        </div>
+      </div>
+    </div>
+
+          
           <div className="p-5"></div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -221,12 +228,7 @@ function UserPropertyList() {
           />
         )}
       </div>
-      <button
-        onClick={handleLogOut}
-        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
+      
     </div>
   );
 }
