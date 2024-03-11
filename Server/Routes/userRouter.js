@@ -138,7 +138,7 @@ router.post('/userData', async (req, res) => {
       }
 
       const userData = await User.findOne({_id:req.body.userId});
-      console.log(userData)
+       console.log(userData)
       if (!userData) {
           return res.status(404).json({ error: 'User not found' });
       }else{
