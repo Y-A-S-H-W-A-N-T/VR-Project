@@ -3,7 +3,7 @@ import '../css/shareScreen.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import { RxCross2 } from "react-icons/rx";
 function Notifications({ toggleShowNotification }) {
 
     const [allNotifications,setAllNotifications] = useState([])
@@ -24,20 +24,25 @@ function Notifications({ toggleShowNotification }) {
     <div className='modal'>
         <div className='overlay'>
             <div className='modal-content'>
-                <div className='flex items-center p-4 border-b border-gray-200 md:justify-between'>
-                    <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleShowNotification()}>❌</p>
-                </div>
-                {loading && <p>LOADING......</p>}
-                <div className='test p-4 pr-3 pl-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-                    {
-                        allNotifications.map((val,ind)=>(
-                            <div key={ind}>
-                                <p className='font-two' state={{ property: val }}>Property</p>
-                                <Link to='/request' state={{ property_id: val.PropertyId, user_id: val.UserId }} className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700'>Check</Link>
-                            </div>
-                        ))
-                    }
-                </div>   
+            <div className='flex items-center p-4 border-b border-gray-200 md:justify-between'>
+    <p style={{ justifyContent: 'center', padding: '0px', marginLeft: 'auto', cursor: 'pointer' }} onClick={() => toggleShowNotification()}><RxCross2 size={20} /></p>
+</div>
+{loading && <p className="text-center">Loading....</p>}
+<div className='p-10 pr-3 pl-3 md:grid md:grid-cols-1 lg:grid-cols-1 xl:grid-col-1 gap-4'>
+    {
+        allNotifications.map((val, ind) => (
+            <div key={ind} className="mb-4 bg-amber-100 rounded-sm p-3">
+                <ul>
+                    <li className='flex justify-between '>
+                        <p className='font-two mr-6' state={{ property: val }}>Property</p>
+                        <Link to='/request' state={{ property_id: val.PropertyId, user_id: val.UserId }} className='font-two hover:underline text-amber-600'>Check</Link>
+                    </li>
+                </ul>
+            </div>
+        ))
+    }
+</div>
+
             </div>
         </div>
     </div>
