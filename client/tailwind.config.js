@@ -12,7 +12,8 @@ export default {
         new:["Archivo Black", "sans-serif","font-weight-400"]
       },
       backgroundImage: {
-        'furr': "url('../assets/furnitureback.png')"
+        'furr': "url('../assets/furnitureback.png')",
+        'whiti': "url('../assets/whiti.jpg')"
       }
     },
   },

@@ -109,7 +109,10 @@ export const PropUpload = () => {
   return (
     <>
       {" "}
+      <section className="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1565964450734-c6b267945d7a?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-white bg-blend-multiply">
       <Navbar />
+
+      
       <div className="max-w-4xl mx-auto px-4 py-5 font-two ">
         <label className="block mb-2 mt-7 ">Property Name</label>
         <input
@@ -222,6 +225,7 @@ export const PropUpload = () => {
         </button>
       </div>
       <Foooter/>
+      </section>
     </>
   );
 };
