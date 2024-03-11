@@ -112,6 +112,12 @@ router.get('/showRequest', async (req, res) => {
   }
 })
 
+router.get('/propertyDetails/:id',async(req,res)=>{
+  const test = await Property.findOne({_id: req.params.id})
+  console.log(test)
+  res.json(test)
+})
+
 
 app.use(router);
 

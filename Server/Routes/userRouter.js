@@ -68,8 +68,6 @@ router.get('/show',async(req,res)=>{
 });
 
 router.post('/updateProperty',async(req,res)=>{
-  const test = await User.findOne({_id : req.body.userID})
-  console.log(test)
   try {
     const user = await User.findOne({ _id:req.body.userID });
     console.log("user details",user);
@@ -151,6 +149,12 @@ router.post('/userData', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
   }
+})
+
+router.get('/userDetails/:id',async(req,res)=>{
+  const test = await User.findOne({_id: req.params.id})
+  console.log(test)
+  res.json(test)
 })
 
 app.use(router);
