@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../useContext";
 import { Link } from "react-router-dom";
-import ShareToUser from "../components/shareToUser";
+import ShareToUser from "../components/notification";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import NotVerified from "../components/notVerified"
@@ -202,7 +202,7 @@ function UserPropertyList() {
       className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="button"
       onClick={(e) => Share(e, item._id)}>
-      Reserve
+      Share
     </button>
   </div>
                 ) : (
