@@ -24,7 +24,6 @@ function Property() {
 
   const [showRooms,setShowRooms] = useState(false)
   const { userId, isAdmin } = useUser()
-  const [user,setUser] = useState()
   const [edit,setEdit] = useState(false)
 
 
@@ -68,14 +67,10 @@ function Property() {
     setEdit(!edit)
   }
   const requestProperty = async()=>{
-
+    console.log(userId,' - ',data.property._id)
     await axios.post('/property/request',{
       Property_id: data.property._id,
       User_id: userId,
-<<<<<<< HEAD
-  
-=======
->>>>>>> 190126cb59cd9cd5cb3b5b57eae9cf67a5cfdd1c
     })
     .then((res)=>{
       if(res.status==200){
