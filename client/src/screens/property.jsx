@@ -72,9 +72,6 @@ function Property() {
     await axios.post('/property/request',{
       Property_id: data.property._id,
       User_id: userId,
-    
-
-  
     })
     .then((res)=>{
       if(res.status==200){

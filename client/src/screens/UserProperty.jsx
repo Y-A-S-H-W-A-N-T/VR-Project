@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import ShareToUser from "../components/shareToUser";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import NotVerified from "../components/notVerified";
+import NotVerified from "../components/notVerified"
+import Notifications from "../components/notification"
 
 function UserPropertyList() {
   const [search, setSearch] = useState("");
@@ -13,7 +14,8 @@ function UserPropertyList() {
   const [shareScreen, setShareScreen] = useState(false);
   const [sharedProperty, setSharedProperty] = useState("");
   const { userId, isAdmin } = useUser();
-  const [showUpload, setShowUpload] = useState(false);
+  const [showUpload, setShowUpload] = useState(false)
+  const [notification,setNotification] = useState(false)
   const navigate = useNavigate();
 
   console.log(isAdmin);
@@ -60,6 +62,9 @@ function UserPropertyList() {
   };
   const toggleShowUpload = () => {
     setShowUpload(!showUpload);
+  };
+  const toggleShowNotification = () => {
+    setNotification(!notification);
   };
 
   const Share = (e, id) => {
@@ -113,8 +118,23 @@ function UserPropertyList() {
             ) : (
               <></>
             )}
+            {showUpload && <NotVerified toggleShowUpload={toggleShowUpload} />}
           </div>
-          {showUpload && <NotVerified toggleShowUpload={toggleShowUpload} />}
+          <div>
+          {isAdmin === true || isAdmin === "true" ? (
+              <div>
+                <p
+                  onClick={() => setNotification(!notification)}
+                  className="bg-amber-900 p-4 m-4 rounded-full cursor-pointer text-white font-two pr-6 text-center "
+                >
+                  Notifications
+                </p>
+              </div>
+            ) : (
+              <></>
+            )}
+            {notification && <Notifications toggleShowNotification={toggleShowNotification} />}
+          </div>
           <div className="p-5"></div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">

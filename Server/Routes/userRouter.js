@@ -69,9 +69,14 @@ router.get('/show',async(req,res)=>{
 });
 
 router.post('/updateProperty',async(req,res)=>{
+  console.log(req.body.userID)
+  console.log(req.body.propertyID)
+  const user= await User.findById({_id:req.body.userID})
+  console.log(user)
   try {
     const update=await User.updateOne({_id:req.body.userID},{$push:{showProperty:req.body.propertyID}})
-    if(update){
+    console.log(update)
+    if(update.acknowledged){
       res.status(200)
       console.log('updated')
       const user= await User.findById({_id:req.body.userID})
