@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaCheck } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
@@ -12,12 +12,9 @@ import Foooter from "../components/Footer";
 
 
 function Home() {
-  const location = useLocation();
-  const { property } = location.state;
  
-  console.log("type  = ", property);
 
-  const [search, setSearch] = useState(property);
+  const [search, setSearch] = useState();
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {

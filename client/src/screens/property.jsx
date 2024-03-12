@@ -111,10 +111,8 @@ function Property() {
         <p className="text-lg font-semibold mb-2 flex items-center">
           <MdPriceCheck className="mr-2 text-amber-500" />
           Price: {data.property.price}
-          {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
-        </p>
-        
-        
+        </p>      
+        {!userId && <Link to='/a/login' className='text-purple-800'>Log in to request property</Link>}  
         {isAdmin === 'false' || isAdmin === false?
           <>
             <p onClick={requestProperty}  className='cursor-pointer bg-amber-200 text-amber-800 hover:bg-amber-300 border border-black p-3 rounded-full mt-2 focus:outline text-center '>Request Property</p>
