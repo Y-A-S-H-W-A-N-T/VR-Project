@@ -40,7 +40,8 @@ router.post('/login',async(req,res)=>{
         console.log("Details",_id, isAdmin)
         res.status(200).json({_id, isAdmin})
       }else{
-        res.status(200).json({mesg:"password didn't match"})
+        console.log("password didn't match")
+        res.status(404).json({mesg:"password didn't match"})
       }
     }else{
       console.log("user not found")
