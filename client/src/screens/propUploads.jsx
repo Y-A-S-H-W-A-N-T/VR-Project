@@ -66,7 +66,8 @@ export const PropUpload = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
+      })
+      navigate(-1)
   };
 
   const handleFileChange = async (e) => {
@@ -152,6 +153,7 @@ export const PropUpload = () => {
         <label className="block mb-2">Description</label>
         <textarea
           value={description}
+          placeholder="dimensions, landmark etc"
           onChange={(e) => setDescription(e.target.value)}
           className="border border-gray-300 rounded-md p-2 mb-2 w-full"
         />

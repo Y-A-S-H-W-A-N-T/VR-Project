@@ -29,7 +29,8 @@ function UserPropertyList() {
   const [assets,setAssets] = useState()
   const navigate = useNavigate();
 
-  console.log(isAdmin);
+  console.log(isAdmin)
+  console.log(properties)
 
   useEffect(() => {
     if (!userId) {
