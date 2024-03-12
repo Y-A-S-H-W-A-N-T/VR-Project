@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar";
 import Foooter from "../components/Footer";
+import { useUser } from '../useContext'
+import { useNavigate } from "react-router";
 
 export const PropUpload = () => {
   const [propName, setPropName] = useState("");
@@ -11,7 +13,18 @@ export const PropUpload = () => {
   const [Type, setType] = useState("");
   const [rooms, setRooms] = useState([]);
   const [room_name, setRoom_name] = useState([]);
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(false)
+  const [description,setDescription] =useState('')
+  const { userId } = useUser()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(userId==null || userId=='null')
+    {
+      navigate('/a/login')
+      return
+    }
+  })
 
   const onSubmit = async () => {
     console.log(
@@ -36,6 +49,7 @@ export const PropUpload = () => {
       property_Image: image,
       price: price,
       location: location,
+      description: description,
       room_info: {
         room_images: rooms,
         room_names: room_name,
@@ -133,6 +147,12 @@ export const PropUpload = () => {
           value={price}
           type="number"
           onChange={(e) => setPrice(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 mb-2 w-full"
+        />
+        <label className="block mb-2">Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="border border-gray-300 rounded-md p-2 mb-2 w-full"
         />
         <label className="block mb-2">Type</label>

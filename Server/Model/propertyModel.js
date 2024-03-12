@@ -34,6 +34,9 @@ const propertySchema = new Schema({
     isVerified:{
         type: Boolean,
         default: false,
+    },
+    description:{
+        type: String,
     }
 }, {
     timestamps: true
