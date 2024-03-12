@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import Foooter from "../components/Footer";
 import { useUser } from '../useContext'
 import { useNavigate } from "react-router";
-
+import { toast  } from "react-toastify";
 export const PropUpload = () => {
   const [propName, setPropName] = useState("");
   const [location, setLocation] = useState("");
@@ -17,6 +17,16 @@ export const PropUpload = () => {
   const [description,setDescription] =useState('')
   const { userId } = useUser()
   const navigate = useNavigate()
+
+  const showToast = () => {
+    toast.success('Successfully Registered!', {
+    })
+  }
+  const failToast = () => {
+    toast.error("Error !", {
+       
+      });
+  }
 
   useEffect(()=>{
     if(userId==null || userId=='null')
@@ -60,11 +70,13 @@ export const PropUpload = () => {
       .then((response) => {
         if (response.status === 200) {
           console.log("Uploaded");
+          showToast()
         } else {
           console.log("Upload failed");
         }
       })
       .catch((error) => {
+        failToast()
         console.error("Error:", error);
       })
       navigate(-1)
@@ -238,13 +250,23 @@ export const PropUpload = () => {
               </div>
             ))}
           </div>
-        </div>
-        <button
-          onClick={onSubmit}
-          className="bg-black text-white px-4 py-2 rounded-md mt-4 p-5 w-full "
-        >
-          Submit
-        </button>
+        </div>{isLoading ? (
+  <Button
+    className="w-full bg-amber-400 font-medium text-white py-2 px-4 rounded-md"
+    loading={true}
+  >
+    Registering your property...
+  </Button>
+) : (
+  <button
+    onClick={onSubmit}
+    className="bg-black text-white px-4 py-2 rounded-md mt-4 p-5 w-full"
+  >
+    Submit
+  </button>
+)}
+
+        
       </div>
       <Foooter/>
       </section>

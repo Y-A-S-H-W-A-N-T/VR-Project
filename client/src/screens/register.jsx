@@ -95,7 +95,9 @@ export const Register = () => {
       placeholder="Password"
       type="password"
       onChange={(e) => setPassword(e.target.value)}
-    />{loading ? <h1>Loading...</h1> :  <button
+    />{loading ?  <Button className="w-full bg-amber-400  font-medium text-white py-2 px-4 rounded-md "  loading={true}>
+    Signing Up...
+  </Button> :  <button
     className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
     onClick={onSubmit}
   >Register
