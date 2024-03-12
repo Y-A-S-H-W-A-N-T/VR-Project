@@ -2,7 +2,7 @@ import React from 'react'
 // import { Link } from "react-router-dom";
 import Heroimg from "../assets/heroimg.png"
 import logo from '../assets/logo.png'
-
+import { MdRealEstateAgent } from "react-icons/md";
 import { TypeAnimation } from 'react-type-animation';
 const Banner = () => {
   return (
@@ -10,7 +10,7 @@ const Banner = () => {
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 md:flex-wrap justify-center items-center md:justify-between md:items-start py-10 pl-9 pr-4">
   {/* First div for text content */}
   <div className="text-center md:text-left md:w-1/2">
-    <h1 className="font-bold text-6xl pb-6 text-yellow-950 sm:text-3xl ">Welcome to <img src={logo} alt="Logo" className='inline-block w-16 md:w-auto '/></h1>
+    <h1 className="font-extrabold text-3xl mb-6 text-yellow-950 lg:text-7xl ">Welcome to Virtual Estate </h1>
     {/* TypeAnimation component for animating text */}
     <TypeAnimation
       sequence={[
@@ -25,7 +25,7 @@ const Banner = () => {
     {/* SearchBar component */}
     
 
-
+    <MdRealEstateAgent size={96} className='m-5'/>
     
   </div>
   {/* Second div for an image */}
