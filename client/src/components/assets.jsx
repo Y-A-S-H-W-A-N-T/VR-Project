@@ -29,7 +29,9 @@ function Assets({ toggleAssets }) {
                 <div className='flex items-center p-4 border-b border-gray-200 md:justify-between'>
                     <p style={{justifyContent: 'center', padding: '0px',marginLeft: 'auto',cursor: 'pointer'}} onClick={()=>toggleAssets()}>❌</p>
                     <div>
-                        <input type='text' placeholder='Enter asset name' value={asset.asset_name} onChange={(e)=>setAsset(({...asset,asset_name: e.target.value}))}/>
+                        <label>3D Model</label>
+                        <input type='text' placeholder='furniture name' value={asset.asset_name} onChange={(e)=>setAsset(({...asset,asset_name: e.target.value}))}/>
+                        <label>Upload your gltf model exported from blender {`(3D engine )`}<a href='https://glitch.com/'>here</a></label>
                         <input type="text" placeholder='Enter link here' value={asset.asset_link} onChange={(e)=>setAsset(({...asset,asset_link: e.target.value}))}/>
                         <button onClick={StoreAsset}>Submit</button>
                     </div>
