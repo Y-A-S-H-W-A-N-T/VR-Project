@@ -74,7 +74,7 @@ export const Login = () => {
                   </div>
                 <button
                     className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
-                    onClick={ showToast}
+                    onClick={ handleSubmit}
                 >
                     Submit
                 </button>
