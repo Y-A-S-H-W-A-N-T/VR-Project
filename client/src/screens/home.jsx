@@ -8,6 +8,7 @@ import { MdBusiness } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 
+
 function Home() {
   const location = useLocation();
   const { property } = location.state;
@@ -30,6 +31,7 @@ function Home() {
   }, []);
 
   return (
+    
     <div className=" bg-gradient-to-r from-amber-50  to-white   px-4 py-8 ">
       <div className="flex justify-between items-center">
         <div className="mb-4">
@@ -38,7 +40,7 @@ function Home() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search..."
-            className="border border-gray-100 bg-gradient-to-r from-amber-200 to-amber-400 rounded-md px-4 py-2 "
+            className="border border-gray-100 bg-gradient-to-r from-amber-200 to-white rounded-md px-4 py-2 "
           />
           <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
             Search

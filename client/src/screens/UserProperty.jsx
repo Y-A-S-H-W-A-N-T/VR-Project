@@ -14,6 +14,7 @@ import { MdPriceCheck } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 import { CiLogout } from "react-icons/ci";import { CiUser } from "react-icons/ci";
 import { FaBuildingCircleXmark } from "react-icons/fa6";
+import Assets from '../components/assets'
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer"
 
@@ -25,6 +26,7 @@ function UserPropertyList() {
   const { userId, isAdmin } = useUser();
   const [showUpload, setShowUpload] = useState(false)
   const [notification,setNotification] = useState(false)
+  const [assets,setAssets] = useState()
   const navigate = useNavigate();
 
   console.log(isAdmin);
@@ -67,13 +69,16 @@ function UserPropertyList() {
 
   const toggleShareScreen = () => {
     setShareScreen(!shareScreen);
-  };
+  }
   const toggleShowUpload = () => {
     setShowUpload(!showUpload);
-  };
+  }
   const toggleShowNotification = () => {
     setNotification(!notification);
-  };
+  }
+  const toggleAssets = () => {
+    setAssets(!assets);
+  }
 
   const Share = (e, id) => {
     e.stopPropagation();
@@ -146,11 +151,22 @@ function UserPropertyList() {
           {notification && <Notifications toggleShowNotification={toggleShowNotification} />}
        
         </div>
+        <div>
+          {isAdmin === true || isAdmin === "true" ? (
+            <div onClick={() => setAssets(!assets)} >
+            
+              <p className="m-1 text-amber-500 rounded-full p-2 flex">ADD ASSETS</p>
+             
+            </div>
+          ) : (
+            <></>
+          )}
+          {assets && <Assets toggleAssets={toggleAssets} />}
+       
+        </div>
         <CiLogout onClick={handleLogOut} size={40}  className="mr-5 mt-2"/>
       </div>
     </div>
-
-          
           <div className="p-5"></div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -208,13 +224,13 @@ function UserPropertyList() {
                 {isAdmin === true || isAdmin === "true" ? (
                   /* button */
                   <div className="p-6 pt-3">
-    <button
-      className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-      type="button"
-      onClick={(e) => Share(e, item._id)}>
-      Share
-    </button>
-  </div>
+                    <button
+                      className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button"
+                      onClick={(e) => Share(e, item._id)}>
+                      Share
+                    </button>
+                  </div>
                 ) : (
                   <></>
                 )}

@@ -44,33 +44,35 @@ export const Register = () => {
    
     return (
       <div><Navbar/>
-        <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
-  <div className="w-full max-w-md p-6">
-    <label className="text-gray-600">Name</label>
+        <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r  min-h-screen font-two items-center">
+  <div className="w-full max-w-md p-6 border  h-full bg-gradient-to-l border-amber-900">
+  <h1 className="text-center text-3xl font-bold mb-4">Register</h1>
     <input
       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-amber-400"
       value={name}
+      placeholder="Name"
       type="text"
       onChange={(e) => setName(e.target.value)}
     />
-    <label className="text-gray-600">Email</label>
     <input
       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-amber-400"
       value={email}
       type="email"
+      placeholder="Email"
       onChange={(e) => setEmail(e.target.value)}
     />
-    <label className="text-gray-600">Number</label>
     <input
       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-amber-400"
       value={number}
+      placeholder="Number"
       type="tel"
       onChange={(e) => setNumber(e.target.value)}
     />
-    <label className="text-gray-600">Password</label>
+    
     <input
       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-amber-400"
       value={password}
+      placeholder="Password"
       type="password"
       onChange={(e) => setPassword(e.target.value)}
     />
@@ -79,7 +81,12 @@ export const Register = () => {
       onClick={onSubmit}
     >Register
     </button>
+    
+  <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-4 mb-3 pr-2">
+                      Already have an account ? <a href="" className="font-medium text-blue-900 hover:underline dark:text-blue-500">Log In</a>
+                  </p>
   </div>
+  
   </div>
 </div>
 
