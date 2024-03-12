@@ -4,7 +4,6 @@ import Heroimg from "../assets/heroimg.png"
 import logo from '../assets/logo.png'
 
 import { TypeAnimation } from 'react-type-animation';
-import SearchBar from './Searchcomp';
 const Banner = () => {
   return (
     <div>
@@ -24,7 +23,10 @@ const Banner = () => {
       repeat={Infinity}
     />
     {/* SearchBar component */}
-    <SearchBar />
+    
+
+
+    
   </div>
   {/* Second div for an image */}
   <div className='w-full md:w-1/3 '>

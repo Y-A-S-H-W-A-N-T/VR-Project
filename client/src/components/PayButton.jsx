@@ -74,7 +74,7 @@ function PayButton() {
 
     return (
         <div className="">
-                <button  className='p-2 m-2 bg-green-400 text-white  rounded-full pl-5 pr-5 ' onClick={displayRazorpay}>
+                <button  className='p-3  mt-2 bg-slate-100 border border-gray-500 text-slate-500  hover:bg-green-300  w-full rounded-full ' onClick={displayRazorpay}>
                     Book Now!
                 </button>
             

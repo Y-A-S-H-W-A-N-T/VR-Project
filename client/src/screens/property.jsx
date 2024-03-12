@@ -113,17 +113,17 @@ function Property() {
           Price: {data.property.price}
           {/* <button className="bg-green-500 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded">Book</button> */}
         </p>
-        {isAdmin === 'false' || isAdmin === false ? <>{userId && <PayButton />}</> : <></> }
+        
         
         {isAdmin === 'false' || isAdmin === false?
           <>
-            <p onClick={requestProperty} style={{cursor: 'pointer'}}>Request Property 🙏</p>
+            <p onClick={requestProperty}  className='cursor-pointer bg-amber-200 text-amber-800 hover:bg-amber-300 border border-black p-3 rounded-full mt-2 focus:outline text-center '>Request Property</p>
           </>
           :
           <></>
         }
-        <button onClick={() => setShowRooms(!showRooms)} className="text-amber-500 hover:text-amber-700 focus:outline-none">
-          {showRooms ? '❌ Close Rooms' : '🔍 Show Rooms'}
+        <button onClick={() => setShowRooms(!showRooms)} className="text-amber-700 hover:text-amber-100 border border-amber-700 hover:bg-amber-300 bg-amber-100  p-3 rounded-full mt-2 focus:outline-none w-full">
+          {showRooms ? ' Close Rooms' : ' Show Rooms'}
         </button>
         {isAdmin === 'true' || isAdmin == true ?
           <>
@@ -133,7 +133,8 @@ function Property() {
           :
           <></>
         }
-        {edit && <EditProperty ToggleEdit={ToggleEdit} property={data.property}/>}        
+        {edit && <EditProperty ToggleEdit={ToggleEdit} property={data.property}/>}    
+        {isAdmin === 'false' || isAdmin === false ? <>{userId && <PayButton />}</> : <></> }    
       </div>
     </div>
   
