@@ -92,9 +92,9 @@ function Property() {
     <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Verified</span>
      :
     <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Not Verified</span>}
-    <p className="text-gray-600 mb-4">{data.property.description}</p>
+    <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-600 pr-5 mt-2 mb-3 ">{data.property.description}</p>
     
-    <div className="flex flex-wrap items-center mb-4">
+    <div className="flex flex-wrap items-center mb-4 ">
       <div className="w-full md:w-auto md:flex-1 md:mr-4">
         <img src={data.property.property_Image} alt="Property" className="w-full h-auto md:w-64 lg:w-72 object-cover rounded-md" />
       </div>
@@ -126,10 +126,10 @@ function Property() {
           {showRooms ? ' Close Rooms' : ' Show Rooms'}
         </button>
         {isAdmin === 'true' || isAdmin == true ?
-          <>
-            <p onClick={ToggleEdit} style={{cursor: 'pointer'}}>📝</p>
-            <p onClick={DeleteProperty} style={{cursor: 'pointer'}}>🗑️</p>
-          </>
+          <div className='flex mt-2 justify-between '>
+            <p onClick={ToggleEdit} className='bg-amber-700 p-4 w-1/2 border hover:bg-amber-600 border-amber-900 text-center rounded-full mr-1' style={{cursor: 'pointer'}}>Edit User</p>
+            <p onClick={DeleteProperty} className='bg-red-500 p-4 w-1/2 border hover:bg-red-400  border-black text-center rounded-full' style={{cursor: 'pointer'}}>Delete</p>
+          </div>
           :
           <></>
         }

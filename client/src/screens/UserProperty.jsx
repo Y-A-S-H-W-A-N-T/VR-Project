@@ -8,6 +8,7 @@ import { MdNotificationsActive } from "react-icons/md";
 import NotVerified from "../components/notVerified"
 import Notifications from "../components/notification"
 import { FaCheck } from "react-icons/fa";
+import { FcCameraAddon } from "react-icons/fc";
 import { MdLocationOn } from "react-icons/md";
 import { MdBusiness } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
@@ -98,7 +99,7 @@ function UserPropertyList() {
   return (
     <div>
     <Navbar/>
-      <div className="bg-gradient-to-r from-amber-50 to-white px-4 ">
+      <div className=" px-4 ">
       <div className="">
       <div className="flex justify-around lg:justify-between items-center">
 
@@ -116,9 +117,9 @@ function UserPropertyList() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
-          className="border border-gray-100 bg-gradient-to-r from-amber-100 to-white rounded-md px-4 py-2 "
+          className=" bg-slate-200 border border-slate-900 hover:bg-slate-600 rounded-md px-4 py-2 "
         />
-        <button className="ml-2 bg-amber-700 hover:bg-amber-600 text-white py-2 px-4 rounded-md">
+        <button className="ml-2 bg-amber-700 hover:bg-amber-600 text-white py-2 px-4 rounded-md font-thin ">
           Search
         </button>
       </div></div>
@@ -130,7 +131,7 @@ function UserPropertyList() {
           <div>
             <p
               onClick={() => setShowUpload(!showUpload)}
-              className="bg-gradient-to-t from-red-200  to-red-800 rounded-full cursor-pointer text-white font-two p-3 mt-2 text-center flex  "
+              className="bg-red-500 hover:bg-red-600 rounded-s-full cursor-pointer text-white font-thin p-3 mt-2 text-center flex  "
             >
               Unverified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
             </p>
@@ -156,7 +157,7 @@ function UserPropertyList() {
           {isAdmin === true || isAdmin === "true" ? (
             <div onClick={() => setAssets(!assets)} >
             
-              <p className="m-1 text-amber-500 rounded-full p-2 flex">ADD ASSETS</p>
+              <p className="m-1 text-amber-500 rounded-full p-2 flex"><FcCameraAddon size={35} /></p>
              
             </div>
           ) : (
@@ -165,7 +166,7 @@ function UserPropertyList() {
           {assets && <Assets toggleAssets={toggleAssets} />}
        
         </div>
-        <CiLogout onClick={handleLogOut} size={40}  className="mr-5 mt-2"/>
+        <CiLogout onClick={handleLogOut} size={38}  className="mr-5 ml-2 mt-3 "/>
       </div>
     </div>
           <div className="p-5"></div>

@@ -54,7 +54,7 @@ function Request() {
 
   return (
     <>
-     <section className="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-white bg-blend-multiply">
+     <section className="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-white bg-blend-multiply">
       <Navbar />
 
      
@@ -62,7 +62,7 @@ function Request() {
       <div className="flex flex-col justify-center items-center mx-auto px-4 min-h-screen font-two">
     <div className="w-full max-w-md p-6 border  ">
         {user === undefined || property === undefined ? (
-            <p className="text-center">Loading...</p>
+            <p className="text-center">loading...</p>
         ) : (
             <div className="grid  gap-8 text-center ">
                 <div className="mb-4 grid grid-cols-2">
