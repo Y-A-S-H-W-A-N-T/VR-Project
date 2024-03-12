@@ -4,7 +4,8 @@ import Navbar from "../components/navbar";
 import Foooter from "../components/Footer";
 import { useUser } from '../useContext'
 import { useNavigate } from "react-router";
-
+import { toast  } from "react-toastify";
+import { Button } from "@material-tailwind/react";
 export const PropUpload = () => {
   const [propName, setPropName] = useState("");
   const [location, setLocation] = useState("");
@@ -17,6 +18,16 @@ export const PropUpload = () => {
   const [description,setDescription] =useState('')
   const { userId } = useUser()
   const navigate = useNavigate()
+
+  const showToast = () => {
+    toast.success('Successfully registered!', {
+    })
+  }
+  const failToast = () => {
+    toast.error("Error while registering!", {
+       
+      });
+  }
 
   useEffect(()=>{
     if(userId==null || userId=='null')
@@ -59,12 +70,15 @@ export const PropUpload = () => {
       .post("/property/register", DATA)
       .then((response) => {
         if (response.status === 200) {
+          showToast()
           console.log("Uploaded");
         } else {
+          failToast()
           console.log("Upload failed");
         }
       })
       .catch((error) => {
+        failToast()
         console.error("Error:", error);
       })
       navigate(-1)
@@ -124,7 +138,7 @@ export const PropUpload = () => {
   return (
     <>
       {" "}
-      <section className="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-white bg-blend-multiply">
+      <section className="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1565964450734-c6b267945d7a?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-white bg-blend-multiply">
       <Navbar />
 
       
@@ -200,18 +214,23 @@ export const PropUpload = () => {
               className="block p-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-amber-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100"
               multiple
             />
-          </div>
+          </div>{Loading ? 
+          <Button className="bg-amber-900 text-white px-4 py-2 center" loading={true}>
+          Adding Image...
+        </Button> :
+ <button
+ onClick={(e) => ADD(e)}
+ className="bg-amber-900 text-white px-4 py-2 rounded-md mr-4  hover:bg-amber-500 w-full "
+>
+ Add Room
+</button>
 
-          <button
-            onClick={(e) => ADD(e)}
-            className="bg-amber-900 text-white px-4 py-2 rounded-md mr-4  hover:bg-amber-500 w-full "
-          >
-            Add Room
-          </button>
+          }
+
+         
         </div>
         <div className="flex justify-between">
           <div className="">
-            {Loading && <div>loading...</div>}
 
             {room_name.map((item, index) => (
               <div
@@ -238,13 +257,17 @@ export const PropUpload = () => {
               </div>
             ))}
           </div>
-        </div>
-        <button
+        </div>{
+          Loading ? <Button className="w-full bg-amber-400 font-medium text-white py-2 px-4 rounded-md flex justify-center items-center" loading={true}>
+          Registering your details...
+        </Button> :  <button
           onClick={onSubmit}
           className="bg-black text-white px-4 py-2 rounded-md mt-4 p-5 w-full "
         >
           Submit
         </button>
+        }
+       
       </div>
       <Foooter/>
       </section>

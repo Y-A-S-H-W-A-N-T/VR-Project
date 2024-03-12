@@ -45,7 +45,7 @@ router.post('/login',async(req,res)=>{
       }
     }else{
       console.log("user not found")
-      res.status(400)
+      res.status(400).json({message: 'no user'})
     }
   }catch(err){
     console.log(err)

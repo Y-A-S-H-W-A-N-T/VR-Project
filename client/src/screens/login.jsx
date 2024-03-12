@@ -4,6 +4,7 @@ import { useUser } from '../useContext.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar.jsx';
 import { toast  } from "react-toastify";
+import { Button } from "@material-tailwind/react";
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,9 +38,10 @@ export const Login = () => {
       const handleSubmit = async () => {
         setLoader(true);
         try {
-            const response = await axios.post('/user/login', { email, password });
+            const response = await axios.post('/user/login', { email, password })
+            console.log(response)
     
-            if (response.status === 200 && response.data._id) {
+            if (response.status == 200 && response.data._id) {
                 setUserId(response.data._id);
                 setIsAdmin(response.data.isAdmin);
                 console.log(response.data.isAdmin);
@@ -47,19 +49,19 @@ export const Login = () => {
                 setLoader(false);
                 showToast();
                 navigate("/p/userPropertyList");
-            } else if (response.status === 404) {
+            } else if (response.status == 404) {
                 console.log("User not found");
                 invalidToast();
                 console.log("Login Failed:", response.data);
                 setLoader(false);
-            } else if (response.status === 400) {
+            } else if (response.status == 400) {
                 console.log("Invalid User");
                 failToast();
                 console.log("Login Failed:", response.data);
                 setLoader(false);
             }
         } catch (error) {
-            console.error("Login Error:", error);
+            console.log('USER NOT FOUND')
             failToast();
             setLoader(false);
         }
@@ -98,12 +100,19 @@ export const Login = () => {
                       </div>
                       <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                   </div>
-                {loader ? <h1>loading..</h1>:<button
-                    className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
-                    onClick={ handleSubmit}
-                >
-                    Submit
-                </button>}
+                  {loader ? (
+  <Button className="w-full bg-amber-400 font-medium text-white py-2 px-4 rounded-md flex justify-center items-center" loading={true}>
+    Logging in...
+  </Button>
+) : (
+  <button
+    className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
+    onClick={handleSubmit}
+  >
+    Submit
+  </button>
+)}
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-4 mb-3 pr-2">
                       Don’t have an account yet? <Link   to="/a/register"className="font-medium text-blue-900 hover:underline dark:text-blue-500">Sign up</Link>
                   </p>
