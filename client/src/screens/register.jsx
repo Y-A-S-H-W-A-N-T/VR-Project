@@ -43,7 +43,7 @@ export const Register = () => {
 
         await axios.post('/user/register', userData)
             .then(response => {
-                if (response.status === 200) {
+                if (response.status == 200) {
                     showToast()
                     setLoading(false)
                     console.log("User registered successfully");
@@ -95,9 +95,12 @@ export const Register = () => {
       placeholder="Password"
       type="password"
       onChange={(e) => setPassword(e.target.value)}
-    />{loading ?  <Button className="w-full bg-amber-400  font-medium text-white py-2 px-4 rounded-md "  loading={true}>
-    Signing Up...
-  </Button> :  <button
+    />{loading ? 
+      <button
+      className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
+      
+    > Signing Up...
+    </button> :  <button
     className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
     onClick={onSubmit}
   >Register
