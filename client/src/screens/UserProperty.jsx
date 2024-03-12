@@ -131,9 +131,9 @@ function UserPropertyList() {
           <div>
             <p
               onClick={() => setShowUpload(!showUpload)}
-              className="bg-red-500 hover:bg-red-600 rounded-s-full cursor-pointer text-white font-thin p-3 mt-2 text-center flex  "
+              className="bg-red-100 hover:bg-red-600 border-2 border-red-800 rounded-s-full hover:text-white cursor-pointer text-red-900 font-thin p-2 mt-2 text-center flex  "
             >
-              Unverified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
+              Unverified<FaBuildingCircleXmark  className="ml-2 text-red-500 mt-1"/>
             </p>
           </div>
         ) : (
