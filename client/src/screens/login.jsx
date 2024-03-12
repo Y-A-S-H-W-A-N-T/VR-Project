@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useUser } from '../useContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar.jsx';
-import { toast } from "react-toastify";
+import { toast, ToastContainer  } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,9 +11,10 @@ export const Login = () => {
     const { setUserId, setIsAdmin } = useUser();
     const navigate = useNavigate();
 
-    const notify=()=>{
-        toast.success("successful", { autoClose: 3000 });
-    }
+    const showToast = () => {
+        toast.success('Successfully logged In!', {
+        })
+      }
 
 
     const handleSubmit = () => {
@@ -25,8 +26,7 @@ export const Login = () => {
                         setIsAdmin(response.data.isAdmin);
                         console.log(response.data.isAdmin)
                         console.log("Login successful");
-                    
-
+                        showToast()
                         navigate("/p/userPropertyList"); 
                     } else {
                         console.log("Login Failed:", response.data.message);
@@ -43,6 +43,7 @@ export const Login = () => {
     return (
       <div>
       <Navbar/>
+      <ToastContainer />
         <div className="flex flex-col justify-center items-center mx-auto px-4 bg-gradient-to-r from-white to-amber-100 min-h-screen font-two items-center">
             
             
@@ -63,7 +64,7 @@ export const Login = () => {
                 />
                 <button
                     className="w-full bg-amber-400 text-white py-2 px-4 rounded-md hover:bg-amber-500 focus:outline-none focus:bg-amber-500"
-                    onClick={handleSubmit}
+                    onClick={ showToast}
                 >
                     Submit
                 </button>

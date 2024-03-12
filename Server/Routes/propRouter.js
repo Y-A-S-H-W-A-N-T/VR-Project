@@ -118,6 +118,24 @@ router.get('/propertyDetails/:id',async(req,res)=>{
   res.json(test)
 })
 
+router.post('/save3D',async(req,res)=>{
+  console.log("new",req.body)
+  try {
+    const newthreeD = new threeeD({
+      Image_name: req.body.ImageName,
+      Image_url: req.body.ImageUrl,
+      
+    });
+
+    const savedthreeD = await newthreeD.save();
+    console.log(savedthreeD);
+    res.status(200).json(savedthreeD); 
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
 
 app.use(router);
 
