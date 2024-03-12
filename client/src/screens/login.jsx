@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useUser } from '../useContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar.jsx';
 import { toast  } from "react-toastify";
 import { Button } from "@material-tailwind/react";
@@ -114,7 +114,7 @@ export const Login = () => {
 )}
 
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-4 mb-3 pr-2">
-                      Don’t have an account yet? <a href="" className="font-medium text-blue-900 hover:underline dark:text-blue-500">Sign up</a>
+                      Don’t have an account yet? <Link   to="/a/register"className="font-medium text-blue-900 hover:underline dark:text-blue-500">Sign up</Link>
                   </p>
             </div>
         </div>

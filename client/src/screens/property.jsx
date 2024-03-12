@@ -127,8 +127,8 @@ function Property() {
         </button>
         {isAdmin === 'true' || isAdmin == true ?
           <div className='flex mt-2 justify-between '>
-            <p onClick={ToggleEdit} className='bg-amber-700 p-4 w-1/2 border hover:bg-amber-600 border-amber-900 text-center rounded-full mr-1' style={{cursor: 'pointer'}}>Edit User</p>
-            <p onClick={DeleteProperty} className='bg-red-500 p-4 w-1/2 border hover:bg-red-400  border-black text-center rounded-full' style={{cursor: 'pointer'}}>Delete</p>
+            <p onClick={ToggleEdit} className='bg-amber-50 p-4 w-1/2 border hover:bg-amber-600 border-amber-900 text-center rounded-full mr-1' style={{cursor: 'pointer'}}>Edit User</p>
+            <p onClick={DeleteProperty} className='bg-red-700 p-4 w-1/2 border hover:bg-red-400 text-white border-black text-center rounded-full' style={{cursor: 'pointer'}}>Delete</p>
           </div>
           :
           <></>
