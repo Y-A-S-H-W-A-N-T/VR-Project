@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 
 const threeDSchema= new mongoose.Schema({
-    Image_name:{
+    asset_name:{
         type:String,
        
     },
-    Image_url:{
+    asset_link:{
         type:String,
-     
-    
     },
    
 },{

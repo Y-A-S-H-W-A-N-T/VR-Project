@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import userRouter from "./Routes/userRouter.js"
 import adminRouter from "./Routes/adminRouter.js"
 import propRouter from './Routes/propRouter.js'
+import threeDSchema from './Routes/3DRouter.js'
 import bodyParser from "body-parser"
 import cors from "cors"
 import multer from "multer"
@@ -22,10 +23,11 @@ app.use(cors())
 
 app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
-app.use("/user",userRouter);
-app.use("/admin",adminRouter);
-app.use("/property",propRouter);
+app.use(express.json())
+app.use("/user",userRouter)
+app.use("/admin",adminRouter)
+app.use("/property",propRouter)
+app.use("/assets",threeDSchema)
 
 
 

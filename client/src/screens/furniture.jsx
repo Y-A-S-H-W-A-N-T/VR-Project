@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
 function Furniture() {
@@ -12,6 +12,18 @@ function Furniture() {
   const [rotateX,setRotateX] = useState(0)
   const [rotateY,setRotateY] = useState(0)
   const [rotateZ,setRotateZ] = useState(0)
+  const [assets,setAssets] = useState([])
+
+  useEffect(()=>{
+    axios.get('/assets/bring')
+    .then((res)=>{
+      console.log(res)
+      setAssets(res.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[])
 
 
   const handleUpload = async(e)=>{
@@ -59,16 +71,13 @@ function Furniture() {
             className="mb-4 border-2 border-yellow-500 rounded-md bg-white focus:outline-none text-center w-1/2 lg:w-1/2 p-2 mb-2"
           >
             <option value="">Select Furniture</option>
-            <option value="https://cdn.glitch.global/d0e6a6bc-d958-44c6-be4a-0f9e40b44944/bench.glb?v=1709578521404v">
-              Bench
-            </option>
-            <option value="https://cdn.glitch.global/168e0451-dc78-4fa9-9a84-028ef51d9561/File.glb?v=1651912125168">
-              Table
-            </option>
-            <option value="https://cdn.glitch.global/ededd3e3-c762-41e8-93f6-c667b87a9882/signBoard.glb?v=1709577727732">
-              Chair
-            </option>
+            {assets.map((val, index) => (
+              <option key={index} value={val.asset_link}>
+                {val.asset_name}
+              </option>
+            ))}
           </select>
+            <button onClick={()=>console.log(furniture)}>CHECK</button>
           <select
             id="size"
             value={size}
