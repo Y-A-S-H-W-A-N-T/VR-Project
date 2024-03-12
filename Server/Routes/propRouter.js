@@ -11,6 +11,7 @@ router.post("/register", async (req, res) => {
     const newProperty = new Property({
       location: req.body.location,
       price: req.body.price,
+      description: req.body.description,
       name: req.body.name,
       type: req.body.type,
       property_Image:req.body.property_Image,
@@ -67,6 +68,7 @@ router.post("/updateProperty", async (req, res) => {
       const savedProperty = await Property.updateOne({ _id : req.body.id},{$set: {
       location: req.body.location,
       price: req.body.price,
+      description: req.body.description,
       name: req.body.name,
       type: req.body.type,
       property_Image:req.body.property_Image,

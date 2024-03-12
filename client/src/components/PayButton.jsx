@@ -77,7 +77,6 @@ function PayButton() {
                 <button  className='p-3  mt-2 bg-slate-100 border border-gray-500 text-slate-500  hover:bg-green-300  w-full rounded-full ' onClick={displayRazorpay}>
                     Book Now!
                 </button>
-            
         </div>
     );
 }

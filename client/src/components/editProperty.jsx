@@ -14,7 +14,8 @@ function EditProperty({ ToggleEdit, property }) {
   const [Type, setType] = useState(property.type);
   const [rooms, setRooms] = useState(property.room_info.room_images);
   const [room_name, setRoom_name] = useState(property.room_info.room_names);
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(false)
+  const [description,setDescription] = useState(property.description)
 
   const navigate = useNavigate();
 
@@ -155,6 +156,13 @@ function EditProperty({ ToggleEdit, property }) {
                 value={price}
                 type="number"
                 onChange={(e) => setPrice(e.target.value)}
+                className="border border-gray-300 rounded-md p-2 mb-2 w-full"
+              />
+              <label className="block mb-2">Description</label>
+              <textarea
+                value={description}
+                placeholder="dimensions, landmark etc"
+                onChange={(e) => setDescription(e.target.value)}
                 className="border border-gray-300 rounded-md p-2 mb-2 w-full"
               />
               <label className="block mb-2">Type</label>

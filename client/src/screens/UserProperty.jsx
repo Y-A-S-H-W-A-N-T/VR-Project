@@ -29,7 +29,8 @@ function UserPropertyList() {
   const [assets,setAssets] = useState()
   const navigate = useNavigate();
 
-  console.log(isAdmin);
+  console.log(isAdmin)
+  console.log(properties)
 
   useEffect(() => {
     if (!userId) {
@@ -214,9 +215,7 @@ function UserPropertyList() {
                       {item.price}
                     </p>
                     <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-400 pr-5">
-                      Enter a freshly updated and thoughtfully furnished
-                      peaceful home surrounded by ancient trees, stone walls,
-                      and open meadows.
+                      {item.description}
                     </p>
                   </div>
                 </div>
