@@ -130,9 +130,9 @@ function UserPropertyList() {
           <div>
             <p
               onClick={() => setShowUpload(!showUpload)}
-              className="bg-red-500 hover:bg-red-600 rounded-s-full cursor-pointer text-white font-thin p-3 mt-2 text-center flex  "
+              className="bg-red-100 hover:bg-red-600 border-2 border-red-800 rounded-s-full hover:text-white cursor-pointer text-red-900 font-thin p-2 mt-2 text-center flex  "
             >
-              Unverified<FaBuildingCircleXmark  className="ml-2 text-red-100 mt-1"/>
+              Unverified<FaBuildingCircleXmark  className="ml-2 text-red-500 mt-1"/>
             </p>
           </div>
         ) : (
@@ -245,6 +245,12 @@ function UserPropertyList() {
             propertyID={sharedProperty}
           />
         )}
+        {
+          isAdmin === false || isAdmin === "false" ?
+          <div className="pt-5"><Link to='/home' className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Browse Properties</Link></div>
+          :
+          <></>
+        }
       </div>
       <Footer/>
     </div>
