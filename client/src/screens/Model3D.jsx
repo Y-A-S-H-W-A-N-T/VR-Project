@@ -18,7 +18,7 @@ function Model3D() {
     <div>
       <a-scene>
         <a-sky src={pano}></a-sky>
-        <a-gltf-model src={furniture} rotation={`${x} ${y} ${z}`} position="0 0 -2" scale={`${size} ${size} ${size}`}></a-gltf-model>
+        <a-gltf-model src={furniture} rotation={`${x} ${y} ${z}`} position="0 -20 -2" scale={`${size} ${size} ${size}`}></a-gltf-model>
       </a-scene>
     </div>
   )
