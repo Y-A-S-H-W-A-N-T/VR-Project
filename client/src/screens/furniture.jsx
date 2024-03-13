@@ -77,7 +77,6 @@ function Furniture() {
               </option>
             ))}
           </select>
-            <button onClick={()=>console.log(furniture)}>CHECK</button>
           <select
             id="size"
             value={size}

@@ -10,6 +10,7 @@ router.post('/store',async(req,res)=>{
         asset_name
       })
     const response = await asset.save()
+    res.status(200)
     console.log(response)
 })
 
