@@ -36,8 +36,8 @@ function Assets({ toggleAssets }) {
                         className='
                         bg-slate-200
                         border border-gray-400 text-white rounded-xl w-full p-2 mt-2 mb-2 mr-4' placeholder='Furniture name' value={asset.asset_name} onChange={(e)=>setAsset(({...asset,asset_name: e.target.value}))}/><br/>
-                        <label className='font-thin text-slate-300'>Upload your gltf model exported from blender {`(3D engine )`}<a href='https://glitch.com/' className='text-underline text-blue-700 font-extrabold pl-2 pr-2'>here</a> to get the link of your gltf model</label><br/>
-                        <a href='' className='font-extrabold underline underline-blue-500'>watch tutorial for reference</a><br/>
+                        <label className='font-thin text-slate-300'>Upload your gltf model exported from blender {`(3D engine )`}<a href='https://glitch.com/' className='text-underline text-blue-700 font-extrabold pl-2 pr-2 hover:text-blue-500'>here</a> to get the link of your gltf model</label><br/>
+                        <a href='' className='font-extrabold underline underline-blue-500 hover:text-blue-600'>watch tutorial for reference</a><br/>
                         <input type="text"
                         className='bg-slate-200
                         border border-gray-400 text-white rounded-xl w-full p-2 mt-2 mb-2 mr-4'
