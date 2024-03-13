@@ -9,6 +9,7 @@ const rout = express.Router();
 
 
 rout.post('/orders', async (req, res) => {
+  console.log("---------------",req.body)
     try {
       const instance = new Razorpay({
         key_id: process.env.RAZORPAY_KEY_ID,
@@ -16,8 +17,8 @@ rout.post('/orders', async (req, res) => {
       });
   
       const options = {
-        amount: 9000000000,
-        currency: 'INR',
+        amount: 900,
+        currency: 'USD',
         receipt: 'receipt_order_74394',
       };
   
@@ -56,7 +57,9 @@ rout.post('/orders', async (req, res) => {
         success: true,
       });
   
-      await newPayment.save();
+      const save=await newPayment.save();
+
+      console.log(save)
   
       res.json({
         msg: 'success',

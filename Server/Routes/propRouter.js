@@ -18,17 +18,30 @@ router.post("/register", async (req, res) => {
       room_info: { 
         room_images: req.body.room_info.room_images,
         room_names: req.body.room_info.room_names,
-      }
+      },
+      userId:req.body.userId,
     });
 
     const savedProperty = await newProperty.save();
-    console.log(savedProperty);
+    console.log("Saved",savedProperty);
     res.status(200).json(savedProperty); 
   } catch (err) {
     console.error("Error:", err);
     res.status(500).send("Internal Server Error");
   }
 });
+
+router.post('/showSellerProperty',async(req,res)=>{
+  console.log('$$',req.body.userId)
+  try {
+    const properties = await Property.find({ userId: req.body.userId });
+    console.log(properties)
+    res.json(properties).status(200)
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+})
 
 router.get('/show', async (req, res) => {
   try {
@@ -39,6 +52,8 @@ router.get('/show', async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 })
+
+
 
 router.post('/verifyProperty',async(req, res)=>{
   
