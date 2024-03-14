@@ -6,6 +6,7 @@ import axios from 'axios'
 import { UserProvider } from './useContext.jsx'
 import { ToastContainer  } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
  axios.defaults.baseURL="https://vr-project-hzru.onrender.com"
 // axios.defaults.baseURL="http://localhost:3000"
 
