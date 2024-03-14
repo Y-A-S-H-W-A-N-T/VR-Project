@@ -67,6 +67,7 @@ export const PropUpload = () => {
         room_images: rooms,
         room_names: room_name,
       },
+      userId:userId,
     };
     await axios
       .post("/property/register", DATA)

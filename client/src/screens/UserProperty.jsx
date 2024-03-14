@@ -18,7 +18,6 @@ import { FaBuildingCircleXmark } from "react-icons/fa6";
 import Assets from '../components/assets'
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer"
-
 function UserPropertyList() {
   const [search, setSearch] = useState("");
   const [properties, setProperties] = useState([]);
@@ -237,7 +236,7 @@ function UserPropertyList() {
               </div>
             ))
           ) : (
-            <p>No properties found.</p>
+            <p>No prefered properties to show.</p>
           )}
         </div>
         {shareScreen && (

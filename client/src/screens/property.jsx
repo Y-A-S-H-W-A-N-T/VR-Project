@@ -129,7 +129,7 @@ function Property() {
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-700 hover:text-amber-100 border border-amber-700 hover:bg-amber-300 bg-amber-100  p-3 rounded-full mt-2 focus:outline-none w-full">
           {showRooms ? ' Close Rooms' : ' Show Rooms'}
         </button>
-        {isAdmin === 'true' || isAdmin == true ?
+        {isAdmin === 'true' || isAdmin == true || userId==data.property.userId ?
           <div className='flex mt-2 justify-between '>
             <p onClick={ToggleEdit} className='bg-amber-50 p-4 w-1/2 border hover:bg-amber-600 border-amber-900 text-center rounded-full mr-1' style={{cursor: 'pointer'}}>Edit User</p>
             <p onClick={DeleteProperty} className='bg-red-700 p-4 w-1/2 border hover:bg-red-400 text-white border-black text-center rounded-full' style={{cursor: 'pointer'}}>Delete</p>

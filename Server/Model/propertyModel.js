@@ -40,6 +40,10 @@ const propertySchema = new Schema({
     },
     property_Proof: {
         type: String,
+    },
+    userId:{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
     }
 }, {
     timestamps: true

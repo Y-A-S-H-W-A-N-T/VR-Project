@@ -36,11 +36,11 @@ function PayButton() {
         const { amount, id: order_id, currency } = result.data;
 
         const options = {
-            key: "rzp_test_DEAOCcSWLmxQVh",
+            key: "rzp_test_ZyNtOeHRxPe7OE",
             amount: amount.toString(),
             currency: currency,
             name: "VIrtualEstate",
-            description: "Transaction",
+            
             
             order_id: order_id,
             handler: async function (response) {
@@ -51,21 +51,12 @@ function PayButton() {
                     razorpaySignature: response.razorpay_signature,
                 };
 
-                const result = await axios.post("http://localhost:3000/payment/success", data);
+                const result = await axios.post("/payment/verify", data);
 
                 alert(result.data.msg);
             },
-            prefill: {
-                name: "Soumya ",
-                email: "Soumyabhai@example.com",
-                contact: "9900000099",
-            },
-            notes: {
-                address: "Virtual Estate",
-            },
-            theme: {
-                color: "#61dagb",
-            },
+          
+           
         };
 
         const paymentObject = new window.Razorpay(options);
