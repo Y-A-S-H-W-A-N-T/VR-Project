@@ -54,11 +54,11 @@ const Profile = () => {
                         <div className="grid gap-8 text-center">
                        <div>Personal Details</div>
 
-                            <div className="mb-4 grid grid-cols-2">
+                            <div className="mb-4 grid grid-cols-2 overflow-hidden">
                                 <FaUserCheck className="text-amber-500" size={36} />
                                 <p className="text-xl font-two">{userData.name}</p>
                             </div>
-                            <div className="mb-4 grid grid-cols-2">
+                            <div className="mb-4 grid grid-cols-2 overflow-hidden  ">
                                 <MdMarkEmailRead className="text-amber-500" size={36} />
                                 <p className="text-xl font-two">{userData.email}</p>
                             </div>
@@ -91,17 +91,18 @@ const Profile = () => {
                                                     <div className="p-4 pb-5">
                                                         <div className="flex justify-between text-justify">
                                                             <p className="text-lg font-semibold mb-2 ">{item.name}</p>
-                                                            {item.isVerified ? (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-green-100 bg-green-500 rounded-full flex ">
+                                                            
+                                                        </div>
+                                                        {item.isVerified ? (
+                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-green-100 bg-green-500 rounded-full flex ">
                                                                     <FaCheck className="mr-1"/> Verified
                                                                 </span>
                                                             ) : (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs font-semibold text-red-800 bg-red-100 rounded-full flex">
+                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-red-800 bg-red-100 rounded-full flex">
                                                                     <ImCross  className="mr-1"/>
                                                                     Not Verified
                                                                 </span>
                                                             )}
-                                                        </div>
                                                         <p className="text-amber-900 mb-2 flex m-1">
                                                             <MdLocationOn className=" mr-3 text-amber-500" />
                                                             {item.location}{" "}
