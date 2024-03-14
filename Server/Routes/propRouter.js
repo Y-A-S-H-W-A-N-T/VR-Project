@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
       name: req.body.name,
       type: req.body.type,
       property_Image:req.body.property_Image,
+      property_Proof: req.body.property_Proof,
       room_info: { 
         room_images: req.body.room_info.room_images,
         room_names: req.body.room_info.room_names,
@@ -72,6 +73,7 @@ router.post("/updateProperty", async (req, res) => {
       name: req.body.name,
       type: req.body.type,
       property_Image:req.body.property_Image,
+      property_Proof: req.body.property_Proof,
       room_info: { 
         room_images: req.body.room_info.room_images,
         room_names: req.body.room_info.room_names,

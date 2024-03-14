@@ -16,6 +16,7 @@ function EditProperty({ ToggleEdit, property }) {
   const [room_name, setRoom_name] = useState(property.room_info.room_names);
   const [Loading, setLoading] = useState(false)
   const [description,setDescription] = useState(property.description)
+  const [proof,setProof] = useState(property.property_Proof)
 
   const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ function EditProperty({ ToggleEdit, property }) {
       name: propName,
       type: Type,
       property_Image: image,
+      property_Proof: proof,
       price: price,
       location: location,
       room_info: {
@@ -85,6 +87,22 @@ function EditProperty({ ToggleEdit, property }) {
 
   const uploadImage = (e) => {
     setRoomImage(e.target.files[0]);
+  }
+
+  const uploadProof = async (e) => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    await axios
+      .post(
+        "https://api.imgbb.com/1/upload?key=72c3b47f4500e0b0442afb4d0876bae6",
+        formData
+      )
+      .then((res) => {
+        console.log(res.data.data.url)
+        setProof(res.data.data.url);
+        setLoading(false);
+      });
   };
 
   const getImage_URL = async (image) => {
@@ -177,6 +195,21 @@ function EditProperty({ ToggleEdit, property }) {
                 <option value="Property">Property</option>
                 <option value="Land">Land</option>
               </select>
+              <label className="block mb-2">Property Proof</label>
+              <input
+                type="file"
+                onChange={uploadProof}
+                className="block p-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-amber-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              />
+              {proof && (
+                <img
+                  src={proof}
+                  alt="property Proof"
+                  className="mb-2"
+                  height={200}
+                  width={200}
+                />
+              )}
               <label className="block mb-2">Image</label>
               <input type="file" onChange={handleFileChange} className="block p-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-amber-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" multiple/>
               {image && (

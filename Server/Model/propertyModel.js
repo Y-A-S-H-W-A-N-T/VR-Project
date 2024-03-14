@@ -37,6 +37,9 @@ const propertySchema = new Schema({
     },
     description:{
         type: String,
+    },
+    property_Proof: {
+        type: String,
     }
 }, {
     timestamps: true
