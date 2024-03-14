@@ -22,7 +22,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
         e.preventDefault()
         console.log("PROPERTY ID : ",propertyID)
         console.log("USER ID : ",id)
-        await axios.post('user/updateProperty',{propertyID: propertyID, userID: id})
+        await axios.post('/user/updateProperty',{propertyID: propertyID, userID: id})
         .then((res)=>{
           if(res.status==200){
             console.log("updated")
@@ -49,7 +49,7 @@ function ShareToUser({ toggleShareScreen, propertyID }) {
     Users.map((val)=>(
       <div key={val.id} className='bg-gray-100 p-4 pr-6 pl-6 rounded'>
         <p className=' font-two'>NAME : {val.name}</p>
-        <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={Send}>SEND</button>
+        <button className='mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700' onClick={(e)=>Send(e,val._id)}>SEND</button>
       </div>
     ))
   }

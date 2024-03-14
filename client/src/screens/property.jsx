@@ -98,7 +98,6 @@ function Property() {
     <div className="flex flex-wrap items-center mb-4 font-extrabold">
       <div className="w-full md:w-auto md:flex-1 md:mr-4">
         <img src={data.property.property_Image} alt="Property" className="w-full h-auto md:w-64 lg:w-72 object-cover rounded-md mb-5 " />
-        <img src={data.property.property_Image} alt="Property" className="w-full h-auto md:w-64 lg:w-72 object-cover rounded-md" />
         {
           isAdmin=='true' || isAdmin==true?
           <Link to={`${data.property.property_Proof}`} target='_blank'>proof</Link>
