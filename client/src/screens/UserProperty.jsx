@@ -30,6 +30,9 @@ function UserPropertyList() {
   const [assets, setAssets] = useState();
   const navigate = useNavigate();
 
+  console.log(isAdmin);
+  console.log(properties);
+
   useEffect(() => {
     if (!userId) {
       navigate("/a/login");
@@ -103,6 +106,19 @@ function UserPropertyList() {
               <Link to="/profile">
                 <CiUser size={40} className="mr-3" />
               </Link>
+
+              <div className="hidden md:block">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search..."
+                  className=" bg-slate-200 border border-slate-900 hover:bg-slate-600 rounded-md px-4 py-2 "
+                />
+                <button className="ml-2 bg-amber-700 hover:bg-amber-600 text-white py-2 px-4 rounded-md font-thin ">
+                  Search
+                </button>
+              </div>
             </div>
 
             <div className="flex justify-center flex-row">
@@ -162,7 +178,8 @@ function UserPropertyList() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {properties.length > 0 ? (
-            properties.map((item, ind) => (
+            properties.filter((val)=> search? val.name.toLowerCase().includes(search.toLowerCase()) : val)
+            .map((item, ind) => (
               <div
                 key={ind}
                 className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
