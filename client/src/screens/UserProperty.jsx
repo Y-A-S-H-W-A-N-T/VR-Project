@@ -198,34 +198,34 @@ function UserPropertyList() {
 
                     <div className="p-4 pb-5">
                       <div className="flex justify-between text-justify">
-                        <p className="text-lg font-semibold mb-2 ">
+                        <p className="text-lg font-bold mb-2 ">
                           {item.name}
                         </p>
                       </div>
                       {item.isVerified ? (
-                        <span className="inline-block px-5 py-2 m-1 text-xs w-1/4 text-center font-semibold text-green-100 bg-green-500 rounded-full flex ">
+                        <span className="inline-block px-5 py-2 m-1 text-xs w-1/4 text-center font-mono text-green-100 bg-green-500 rounded-full flex ">
                           <FaCheck className="mr-1" /> Verified
                         </span>
                       ) : (
-                        <span className="inline-block px-5 py-2 m-1 text-xs w-1/4 text-center font-semibold text-red-800 bg-red-100 rounded-full flex">
+                        <span className="inline-block px-5 py-2 m-1 text-xs w-1/4 text-center font-mono text-red-800 bg-red-100 rounded-full flex">
                           <ImCross className="mr-1" />
                           Not Verified
                         </span>
                       )}
-                      <p className="text-amber-900 mb-2 flex m-1">
+                      <p className="text-amber-900 mb-2 flex m-1 font-mono">
                         <MdLocationOn className=" mr-3 text-amber-500" />
                         {item.location}{" "}
                       </p>
-                      <p className="text-amber-900 mb-2 flex m-1">
+                      <p className="text-amber-900 mb-2 flex m-1 font-mono">
                         <MdBusiness className="mr-3  text-amber-500 " />
                         {item.type}
                       </p>
 
-                      <p className="text-green-600 font-semibold flex">
+                      <p className="text-green-600 font-semibold flex font-mono">
                         <MdPriceCheck className="mr-3 ml-1 text-amber-500" />
                         {item.price}
                       </p>
-                      <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-400 pr-5">
+                      <p className="block font-sans text-base antialiased font-mono leading-relaxed text-gray-400 pr-5">
                         {item.description}
                       </p>
                     </div>
