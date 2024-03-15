@@ -13,12 +13,12 @@ import { useState, useEffect } from 'react';
 function Model3D() {
 
   const location = useLocation()
-  const { pano, furniture, size, x, y, z } = location.state
+  const { pano, furniture, size, x, y, z, moveX, moveY, moveZ } = location.state
   return (
     <div>
       <a-scene>
         <a-sky src={pano}></a-sky>
-        <a-gltf-model src={furniture} rotation={`${x} ${y} ${z}`} position="0 -20 -2" scale={`${size} ${size} ${size}`}></a-gltf-model>
+        <a-gltf-model src={furniture} rotation={`${x} ${y} ${z}`} position={`${moveX} ${moveZ} ${moveY}`} scale={`${size} ${size} ${size}`}></a-gltf-model>
       </a-scene>
     </div>
   )

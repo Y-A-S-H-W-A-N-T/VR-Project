@@ -12,7 +12,12 @@ function Furniture() {
   const [rotateX,setRotateX] = useState(0)
   const [rotateY,setRotateY] = useState(0)
   const [rotateZ,setRotateZ] = useState(0)
+  const [MoveX,setMoveX] = useState(0)
+  const [MoveY,setMoveY] = useState(0)
+  const [MoveZ,setMoveZ] = useState(0)
   const [assets,setAssets] = useState([])
+  const [rotate,setRotate] = useState(false)
+  const [place,setPlace] = useState(false)
 
   useEffect(()=>{
     axios.get('/assets/bring')
@@ -46,7 +51,6 @@ function Furniture() {
         <h1 className='text-center text-4xl lg:text-6xl pb-8 text-amber-600 '>Use Your Furniture</h1>
         <a href="https://www.remove.bg/" target="_blank" rel="noopener noreferrer" className='border border-2 rounded-full border-yellow-100 rounded-md bg-amber-100 focus:outline-none text-center w-1/2 lg:w-full mb-3 p-2'>Click me for bg-removal</a>
         <p className="mb-4 text-slate-300 text-wrap font-sans ">Note: Select images with transparent backgrounds for best results. Utilize external websites for easy background removal in a click.</p>
-        <h1 className="text-xl py-4 mb-2 text-yellow-600">TO DO: ADD ROTATION, SIZE SELECTION</h1>
         {fur && <img src={fur} alt="Furniture" className="w-24 h-24 mb-4 rounded-full border-yellow-500 rounded-md bg-yellow-100 focus:outline-none" />}
         <input type="file" className="mb-4 py-2" onChange={handleUpload} />
         {fur && (
@@ -59,7 +63,7 @@ function Furniture() {
           </Link>
         )}
       </div>
-    
+          
       {/* Content for 'Use Our 3D Simulations' section */}
       <div className='flex flex-col justify-between item-center p-4 w-full lg:w-1/2'>
         <h1 className='text-center text-4xl lg:text-6xl pb-8 text-amber-600'>Use Our 3D Simulations</h1>
@@ -83,16 +87,20 @@ function Furniture() {
             onChange={(e) => setSize(e.target.value)}
             className="mb-4 border-2 border-yellow-500 rounded-md bg-white focus:outline-none text-center w-1/2 lg:w-1/2 p-2 mb-2"
           >
-            <option value="">Select Size</option>
+            <option value="3">Select Size</option>
             {[...Array(9)].map((_, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
               </option>
             ))}
-          </select>
-          {/* Range inputs for rotation */}
-          <div className="relative">
-          <input
+      </select>
+      <div>
+        <p onClick={()=>setRotate(!rotate)}>Rotate 3D Object</p>
+      </div>
+      { rotate && 
+        <>
+        <div className="relative">
+      <input
         type="range"
         min="0"
         max="360"
@@ -101,7 +109,7 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateX}°
+        <p>X - {rotateX}°</p>
       </div>
           </div>
           <div className="relative">
@@ -114,7 +122,7 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateY}°
+        <p>Z - {rotateY}°</p>
       </div>
           </div>
           <div className="relative">
@@ -127,9 +135,58 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        {rotateZ}°
+      <p>Y - {rotateZ}°</p>
       </div>
           </div>
+        </>
+      }
+      <div>
+        <p onClick={()=>setPlace(!place)}>Move 3D Object</p>
+      </div>
+      {
+        place &&
+        <>
+          <div className="relative">
+      <input
+        type="range"
+        min="-100"
+        max="100"
+        value={MoveX}
+        onChange={(e) => setMoveX(e.target.value)}
+        className="mb-2 w-full bg-yellow-100"
+      />
+      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+        <p>Left - Right - {`>`}{MoveX}°</p>
+      </div>
+          </div>
+          <div className="relative">
+          <input
+        type="range"
+        min="-100"
+        max="100"
+        value={MoveY}
+        onChange={(e) => setMoveY(e.target.value)}
+        className="mb-2 w-full bg-yellow-100"
+      />
+      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+        <p>Forward - Backward - {`>`} {MoveY}°</p>
+      </div>
+          </div>
+          <div className="relative">
+          <input
+        type="range"
+        min="-100"
+        max="100"
+        value={MoveZ}
+        onChange={(e) => setMoveZ(e.target.value)}
+        className="mb-2 w-full bg-yellow-100"
+      />
+      <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+      <p>Downward - Upward - {`>`} {MoveZ}°</p>
+      </div>
+          </div>
+        </>
+      }
         </div>
         {/* Link to try with 3D model */}
         <Link
@@ -141,6 +198,9 @@ function Furniture() {
             x: rotateX,
             y: rotateY,
             z: rotateZ,
+            moveX: MoveX,
+            moveY: MoveY,
+            moveZ: MoveZ
           }}
           className="rounded-md bg-blue-500 focus:outline-none hover:bg-blue-200 text-center p-2 mb-2 w-full"
         >
