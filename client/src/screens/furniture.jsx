@@ -95,7 +95,7 @@ function Furniture() {
             ))}
       </select>
       <div>
-        <p onClick={()=>setRotate(!rotate)}>Rotate 3D Object</p>
+        <p onClick={()=>setRotate(!rotate)} className='cursor-pointer text-blue-500 hover:text-blue-700'>Rotate 3D Object 🔽</p>
       </div>
       { rotate && 
         <>
@@ -141,12 +141,15 @@ function Furniture() {
         </>
       }
       <div>
-        <p onClick={()=>setPlace(!place)}>Move 3D Object</p>
+        <p onClick={()=>setPlace(!place)} className='cursor-pointer text-blue-500 hover:text-blue-700'>Move 3D Object 🔽</p>
       </div>
       {
         place &&
         <>
           <div className="relative">
+          <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+        <p>Left - Right</p>
+      </div>
       <input
         type="range"
         min="-100"
@@ -156,10 +159,13 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        <p>Left - Right - {`>`}{MoveX}°</p>
+        <p>{MoveX}</p>
       </div>
           </div>
           <div className="relative">
+          <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+        <p>Forward - Backward</p>
+      </div>
           <input
         type="range"
         min="-100"
@@ -169,10 +175,13 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-        <p>Forward - Backward - {`>`} {MoveY}°</p>
+        <p>{MoveY}</p>
       </div>
           </div>
           <div className="relative">
+          <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
+        <p>Downward - Upward</p>
+      </div>
           <input
         type="range"
         min="-100"
@@ -182,7 +191,7 @@ function Furniture() {
         className="mb-2 w-full bg-yellow-100"
       />
       <div className="realtive top-0 left-0 right-0 text-center text-sm text-gray-700">
-      <p>Downward - Upward - {`>`} {MoveZ}°</p>
+      <p>{MoveZ}</p>
       </div>
           </div>
         </>

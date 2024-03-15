@@ -30,9 +30,6 @@ function UserPropertyList() {
   const [assets, setAssets] = useState();
   const navigate = useNavigate();
 
-  console.log(isAdmin);
-  console.log(properties);
-
   useEffect(() => {
     if (!userId) {
       navigate("/a/login");
@@ -106,19 +103,6 @@ function UserPropertyList() {
               <Link to="/profile">
                 <CiUser size={40} className="mr-3" />
               </Link>
-
-              <div className="hidden md:block">
-                <input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search..."
-                  className=" bg-slate-200 border border-slate-900 hover:bg-slate-600 rounded-md px-4 py-2 "
-                />
-                <button className="ml-2 bg-amber-700 hover:bg-amber-600 text-white py-2 px-4 rounded-md font-thin ">
-                  Search
-                </button>
-              </div>
             </div>
 
             <div className="flex justify-center flex-row">
