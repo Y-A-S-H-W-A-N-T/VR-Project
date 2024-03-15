@@ -15,6 +15,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import EditProperty from '../components/editProperty'
 import { FaEdit } from "react-icons/fa";
+import { toast  } from "react-toastify";
 
 function Property() {
 
@@ -76,6 +77,9 @@ function Property() {
     .then((res)=>{
       if(res.status==200){
         console.log(res.data.message)
+        navigate(-1)
+        toast.success('Requested Property', {
+        })
       }else{
         console.log(res.data.message)
       }
