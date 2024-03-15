@@ -69,6 +69,7 @@ router.get('/show',async(req,res)=>{
 });
 
 router.post('/updateProperty',async(req,res)=>{
+  console.log(req.body)
   try {
     const user = await User.findOne({ _id:req.body.userID });
     console.log("user details",user);

@@ -38,6 +38,9 @@ const propertySchema = new Schema({
     description:{
         type: String,
     },
+    property_Proof: {
+        type: String,
+    },
     userId:{
         type: Schema.Types.ObjectId,
         ref: 'User',
