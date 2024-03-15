@@ -10,10 +10,7 @@ import { ImCross } from "react-icons/im";
 import Navbar from "../components/navbar";
 import Foooter from "../components/Footer";
 
-
 function Home() {
- 
-
   const [search, setSearch] = useState();
   const [properties, setProperties] = useState([]);
 
@@ -31,82 +28,86 @@ function Home() {
 
   return (
     <>
-    <Navbar/>
-    <div className="     px-4 py-8 ">
-      <div className="flex justify-between items-center">
-        <div className="mb-4">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search..."
-            className="border border-gray-900 bg-slate-200 rounded-md px-4 py-2 "
-          />
-          <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
-            Search
-          </button>
+      <Navbar />
+      <div className="     px-4 py-8 ">
+        <div className="flex justify-between items-center">
+          <div className="mb-4">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="border border-gray-900 bg-slate-200 rounded-md px-4 py-2 "
+            />
+            <button className="ml-2   bg-amber-700 hover:bg-amber-600 text-white  py-2 px-4 rounded-md">
+              Search
+            </button>
+          </div>
+          <div className="p-5"></div>
         </div>
-        <div className="p-5"></div>
-      </div>
-      <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-        {properties
-          .filter((val) => {
-            return val.isVerified == true;
-          })
-          .map((item, ind) => (
-            <div
-              key={ind}
-              className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
-            >
-              <Link
-                key={item.id}
-                to="/property"
-                state={{ property: item }}
-                className="block"
+        <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+          {properties
+            .filter((val) => {
+              return val.isVerified == true;
+            })
+            .map((item, ind) => (
+              <div
+                key={ind}
+                className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
               >
-                <div className="">
-                  <img
-                    src={item.property_Image}
-                    alt={item.name}
-                    className="w-full h-56 object-cover"
-                  />
+                <Link
+                  key={item.id}
+                  to="/property"
+                  state={{ property: item }}
+                  className="block"
+                >
+                  <div className="">
+                    <img
+                      src={item.property_Image}
+                      alt={item.name}
+                      className="w-full h-56 object-cover"
+                    />
 
-                  <div className="p-4 pb-5">
-                    <div className="flex justify-between text-justify">
-                      <p className="text-lg font-semibold mb-2 ">{item.name}</p>
-                      
+                    <div className="p-4 pb-5">
+                      <div className="flex justify-between text-justify">
+                        <p className="text-lg font-bold mb-2 ">
+                          {item.name}
+                        </p>
+                      </div>
+                      {item.isVerified ? (
+                        <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-mono text-green-100 bg-green-500 rounded-full flex ">
+                          <FaCheck className="mr-1" /> Verified
+                        </span>
+                      ) : (
+                        <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-mono text-red-800 bg-red-100 rounded-full flex">
+                          <ImCross className="mr-1" />
+                          Not Verified
+                        </span>
+                      )}
+                      <p className="text-amber-900 mb-2 font-mono flex m-1">
+                        <MdLocationOn className=" mr-3 text-amber-500" />
+                        {item.location}{" "}
+                      </p>
+                      <p className="text-amber-900 font-mono mb-2 flex m-1">
+                        <MdBusiness className="mr-3  text-amber-500 " />
+                        {item.type}
+                      </p>
+
+                      <p className="text-green-600 font-mono flex">
+                        <MdPriceCheck className="mr-3 ml-1 text-amber-500" />
+                        {item.price}
+                      </p>
+                      <p className="block font-mono text-base antialiased font-light leading-relaxed text-gray-400 pr-5">
+                        {item.description}
+                      </p>
                     </div>
-                    {item.isVerified ? (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-green-100 bg-green-500 rounded-full flex ">
-                                                                    <FaCheck className="mr-1"/> Verified
-                                                                </span>
-                                                            ) : (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-red-800 bg-red-100 rounded-full flex">
-                                                                    <ImCross  className="mr-1"/>
-                                                                    Not Verified
-                                                                </span>
-                                                            )}
-                    <p className="text-amber-900 mb-2 flex m-1">
-                      <MdLocationOn className=" mr-3 text-amber-500" />
-                      {item.location}{" "}
-                    </p>
-                    <p className="text-amber-900 mb-2 flex m-1"><MdBusiness  className="mr-3  text-amber-500 " />{item.type}</p>
-
-                    <p className="text-green-600 font-semibold flex">
-                      <MdPriceCheck className="mr-3 ml-1 text-amber-500" />
-                      {item.price}
-                    </p>
-                    <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-400 pr-5">
-                      {item.description}
-                    </p>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
-    </div>
-    <Foooter/>
+      <Foooter />
     </>
   );
 }

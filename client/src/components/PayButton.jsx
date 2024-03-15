@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import { CiBookmarkCheck } from "react-icons/ci";
 function PayButton() {
     function loadScript(src) {
         return new Promise((resolve) => {
@@ -65,8 +66,8 @@ function PayButton() {
 
     return (
         <div className="">
-                <button  className='p-3  mt-2 bg-slate-100 border border-gray-500 text-slate-500  hover:bg-green-300  w-full rounded-full ' onClick={displayRazorpay}>
-                    Book Now!
+                <button  className='p-2 inline-flex mt-4 pr-2 font-bold bg-green-200 border border-gray-500 text-slate-500  hover:bg-green-400  w-full rounded-full  ' onClick={displayRazorpay}>
+                <CiBookmarkCheck size={24} className='mr-1' />  Book Now
                 </button>
         </div>
     );
