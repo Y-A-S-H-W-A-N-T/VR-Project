@@ -9,7 +9,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
-import { toast  } from "react-toastify";
+import { toast  } from "react-toastify"
+import { RxCross2 } from "react-icons/rx";
 
 function Request() {
   const location = useLocation();
@@ -108,7 +109,7 @@ function Request() {
                 <div >
                     <button
                         onClick={(e) => Accept(e, user_id, property_id)}
-                        className="flex items-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded w-full"
+                        className="flex items-center bg-green-500 hover:bg-green-900 text-white font-bold py-2 px-4 rounded w-full"
                     >
                         <FaCheckCircle className="mr-2" size={20} />
                         Accept Request
@@ -117,9 +118,9 @@ function Request() {
                 <div >
                     <button
                         onClick={(e) => Reject(e, user_id, property_id)}
-                        className="flex items-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded w-full"
+                        className="flex items-center bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded w-full"
                     >
-                        <FaCheckCircle className="mr-2" size={20} />
+                        <RxCross2 className="mr-2" size={20} />
                         Reject Request
                     </button>
                 </div>

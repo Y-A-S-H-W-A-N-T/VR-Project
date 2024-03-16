@@ -126,11 +126,11 @@ function Property() {
         <p className="text-lg font-mono mb-2 flex items-center">
           <MdPriceCheck className="mr-2 text-amber-500" />
           Price: {data.property.price}
-        </p>      
-        
-
-
-
+        </p>
+        <p className="text-lg font-mono mb-2 flex items-center">
+          <p>📞</p>
+          Contact: +91 8179230511
+        </p> 
         <div className='flex flex-row item-center mt-2 justify-between mt-7 text-center'>
         <button onClick={() => setShowRooms(!showRooms)} className="text-amber-50 hover:text-amber-100 border border-amber-700 hover:bg-amber-500 bg-amber-900  p-2 rounded-full  focus:outline-none w-1/2 h-1/3 text-center  font-bold ">
           {showRooms ? ' Close Rooms' : ' Show Rooms'}
