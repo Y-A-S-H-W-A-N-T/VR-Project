@@ -9,6 +9,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { toast  } from "react-toastify";
 
 function Request() {
   const location = useLocation();
@@ -43,14 +44,31 @@ function Request() {
   }, []);
 
   const Accept = async (e, user_id, property_id) => {
-    navigate(-1);
-    e.preventDefault();
+    navigate(-1)
+    e.preventDefault()
     console.log(property_id, user_id);
+    toast.success('Request Accepted', {
+    })
     await axios.post("/user/updateProperty", {
       propertyID: property_id,
       userID: user_id,
-    });
-  };
+    })
+    await axios.post('/property/deleteRequest',{
+      PropertyId: property_id,
+      UserId: user_id
+    })
+  }
+
+  const Reject = async(e, user_id, property_id)=>{
+    navigate(-1)
+    toast.success('Request Rejected', {
+    })
+    e.preventDefault();
+    await axios.post('/property/deleteRequest',{
+      PropertyId: property_id,
+      UserId: user_id
+    })
+  }
 
   return (
     <>
@@ -94,6 +112,15 @@ function Request() {
                     >
                         <FaCheckCircle className="mr-2" size={20} />
                         Accept Request
+                    </button>
+                </div>
+                <div >
+                    <button
+                        onClick={(e) => Reject(e, user_id, property_id)}
+                        className="flex items-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded w-full"
+                    >
+                        <FaCheckCircle className="mr-2" size={20} />
+                        Reject Request
                     </button>
                 </div>
             </div>

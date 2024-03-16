@@ -18,13 +18,14 @@ function Home() {
     axios
       .get("/property/show")
       .then((response) => {
-        setProperties(response.data);
-        console.log(response.data);
+        var verified = response.data.filter(val => val.isVerified == true);
+        setProperties(verified)
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
-  }, []);
+      })
+      
+  }, [])
 
   return (
     <>
@@ -48,10 +49,7 @@ function Home() {
           <div className="p-5"></div>
         </div>
         <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-          {properties
-            .filter((val) => {
-              return val.isVerified == true;
-            })
+          {properties.filter((val)=> search? val.name.toLowerCase().includes(search.toLowerCase()) : val)
             .map((item, ind) => (
               <div
                 key={ind}

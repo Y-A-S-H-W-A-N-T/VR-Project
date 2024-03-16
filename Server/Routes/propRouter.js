@@ -121,6 +121,8 @@ router.post('/request',async(req,res)=>{
   }
 })
 
+// Requested Properties
+
 router.get('/showRequest', async (req, res) => {
   try {
     const requests = await Request.find()
@@ -129,6 +131,19 @@ router.get('/showRequest', async (req, res) => {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
+})
+
+router.post('/deleteRequest',async(req,res)=>{
+  try{
+    await Request.deleteOne(req.body)
+    res.status(200)
+  }
+  catch(err)
+  {
+    console.log(err)
+    res.status(400)
+  }
+  
 })
 
 router.get('/propertyDetails/:id',async(req,res)=>{

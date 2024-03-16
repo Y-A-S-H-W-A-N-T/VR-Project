@@ -182,7 +182,8 @@ function UserPropertyList() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {properties.length > 0 ? (
-            properties.map((item, ind) => (
+            properties.filter((val)=> search? val.name.toLowerCase().includes(search.toLowerCase()) : val)
+            .map((item, ind) => (
               <div
                 key={ind}
                 className="border border-gray-300 rounded-lg overflow-hidden shadow-lg"
