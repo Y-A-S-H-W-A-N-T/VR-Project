@@ -17,7 +17,7 @@ const app=express();
 
 
 mongoose.connect('mongodb+srv://abishchhetri2502:gKa7BjeOgvMiw2DU@cluster0.n6whocg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-.then(()=>{console.log("Yeahh Elvishhh Bhaii DB Connected!!!")})
+.then(()=>{console.log("DB Connected!")})
 .catch((err)=>{console.log(err)})
 app.use(cors())
 
@@ -35,6 +35,6 @@ app.use(express.json({ extended: false }));
 
 app.use("/payment", rout);
 
-app.listen(PORT,()=>{console.log("Challo! Server hogaya suru...")})
+app.listen(PORT,()=>{console.log("let's go,Server Started! ")})
 
 

@@ -4,9 +4,9 @@ import axios from 'axios';
 import Navbar from './navbar.jsx';
 import Footer from './Footer.jsx';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router
-import { FaUserCheck, FaCheck, FaPhoneAlt } from "react-icons/fa";
+import { FaUserCheck, FaPhoneAlt } from "react-icons/fa";
 import { MdMarkEmailRead, MdLocationOn, MdBusiness, MdPriceCheck } from "react-icons/md";
-import { ImCross } from "react-icons/im"; 
+
 
 const Profile = () => {
     const [userData, setUserData] = useState(null);
@@ -94,12 +94,12 @@ const Profile = () => {
                                                             
                                                         </div>
                                                         {item.isVerified ? (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-green-100 bg-green-500 rounded-full flex ">
-                                                                    <FaCheck className="mr-1"/> Verified
+                                                                <span className="inline-block px-2 py-1 text-xs font-mono text-center  text-green-100 bg-green-500 rounded-full  ">
+                                                                    Verified
                                                                 </span>
                                                             ) : (
-                                                                <span className="inline-block px-5 py-2 m-2 text-xs w-1/4 text-center font-semibold text-red-800 bg-red-100 rounded-full flex">
-                                                                    <ImCross  className="mr-1"/>
+                                                                <span className="inline-block px-5 py-2 m-2 text-xs text-center  text-red-800 bg-red-100 rounded-full">
+                                                                    
                                                                     Not Verified
                                                                 </span>
                                                             )}

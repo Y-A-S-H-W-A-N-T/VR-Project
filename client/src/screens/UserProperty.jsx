@@ -119,7 +119,11 @@ function UserPropertyList() {
                   Search
                 </button>
               </div>
+
+              
             </div>
+
+            
 
             <div className="flex justify-center flex-row">
               {isAdmin === true || isAdmin === "true" ? (

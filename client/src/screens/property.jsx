@@ -3,7 +3,6 @@ import { useLocation, Link } from 'react-router-dom'
 import "../css/home.css"
 import Rooms from '../components/rooms'
 import { MdLocationOn } from 'react-icons/md';
-import { BiSlideshow } from "react-icons/bi";
 import { CiSquareQuestion } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { MdBusiness } from 'react-icons/md';
@@ -17,6 +16,8 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import EditProperty from '../components/editProperty'
 import { FaEdit } from "react-icons/fa";
+import SimpleMap from '../components/Map';
+import Map from '../components/Map';
 
 function Property() {
 
@@ -94,7 +95,7 @@ function Property() {
     {data.property.isVerified ? 
     <span className="inline-block px-2 py-1 text-xs font-mono text-green-800 bg-green-100 rounded-full">Verified</span>
      :
-    <span className="inline-block px-2 py-1 text-xs font-mono text-red-800 bg-red-100 rounded-full">Not Verified</span>}
+    <span className="inline-block px-2 py-1 text-xs font-mono text-red-800 bg-red-100 rounded-full ">Not Verified</span>}
     <p className="block font-mono text-base antialiased font-light leading-relaxed text-gray-600 pr-5 mt-2 mb-3 ">{data.property.description}</p>
     
     <div className="flex flex-wrap items-center mb-4 font-extrabold">
@@ -112,7 +113,10 @@ function Property() {
           <MdLocationOn className="mr-2 text-amber-500" />
           Location: {data.property.location}
         </p>
-        <Maps className="p-11"/>
+        <Maps className="p-11" location={data.property.location}/>
+        {/* <Map location={data.property.location}/> */}
+
+        {/* <SimpleMap location={data.property.location} /> */}
         <p className="text-lg font-mono mb-2 flex items-center">
           <MdBusiness className="mr-2 text-amber-500" />
           Type: {data.property.type}
@@ -125,8 +129,8 @@ function Property() {
 
 
 
-        <div className='flex flex-row item-center mt-2 justify-between mt-7 '>
-        <button onClick={() => setShowRooms(!showRooms)} className="text-amber-50 hover:text-amber-100 border border-amber-700 hover:bg-amber-500 bg-amber-900  p-2 rounded-full  focus:outline-none w-1/2 h-1/3 mr-2 inline-flex text-center items-center font-bold "><BiSlideshow size={24} className='mr-4 ml-12'/>
+        <div className='flex flex-row item-center mt-2 justify-between mt-7 text-center'>
+        <button onClick={() => setShowRooms(!showRooms)} className="text-amber-50 hover:text-amber-100 border border-amber-700 hover:bg-amber-500 bg-amber-900  p-2 rounded-full  focus:outline-none w-1/2 h-1/3 text-center  font-bold ">
           {showRooms ? ' Close Rooms' : ' Show Rooms'}
         </button>
         {isAdmin === 'true' || isAdmin == true || userId==data.property.userId ?

@@ -1,0 +1,17 @@
+.mapContainer {
+    margin-top: 25px;
+  }
+  
+  .mapDiv{
+    height: 200px;
+  }
+  
+  .mapZoomDisplay {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+  
+  .updateButton {
+    margin-top: 20px;
+  }

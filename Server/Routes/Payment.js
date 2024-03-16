@@ -17,7 +17,7 @@ rout.post('/orders', async (req, res) => {
       });
   
       const options = {
-        amount: 900,
+        amount: 9000,
         currency: 'USD',
         receipt: 'receipt_order_74394',
       };
